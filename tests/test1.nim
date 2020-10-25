@@ -8,17 +8,21 @@
 import karax_tables
 
 type
+    UserKind = enum
+        Unconfirmed
+        Admin
+        Worker
+        Supervisor
+
     User = object
         username: string
         id: int
+        user_kind: UserKind
 
 var users: seq[User]
 
 users.add(User(username: "mnike", id: 0))
 users.add(User(username: "another_user", id: 2))
-users.add(User(username: "third user", id: 4))
+users.add(User(username: "third user", id: 4, user_kind: Admin))
 
-
-let html_output = users.to_table
-
-writeFile("stuff.html", html_output)
+writeFile("stuff.html", users.table.to_string)
