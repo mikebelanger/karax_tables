@@ -5,8 +5,20 @@
 #
 # To run these tests, simply execute `nimble test`.
 
-import unittest
-
 import karax_tables
-test "can add":
-  check add(5, 5) == 10
+
+type
+    User = object
+        username: string
+        id: int
+
+var users: seq[User]
+
+users.add(User(username: "mnike", id: 0))
+users.add(User(username: "another_user", id: 2))
+users.add(User(username: "third user", id: 4))
+
+
+let html_output = users.to_table
+
+writeFile("stuff.html", html_output)

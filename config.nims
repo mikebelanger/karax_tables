@@ -1,0 +1,1 @@
+--path: "$HOME/.nimble/pkgs/karax-1.1.3"
