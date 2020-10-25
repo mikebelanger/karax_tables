@@ -1,3 +1,5 @@
+import karax / [karaxdsl, vdom]
+
 type
     CelKind* = enum
         String
@@ -22,6 +24,14 @@ proc column_headers*(obj: object): seq[Column] =
         
         result.add(col)
 
+proc get_row(obj: object): VNode =
+    result = buildHtml(tr())
+
+    for key, val in obj.fieldPairs:
+        
+        result.add(buildHtml(td(text($val))))
+
+
 when defined(js):
     include karax/prelude
 
@@ -44,7 +54,6 @@ when defined(js):
                                     text option
 
 else:
-    import karax / [karaxdsl, vdom]
 
     proc optionsMenu*(name, message: string, selected = "", options: seq[string]): string =
 
@@ -65,13 +74,6 @@ else:
                                     text option
 
         return $vnode
-
-    proc get_row(obj: object): VNode =
-        result = buildHtml(tr())
-
-        for key, val in obj.fieldPairs:
-            
-            result.add(buildHtml(td(text($val))))
 
     proc to_table*(objs: seq[object]): string =
         if objs.len > 0:
