@@ -7,6 +7,8 @@
 
 import karax_tables
 
+### using default table
+
 type
     UserKind = enum
         Unconfirmed
@@ -31,8 +33,8 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.table
+            users.default_table
 
     setRenderer render
 else:
-    writeFile("stuff.html", users.table.to_string)
+    writeFile("stuff.html", users.default_table.to_string)
