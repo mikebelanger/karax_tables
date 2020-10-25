@@ -1,4 +1,5 @@
 import karax / [karaxdsl, vdom]
+import sequtils
 
 type
     CelKind* = enum
@@ -32,7 +33,14 @@ proc row(obj: object): VNode =
 
     for key, val in obj.fieldPairs:
         
-        result.add(buildHtml(td(text($val))))
+        when val is enum:
+            let options = (val.typeof.low .. val.typeof.high).mapIt($it)
+            result.add(buildHtml(
+                td(optionsMenu(name = $key, message = "", selected = $val, options = options))
+                )
+            )
+        else:
+            result.add(buildHtml(td(text($val))))
 
 proc optionsMenu*(name, message: cstring, selected = "", options: seq[string]): VNode =
 
