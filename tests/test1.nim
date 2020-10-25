@@ -25,4 +25,14 @@ users.add(User(username: "mnike", id: 0))
 users.add(User(username: "another_user", id: 2))
 users.add(User(username: "third user", id: 4, user_kind: Admin))
 
-writeFile("stuff.html", users.table.to_string)
+when defined(js):
+    include karax/prelude
+    import karax / [karaxdsl, vdom]
+
+    proc render(): VNode = 
+        result = buildHtml():
+            users.table
+
+    setRenderer render
+else:
+    writeFile("stuff.html", users.table.to_string)

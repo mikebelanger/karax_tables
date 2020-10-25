@@ -14,7 +14,10 @@ type
         width: int
 
 proc to_string*(vnode: VNode): string =
-    $vnode
+    when defined(js):
+        toString(vnode)
+    else:
+        $vnode
 
 proc column_headers*(obj: object): seq[Column] =
     for key, value in obj.fieldPairs:
@@ -69,7 +72,7 @@ proc table*(objs: seq[object]): VNode =
                 table:
                     thead:
                         for col in columns:
-                            thead:
+                            th:
                                 text col.name
                     tbody:
                         for ob in objs:
