@@ -7590,7 +7590,7 @@ function render_14012059() {
   var F={procname:"test2.render",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test2.nim",line:0};
   framePtr = F;
     F.line = 38;
-    result_14012061 = table_14015003(users_14012027[0], [nimCopy(null, id_column_14012031, NTI13991019)]);
+    result_14012061 = table_14015003(users_14012027[0], [nimCopy(null, id_column_14012031, NTI13991019), nimCopy(null, name_column_14012029, NTI13991019), nimCopy(null, user_kind_column_14012033, NTI13991019), nimCopy(null, age_14012034, NTI13991019)]);
   framePtr = F.prev;
 
   return result_14012061;

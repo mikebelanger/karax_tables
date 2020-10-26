@@ -36,7 +36,7 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.table(id_column)
+            users.table(id_column, name_column, user_kind_column, age)
 
     setRenderer render
 else:
