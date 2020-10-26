@@ -1,6 +1,6 @@
 import karax_tables
 
-### using default table
+### using custom table
 
 type
     UserKind = enum
