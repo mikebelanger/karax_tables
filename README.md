@@ -28,17 +28,14 @@ users.add(User(username: "rob", id: 4, user_kind: Admin))
 You want to render them out to a an HTML table, with minimal hassle.  Like this:
 
 ```nimrod
-when defined(js):
-    include karax/prelude
-    import karax / [karaxdsl, vdom]
+include karax/prelude
+import karax / [karaxdsl, vdom]
 
-    proc render(): VNode = 
-        result = buildHtml():
-            users.karax_table
+proc render(): VNode = 
+    result = buildHtml():
+        users.karax_table
 
-    setRenderer render
-else:
-    writeFile("output_file.html", users.karax_table.to_string)
+setRenderer render
 ```
 
 karax_tables primarily operates with client-side (js) rendering.  However some parts of it can be ported to server-side (c) rendering as well.
