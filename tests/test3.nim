@@ -58,7 +58,7 @@ when defined(js):
     proc render(): VNode = 
         result = buildHtml():
             try:
-                points.table(columns = columns)
+                points.karax_table(columns = columns)
             except InconsistentRows:
                 echo "successfully found object variant and halted"
                 tdiv:
@@ -68,6 +68,6 @@ when defined(js):
     setRenderer render
 else:
     try:
-        writeFile("stuff3.html", points.table(columns = columns).to_string)
+        writeFile("stuff3.html", points.karax_table(columns = columns).to_string)
     except InconsistentRows:
         echo "successfully found object variant and halted"

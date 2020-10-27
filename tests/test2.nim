@@ -59,8 +59,8 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.table(columns = columns)
+            users.karax_table(columns = columns)
 
     setRenderer render
 else:
-    writeFile("stuff2.html", users.table(columns = columns).to_string)
+    writeFile("stuff2.html", users.karax_table(columns = columns).to_string)

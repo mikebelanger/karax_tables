@@ -7540,10 +7540,10 @@ function row_14040255(obj_14040258, columns_14040259) {
   return result_14040260;
 
 }
-function table_14015001(objs_14015005, columns_14015006) {
+function karax_table_14015001(objs_14015005, columns_14015006) {
   var result_14015007 = null;
 
-  var F={procname:"table.table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
+  var F={procname:"karax_table.karax_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     if ((0 < (objs_14015005).length)) {
     F.line = 152;
@@ -7656,7 +7656,7 @@ function render_14012071() {
   var F={procname:"test2.render",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test2.nim",line:0};
   framePtr = F;
     F.line = 61;
-    result_14012073 = table_14015001(users_14012027[0], columns_14012046);
+    result_14012073 = karax_table_14015001(users_14012027[0], columns_14012046);
   framePtr = F.prev;
 
   return result_14012073;

@@ -33,8 +33,8 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.table
+            users.karax_table
 
     setRenderer render
 else:
-    writeFile("stuff.html", users.table.to_string)
+    writeFile("stuff.html", users.karax_table.to_string)

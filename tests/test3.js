@@ -7944,10 +7944,10 @@ function row_14040261(obj_14040264, columns_14040265) {
   return result_14040266;
 
 }
-function table_14015001(objs_14015005, columns_14015006) {
+function karax_table_14015001(objs_14015005, columns_14015006) {
   var result_14015007 = null;
 
-  var F={procname:"table.table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
+  var F={procname:"karax_table.karax_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     if ((0 < (objs_14015005).length)) {
     F.line = 152;
@@ -8070,7 +8070,7 @@ function render_14012068() {
     F.line = 59;
 ++excHandler;
     try {
-    Tmp1 = table_14015001(points_14012033[0], columns_14012035[0]);
+    Tmp1 = karax_table_14015001(points_14012033[0], columns_14012035[0]);
 --excHandler;
 } catch (EXC) {
  var prevJSError = lastJSError;

@@ -34,11 +34,11 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.table
+            users.karax_table
 
     setRenderer render
 else:
-    writeFile("output_file.html", users.default_table.to_string)
+    writeFile("output_file.html", users.karax_table.to_string)
 ```
 
 karax_tables primarily operates with client-side (js) rendering.  However some parts of it can be ported to server-side (c) rendering as well.
@@ -63,7 +63,7 @@ Ensure you have nim installed, with karax's *entire* source copied into your pro
 
 #### Client-Side
 
-import karax_tables into whatever file you compile into JS.  Get your objects into a sequence, and call the `.table` function in the main render loop:
+import karax_tables into whatever file you compile into JS.  Get your objects into a sequence, and call the `.karax_table` function in the main render loop:
 ```nimrod
 include karax/prelude
 import karax / [karaxdsl, vdom]
@@ -75,7 +75,7 @@ var users: seq[User]
 
 proc render(): VNode = 
     result = buildHtml():
-        users.table
+        users.karax_table
 
 setRenderer render
 ```

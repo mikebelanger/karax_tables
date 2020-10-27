@@ -125,7 +125,7 @@ proc optionsMenu*(name, message: cstring, selected = "", options: seq[string]): 
                             option(value = option):
                                 text option
 
-proc table*(objs: seq[object]): VNode =
+proc karax_table*(objs: seq[object]): VNode =
     if objs.len > 0:
         let 
             number_of_fields = objs[0].get_fields.len
@@ -146,7 +146,7 @@ proc table*(objs: seq[object]): VNode =
                                 raise newException(InconsistentRows, 
                                 "row number " & $row_number & " has " & $(ob.get_fields.len) & " columns, but the first row has " & $number_of_fields)
 
-proc table*(objs: seq[object], columns: seq[Column]): VNode =
+proc karax_table*(objs: seq[object], columns: seq[Column]): VNode =
 
     if objs.len > 0:
         let number_of_fields = objs[0].get_fields.len
