@@ -34,7 +34,7 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.default_table
+            users.table
 
     setRenderer render
 else:
@@ -59,4 +59,22 @@ Ensure you have nim installed, with karax's *entire* source copied into your pro
 --path: "$HOME/.nimble/pkgs/karax-1.1.3"
 ```
 
+## Using
+
+#### Client-Side
+
+import karax_tables into whatever file you compile into JS.  Get your objects into a sequence, and call the `.table` function in the main render loop:
+```nimrod
+include karax/prelude
+import karax / [karaxdsl, vdom]
+import karax_tables
+
+proc render(): VNode = 
+    result = buildHtml():
+        users.table
+
+setRenderer render
+```
+
+#### Server Side
 TODO: Determine the above works with Windows.
