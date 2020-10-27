@@ -33,8 +33,8 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.default_table
+            users.table
 
     setRenderer render
 else:
-    writeFile("stuff.html", users.default_table.to_string)
+    writeFile("stuff.html", users.table.to_string)

@@ -125,7 +125,7 @@ proc optionsMenu*(name, message: cstring, selected = "", options: seq[string]): 
                             option(value = option):
                                 text option
 
-proc default_table*(objs: seq[object]): VNode =
+proc table*(objs: seq[object]): VNode =
     if objs.len > 0:
         let 
             number_of_fields = objs[0].get_fields.len
