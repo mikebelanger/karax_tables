@@ -69,6 +69,10 @@ include karax/prelude
 import karax / [karaxdsl, vdom]
 import karax_tables
 
+var users: seq[User]
+
+## do stuff to populate users
+
 proc render(): VNode = 
     result = buildHtml():
         users.table
