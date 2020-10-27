@@ -38,7 +38,7 @@ proc render(): VNode =
 setRenderer render
 ```
 
-karax_tables primarily operates with client-side (js) rendering.  However some parts of it can be ported to server-side (c) rendering as well.
+karax_tables primarily operates with client-side (js) rendering.  However, a subset of its rendering functions are available server-side (c) as well.
 
 ### Non-Usage case
 
