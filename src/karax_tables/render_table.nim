@@ -2,6 +2,8 @@ import karax / [karaxdsl, vdom]
 import sequtils
 
 type
+    InconsistentRows* = object of ValueError
+
     CelAffordance* = enum
         ReadOnly
         ReadAndWrite
@@ -37,6 +39,11 @@ proc column_headers*(obj: object): seq[Column] =
         
         result.add(col)
 
+proc get_fields*(obj: object): seq[string] =
+
+    for key, val in obj.fieldPairs:
+        result.add($(val.typedesc))
+
 proc default_row(obj: object): VNode =
     result = buildHtml(tr())
 
@@ -51,7 +58,7 @@ proc default_row(obj: object): VNode =
         else:
             result.add(buildHtml(td(text($val))))
 
-proc row(obj: object, columns: varargs[Column]): VNode =
+proc row(obj: object, columns: seq[Column]): VNode =
     result = buildHtml(tr())
 
     for c in columns:
@@ -120,7 +127,9 @@ proc optionsMenu*(name, message: cstring, selected = "", options: seq[string]): 
 
 proc default_table*(objs: seq[object]): VNode =
     if objs.len > 0:
-        let columns = objs[0].column_headers
+        let 
+            number_of_fields = objs[0].get_fields.len
+            columns = objs[0].column_headers
 
         result = buildHtml():
             tdiv:
@@ -130,11 +139,18 @@ proc default_table*(objs: seq[object]): VNode =
                             th:
                                 text col.name
                     tbody:
-                        for ob in objs:
-                            ob.default_row
+                        for row_number, ob in objs:
+                            if ob.get_fields.len == number_of_fields:
+                                ob.default_row
+                            else:
+                                raise newException(InconsistentRows, 
+                                "row number " & $row_number & " has " & $(ob.get_fields.len) & " columns, but the first row has " & $number_of_fields)
 
-proc table*(objs: seq[object], columns: varargs[Column]): VNode =
+proc table*(objs: seq[object], columns: seq[Column]): VNode =
+
     if objs.len > 0:
+        let number_of_fields = objs[0].get_fields.len
+
         result = buildHtml():
             tdiv:
                 table:
@@ -149,5 +165,9 @@ proc table*(objs: seq[object], columns: varargs[Column]): VNode =
                                         text col.name
 
                     tbody:
-                        for ob in objs:
-                            ob.row(columns)
+                        for row_number, ob in objs:
+                            if ob.get_fields.len == number_of_fields:
+                                ob.row(columns)
+                            else:
+                                raise newException(InconsistentRows, 
+                                "row number " & $row_number & " has " & $(ob.get_fields.len) & " columns, but the first row has " & $number_of_fields)

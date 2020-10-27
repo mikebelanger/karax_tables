@@ -46,6 +46,9 @@ let
         cel_affordance: ReadAndWrite,
         title: "Age"
     )
+
+    columns = @[id_column, name_column, user_kind_column, age]
+
 users.add(User(username: "mnike", id: 0, age: 36))
 users.add(User(username: "another_user", id: 2, age: 22))
 users.add(User(username: "third user", id: 4, user_kind: Admin, age: 52))
@@ -56,8 +59,8 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.table(id_column, name_column, user_kind_column, age)
+            users.table(columns = columns)
 
     setRenderer render
 else:
-    writeFile("stuff2.html", users.table(id_column, user_kind_column, name_column, age).to_string)
+    writeFile("stuff2.html", users.table(columns = columns).to_string)
