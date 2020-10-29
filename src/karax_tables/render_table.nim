@@ -27,7 +27,7 @@ proc to_string*(vnode: VNode): string =
     else:
         $vnode
 
-proc column_headers*(obj: object): seq[Column] =
+proc column_headers*(obj: object | tuple): seq[Column] =
     for key, value in obj.fieldPairs:
         var col = Column(name: $key, width: 100)
 
@@ -39,12 +39,12 @@ proc column_headers*(obj: object): seq[Column] =
         
         result.add(col)
 
-proc get_fields*(obj: object): seq[string] =
+proc get_fields*(obj: object | tuple): seq[string] =
 
     for key, val in obj.fieldPairs:
         result.add($(val.typedesc))
 
-proc default_row(obj: object): VNode =
+proc default_row(obj: object | tuple): VNode =
     result = buildHtml(tr())
 
     for key, val in obj.fieldPairs:
@@ -58,7 +58,7 @@ proc default_row(obj: object): VNode =
         else:
             result.add(buildHtml(td(text($val))))
 
-proc row(obj: object, columns: seq[Column]): VNode =
+proc row(obj: object | tuple, columns: seq[Column]): VNode =
     result = buildHtml(tr())
 
     for c in columns:
@@ -125,7 +125,7 @@ proc optionsMenu*(name, message: cstring, selected = "", options: seq[string]): 
                             option(value = option):
                                 text option
 
-proc karax_table*(objs: seq[object]): VNode =
+proc karax_table*(objs: seq[object | tuple]): VNode =
     if objs.len > 0:
         let 
             number_of_fields = objs[0].get_fields.len
@@ -146,7 +146,7 @@ proc karax_table*(objs: seq[object]): VNode =
                                 raise newException(InconsistentRows, 
                                 "row number " & $row_number & " has " & $(ob.get_fields.len) & " columns, but the first row has " & $number_of_fields)
 
-proc karax_table*(objs: seq[object], columns: seq[Column]): VNode =
+proc karax_table*(objs: seq[object | tuple], columns: seq[Column]): VNode =
 
     if objs.len > 0:
         let number_of_fields = objs[0].get_fields.len

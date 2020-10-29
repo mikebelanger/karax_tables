@@ -1,55 +1,31 @@
 import karax_tables
 
-### using custom table with varients
 type
-    DataQuality* = enum
-        Corrupt
-        Incomplete
-        Valid
+    PriceKind* = enum
+        Unit
+        Pound
+        Kilo
 
-    WeatherPointError* = enum
-        ImproperDateTime
-        UnusualCoordinates
-        MissingSensorData
+    Product* = tuple
+        name: string
+        sku: int
+        price: float
+        price_per: PriceKind
 
-    RoadWeatherPoint = object
-        path_order: int
-        case integrity: DataQuality            
-            of Valid:
-                longitude, latitude, unix_time: float
-            else:
-                error: WeatherPointError
+var products: seq[Product]
+var some_test: seq[tuple[name: string, age: int, hours_overtime_unpaid: float]]
 
-var points: seq[RoadWeatherPoint]
-var columns: seq[Column]
+some_test.add(
+    (name: "Nim is awesome", age: 2, hours_overtime_unpaid: 4.00)
+)
 
-points.add(RoadWeatherPoint(
-    path_order: 1,
-    longitude: -45.000,
-    latitude: -75.3443,
-    unix_time: 1603821902.00,
-    integrity: Valid
-))
+products.add(
+    (name: "cabbage", sku: 1231, price: 2.10, price_per: Pound)
+)
 
-points.add(RoadWeatherPoint(
-    path_order: 2,
-    longitude: -45.001,
-    latitude: -75.3442,
-    unix_time: 1603821903.00,
-    integrity: Valid
-))
-
-points.add(RoadWeatherPoint(
-    path_order: 3,
-    integrity: Incomplete
-))
-
-columns.add(Column(
-    name: "path_order",
-    cel_kind: Number,
-    cel_affordance: ReadOnly,
-    title: "Point number"
-))
+products.add(
+    (name: "hamburger helper", sku: 23412, price: 5.00, price_per: Unit)
+)
 
 when defined(js):
     include karax/prelude
@@ -57,17 +33,8 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            try:
-                points.karax_table(columns = columns)
-            except InconsistentRows:
-                echo "successfully found object variant and halted"
-                tdiv:
-                    p:
-                        text "Inconsistent rows.  Please examine your objects and try again."
-                
+            products.karax_table
+
     setRenderer render
 else:
-    try:
-        writeFile("stuff3.html", points.karax_table(columns = columns).to_string)
-    except InconsistentRows:
-        echo "successfully found object variant and halted"
+    writeFile("stuff3.html", products.karax_table.to_string)
