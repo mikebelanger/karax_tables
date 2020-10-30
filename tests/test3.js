@@ -5026,13 +5026,13 @@ function auxWriteStackTrace_3765038(f_3765040) {
     
     L6: do {
       var j_3780236 = 0;
-      var colontmp__14090279 = 0;
-      colontmp__14090279 = (i_3765053 - 1);
-      var res_14090284 = colontmp__14090279;
+      var colontmp__14090249 = 0;
+      colontmp__14090249 = (i_3765053 - 1);
+      var res_14090254 = colontmp__14090249;
       L7: do {
           L8: while (true) {
-          if (!(0 <= res_14090284)) break L8;
-            j_3780236 = res_14090284;
+          if (!(0 <= res_14090254)) break L8;
+            j_3780236 = res_14090254;
             result_3765041[0].push.apply(result_3765041[0], cstrToNimstr(tempFrames_3765062[j_3780236].Field2));;
             if ((0 < tempFrames_3765062[j_3780236].Field1)) {
             result_3765041[0].push.apply(result_3765041[0], makeNimstrLit("("));;
@@ -5048,7 +5048,7 @@ function auxWriteStackTrace_3765038(f_3765040) {
             result_3765041[0].push.apply(result_3765041[0], makeNimstrLit(" at "));;
             add_3742042(result_3765041, 0, tempFrames_3765062[j_3780236].Field0);
             result_3765041[0].push.apply(result_3765041[0], makeNimstrLit("\x0A"));;
-            res_14090284 -= 1;
+            res_14090254 -= 1;
           }
       } while(false);
     } while(false);
@@ -5409,21 +5409,21 @@ function applyEvents_13395073(n_13395075) {
       F.line = 146;
       var i_13395089 = 0;
       F.line = 104;
-      var colontmp__14090330 = 0;
+      var colontmp__14090300 = 0;
       F.line = 146;
-      colontmp__14090330 = (n_13395075.events).length;
+      colontmp__14090300 = (n_13395075.events).length;
       F.line = 106;
-      var i_14090331 = 0;
+      var i_14090301 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_14090331 < colontmp__14090330)) break L3;
+          if (!(i_14090301 < colontmp__14090300)) break L3;
             F.line = 146;
-            i_13395089 = i_14090331;
+            i_13395089 = i_14090301;
             F.line = 147;
             n_13395075.events[chckIndx(i_13395089, 0, (n_13395075.events).length-1)]["Field2"] = wrapEvent_13285097(dest_13395076, n_13395075, n_13395075.events[chckIndx(i_13395089, 0, (n_13395075.events).length-1)]["Field0"], n_13395075.events[chckIndx(i_13395089, 0, (n_13395075.events).length-1)]["Field1"]);
             F.line = 109;
-            i_14090331 = addInt(i_14090331, 1);
+            i_14090301 = addInt(i_14090301, 1);
           }
       } while(false);
     } while(false);
@@ -5440,21 +5440,21 @@ function applyStyle_4555425(n_4555427, s_4555428) {
       F.line = 300;
       var i_4555621 = 0;
       F.line = 39;
-      var colontmp__14090341 = 0;
+      var colontmp__14090311 = 0;
       F.line = 300;
-      colontmp__14090341 = subInt(s_4555428.length, 1);
+      colontmp__14090311 = subInt(s_4555428.length, 1);
       F.line = 56;
-      var res_14090342 = 0;
+      var res_14090312 = 0;
       L2: do {
         F.line = 57;
           L3: while (true) {
-          if (!(res_14090342 <= colontmp__14090341)) break L3;
+          if (!(res_14090312 <= colontmp__14090311)) break L3;
             F.line = 300;
-            i_4555621 = res_14090342;
+            i_4555621 = res_14090312;
             F.line = 301;
             n_4555427.style[s_4555428[i_4555621]] = s_4555428[addInt(i_4555621, 1)];
             F.line = 59;
-            res_14090342 = addInt(res_14090342, 2);
+            res_14090312 = addInt(res_14090312, 2);
           }
       } while(false);
     } while(false);
@@ -5598,25 +5598,25 @@ function toDom_13395154(n_13395156, useAttachedNode_13395157, kxi_13395158) {
         var k_13520016 = null;
         L2: do {
           F.line = 291;
-          var i_14090299 = 0;
+          var i_14090269 = 0;
           F.line = 104;
-          var colontmp__14090300 = 0;
+          var colontmp__14090270 = 0;
           F.line = 291;
-          colontmp__14090300 = (n_13395156.kids).length;
+          colontmp__14090270 = (n_13395156.kids).length;
           F.line = 106;
-          var i_14090301 = 0;
+          var i_14090271 = 0;
           L3: do {
             F.line = 107;
               L4: while (true) {
-              if (!(i_14090301 < colontmp__14090300)) break L4;
+              if (!(i_14090271 < colontmp__14090270)) break L4;
                 F.line = 291;
-                i_14090299 = i_14090301;
+                i_14090269 = i_14090271;
                 F.line = 194;
-                k_13520016 = n_13395156.kids[chckIndx(i_14090299, 0, (n_13395156.kids).length-1)];
+                k_13520016 = n_13395156.kids[chckIndx(i_14090269, 0, (n_13395156.kids).length-1)];
                 F.line = 195;
                 result_13395159.appendChild(toDom_13395154(k_13520016, useAttachedNode_13395157, kxi_13395158));
                 F.line = 109;
-                i_14090301 = addInt(i_14090301, 1);
+                i_14090271 = addInt(i_14090271, 1);
               }
           } while(false);
         } while(false);
@@ -5645,30 +5645,30 @@ function toDom_13395154(n_13395156, useAttachedNode_13395157, kxi_13395158) {
       var v_13535002 = null;
       L6: do {
         F.line = 294;
-        var i_14090312 = 0;
+        var i_14090282 = 0;
         F.line = 39;
-        var colontmp__14090313 = 0;
+        var colontmp__14090283 = 0;
         F.line = 294;
-        colontmp__14090313 = subInt((n_13395156.attrs).length, 2);
+        colontmp__14090283 = subInt((n_13395156.attrs).length, 2);
         F.line = 56;
-        var res_14090314 = 0;
+        var res_14090284 = 0;
         L7: do {
           F.line = 57;
             L8: while (true) {
-            if (!(res_14090314 <= colontmp__14090313)) break L8;
+            if (!(res_14090284 <= colontmp__14090283)) break L8;
               F.line = 294;
-              i_14090312 = res_14090314;
+              i_14090282 = res_14090284;
               F.line = 205;
-              k_13535001 = n_13395156.attrs[chckIndx(i_14090312, 0, (n_13395156.attrs).length-1)];
+              k_13535001 = n_13395156.attrs[chckIndx(i_14090282, 0, (n_13395156.attrs).length-1)];
               F.line = 295;
-              v_13535002 = n_13395156.attrs[chckIndx(addInt(i_14090312, 1), 0, (n_13395156.attrs).length-1)];
+              v_13535002 = n_13395156.attrs[chckIndx(addInt(i_14090282, 1), 0, (n_13395156.attrs).length-1)];
               if (!((v_13535002 == null))) {
               F.line = 207;
               result_13395159.setAttribute(k_13535001, v_13535002);
               }
               
               F.line = 59;
-              res_14090314 = addInt(res_14090314, 2);
+              res_14090284 = addInt(res_14090284, 2);
             }
         } while(false);
       } while(false);
@@ -5774,17 +5774,17 @@ function same_13545072(n_13545074, e_13545075, nesting_13545076) {
       F.line = 229;
       var i_13560024 = 0;
       F.line = 104;
-      var colontmp__14090348 = 0;
+      var colontmp__14090318 = 0;
       F.line = 229;
-      colontmp__14090348 = len_12935014(n_13545074);
+      colontmp__14090318 = len_12935014(n_13545074);
       F.line = 106;
-      var i_14090349 = 0;
+      var i_14090319 = 0;
       L4: do {
         F.line = 107;
           L5: while (true) {
-          if (!(i_14090349 < colontmp__14090348)) break L5;
+          if (!(i_14090319 < colontmp__14090318)) break L5;
             F.line = 229;
-            i_13560024 = i_14090349;
+            i_13560024 = i_14090319;
             if (!(same_13545072(HEX5BHEX5D_12935036(n_13545074, i_13560024), e_13545075.childNodes[i_13560024], addInt(nesting_13545076, 1)))) {
             F.line = 230;
             result_13545078 = false;
@@ -5792,7 +5792,7 @@ function same_13545072(n_13545074, e_13545075, nesting_13545076) {
             }
             
             F.line = 109;
-            i_14090349 = addInt(i_14090349, 1);
+            i_14090319 = addInt(i_14090319, 1);
           }
       } while(false);
     } while(false);
@@ -5846,17 +5846,17 @@ function eq_4520229(a_4520231, b_4520232) {
       F.line = 233;
       var i_4525083 = 0;
       F.line = 104;
-      var colontmp__14090388 = 0;
+      var colontmp__14090358 = 0;
       F.line = 233;
-      colontmp__14090388 = a_4520231.length;
+      colontmp__14090358 = a_4520231.length;
       F.line = 106;
-      var i_14090389 = 0;
+      var i_14090359 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_14090389 < colontmp__14090388)) break L3;
+          if (!(i_14090359 < colontmp__14090358)) break L3;
             F.line = 233;
-            i_4525083 = i_14090389;
+            i_4525083 = i_14090359;
             if (!((a_4520231[i_4525083] == b_4520232[i_4525083]))) {
             F.line = 234;
             result_4520233 = false;
@@ -5864,7 +5864,7 @@ function eq_4520229(a_4520231, b_4520232) {
             }
             
             F.line = 109;
-            i_14090389 = addInt(i_14090389, 1);
+            i_14090359 = addInt(i_14090359, 1);
           }
       } while(false);
     } while(false);
@@ -5890,17 +5890,17 @@ function sameAttrs_12946079(a_12946081, b_12946082) {
       F.line = 300;
       var i_12946106 = 0;
       F.line = 104;
-      var colontmp__14090392 = 0;
+      var colontmp__14090362 = 0;
       F.line = 300;
-      colontmp__14090392 = (a_12946081.attrs).length;
+      colontmp__14090362 = (a_12946081.attrs).length;
       F.line = 106;
-      var i_14090393 = 0;
+      var i_14090363 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_14090393 < colontmp__14090392)) break L3;
+          if (!(i_14090363 < colontmp__14090362)) break L3;
             F.line = 300;
-            i_12946106 = i_14090393;
+            i_12946106 = i_14090363;
             if (!((a_12946081.attrs[chckIndx(i_12946106, 0, (a_12946081.attrs).length-1)] == b_12946082.attrs[chckIndx(i_12946106, 0, (b_12946082.attrs).length-1)]))) {
             F.line = 301;
             result_12946083 = false;
@@ -5908,7 +5908,7 @@ function sameAttrs_12946079(a_12946081, b_12946082) {
             }
             
             F.line = 109;
-            i_14090393 = addInt(i_14090393, 1);
+            i_14090363 = addInt(i_14090363, 1);
           }
       } while(false);
     } while(false);
@@ -5975,17 +5975,17 @@ function eq_13560214(a_13560216, b_13560217, recursive_13560218) {
       F.line = 274;
       var i_13590008 = 0;
       F.line = 104;
-      var colontmp__14090380 = 0;
+      var colontmp__14090350 = 0;
       F.line = 274;
-      colontmp__14090380 = len_12935014(a_13560216);
+      colontmp__14090350 = len_12935014(a_13560216);
       F.line = 106;
-      var i_14090381 = 0;
+      var i_14090351 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_14090381 < colontmp__14090380)) break L3;
+          if (!(i_14090351 < colontmp__14090350)) break L3;
             F.line = 274;
-            i_13590008 = i_14090381;
+            i_13590008 = i_14090351;
             if ((eq_13560214(HEX5BHEX5D_12935036(a_13560216, i_13590008), HEX5BHEX5D_12935036(b_13560217, i_13590008), recursive_13560218) == 1)) {
             F.line = 275;
             result_13560219 = 1;
@@ -5993,7 +5993,7 @@ function eq_13560214(a_13560216, b_13560217, recursive_13560218) {
             }
             
             F.line = 109;
-            i_14090381 = addInt(i_14090381, 1);
+            i_14090351 = addInt(i_14090351, 1);
           }
       } while(false);
     } while(false);
@@ -6057,17 +6057,17 @@ function eq_13560214(a_13560216, b_13560217, recursive_13560218) {
       F.line = 306;
       var i_13615008 = 0;
       F.line = 104;
-      var colontmp__14090384 = 0;
+      var colontmp__14090354 = 0;
       F.line = 306;
-      colontmp__14090384 = len_12935014(a_13560216);
+      colontmp__14090354 = len_12935014(a_13560216);
       F.line = 106;
-      var i_14090385 = 0;
+      var i_14090355 = 0;
       L7: do {
         F.line = 107;
           L8: while (true) {
-          if (!(i_14090385 < colontmp__14090384)) break L8;
+          if (!(i_14090355 < colontmp__14090354)) break L8;
             F.line = 306;
-            i_13615008 = i_14090385;
+            i_13615008 = i_14090355;
             if (!((eq_13560214(HEX5BHEX5D_12935036(a_13560216, i_13615008), HEX5BHEX5D_12935036(b_13560217, i_13615008), true) == 3))) {
             F.line = 308;
             result_13560219 = 1;
@@ -6075,7 +6075,7 @@ function eq_13560214(a_13560216, b_13560217, recursive_13560218) {
             }
             
             F.line = 109;
-            i_14090385 = addInt(i_14090385, 1);
+            i_14090355 = addInt(i_14090355, 1);
           }
       } while(false);
     } while(false);
@@ -6134,27 +6134,27 @@ function updateAttributes_13630052(newNode_13630054, oldNode_13630055) {
       var __13635010 = null;
       L2: do {
         F.line = 294;
-        var i_14090398 = 0;
+        var i_14090368 = 0;
         F.line = 39;
-        var colontmp__14090399 = 0;
+        var colontmp__14090369 = 0;
         F.line = 294;
-        colontmp__14090399 = subInt((oldNode_13630055.attrs).length, 2);
+        colontmp__14090369 = subInt((oldNode_13630055.attrs).length, 2);
         F.line = 56;
-        var res_14090400 = 0;
+        var res_14090370 = 0;
         L3: do {
           F.line = 57;
             L4: while (true) {
-            if (!(res_14090400 <= colontmp__14090399)) break L4;
+            if (!(res_14090370 <= colontmp__14090369)) break L4;
               F.line = 294;
-              i_14090398 = res_14090400;
+              i_14090368 = res_14090370;
               F.line = 325;
-              k_13635009 = oldNode_13630055.attrs[chckIndx(i_14090398, 0, (oldNode_13630055.attrs).length-1)];
+              k_13635009 = oldNode_13630055.attrs[chckIndx(i_14090368, 0, (oldNode_13630055.attrs).length-1)];
               F.line = 295;
-              __13635010 = oldNode_13630055.attrs[chckIndx(addInt(i_14090398, 1), 0, (oldNode_13630055.attrs).length-1)];
+              __13635010 = oldNode_13630055.attrs[chckIndx(addInt(i_14090368, 1), 0, (oldNode_13630055.attrs).length-1)];
               F.line = 326;
               oldNode_13630055.dom.removeAttribute(k_13635009);
               F.line = 59;
-              res_14090400 = addInt(res_14090400, 2);
+              res_14090370 = addInt(res_14090370, 2);
             }
         } while(false);
       } while(false);
@@ -6166,30 +6166,30 @@ function updateAttributes_13630052(newNode_13630054, oldNode_13630055) {
       var v_13635012 = null;
       L6: do {
         F.line = 294;
-        var i_14090406 = 0;
+        var i_14090376 = 0;
         F.line = 39;
-        var colontmp__14090407 = 0;
+        var colontmp__14090377 = 0;
         F.line = 294;
-        colontmp__14090407 = subInt((newNode_13630054.attrs).length, 2);
+        colontmp__14090377 = subInt((newNode_13630054.attrs).length, 2);
         F.line = 56;
-        var res_14090408 = 0;
+        var res_14090378 = 0;
         L7: do {
           F.line = 57;
             L8: while (true) {
-            if (!(res_14090408 <= colontmp__14090407)) break L8;
+            if (!(res_14090378 <= colontmp__14090377)) break L8;
               F.line = 294;
-              i_14090406 = res_14090408;
+              i_14090376 = res_14090378;
               F.line = 327;
-              k_13635011 = newNode_13630054.attrs[chckIndx(i_14090406, 0, (newNode_13630054.attrs).length-1)];
+              k_13635011 = newNode_13630054.attrs[chckIndx(i_14090376, 0, (newNode_13630054.attrs).length-1)];
               F.line = 295;
-              v_13635012 = newNode_13630054.attrs[chckIndx(addInt(i_14090406, 1), 0, (newNode_13630054.attrs).length-1)];
+              v_13635012 = newNode_13630054.attrs[chckIndx(addInt(i_14090376, 1), 0, (newNode_13630054.attrs).length-1)];
               if (!((v_13635012 == null))) {
               F.line = 329;
               oldNode_13630055.dom.setAttribute(k_13635011, v_13635012);
               }
               
               F.line = 59;
-              res_14090408 = addInt(res_14090408, 2);
+              res_14090378 = addInt(res_14090378, 2);
             }
         } while(false);
       } while(false);
@@ -6210,21 +6210,21 @@ function removeAllEventHandlers_13282436(d_13282438) {
       F.line = 96;
       var i_13285041 = 0;
       F.line = 104;
-      var colontmp__14090413 = 0;
+      var colontmp__14090383 = 0;
       F.line = 96;
-      colontmp__14090413 = d_13282438.karaxEvents.length;
+      colontmp__14090383 = d_13282438.karaxEvents.length;
       F.line = 106;
-      var i_14090414 = 0;
+      var i_14090384 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_14090414 < colontmp__14090413)) break L3;
+          if (!(i_14090384 < colontmp__14090383)) break L3;
             F.line = 96;
-            i_13285041 = i_14090414;
+            i_13285041 = i_14090384;
             F.line = 97;
             d_13282438.removeEventListener(d_13282438.karaxEvents[i_13285041]["Field0"], d_13282438.karaxEvents[i_13285041]["Field1"]);
             F.line = 109;
-            i_14090414 = addInt(i_14090414, 1);
+            i_14090384 = addInt(i_14090384, 1);
           }
       } while(false);
     } while(false);
@@ -6382,21 +6382,21 @@ function diff_13695215(newNode_13695217, oldNode_13695218, parent_13695219, curr
         F.line = 511;
         var i_13725024 = 0;
         F.line = 66;
-        var colontmp__14090355 = 0;
+        var colontmp__14090325 = 0;
         F.line = 511;
-        colontmp__14090355 = subInt(pos_13725018, 1);
+        colontmp__14090325 = subInt(pos_13725018, 1);
         F.line = 77;
-        var res_14090356 = commonPrefix_13715202;
+        var res_14090326 = commonPrefix_13715202;
         L8: do {
           F.line = 78;
             L9: while (true) {
-            if (!(res_14090356 <= colontmp__14090355)) break L9;
+            if (!(res_14090326 <= colontmp__14090325)) break L9;
               F.line = 511;
-              i_13725024 = res_14090356;
+              i_13725024 = res_14090326;
               F.line = 512;
               diff_13695215(HEX5BHEX5D_12935036(newNode_13695217, i_13725024), HEX5BHEX5D_12935036(oldNode_13695218, i_13725024), current_13695220, current_13695220.childNodes[chckIndx(i_13725024, 0, (current_13695220.childNodes).length-1)], kxi_13695221);
               F.line = 80;
-              res_14090356 = addInt(res_14090356, 1);
+              res_14090326 = addInt(res_14090326, 1);
             }
         } while(false);
       } while(false);
@@ -6405,17 +6405,17 @@ function diff_13695215(newNode_13695217, oldNode_13695218, parent_13695219, curr
         F.line = 515;
         var i_13725030 = 0;
         F.line = 77;
-        var res_14090362 = pos_13725018;
+        var res_14090332 = pos_13725018;
         L11: do {
           F.line = 78;
             L12: while (true) {
-            if (!(res_14090362 <= newPos_13715215)) break L12;
+            if (!(res_14090332 <= newPos_13715215)) break L12;
               F.line = 515;
-              i_13725030 = res_14090362;
+              i_13725030 = res_14090332;
               F.line = 516;
               addPatch_13645414(kxi_13695221, 2, current_13695220, null, HEX5BHEX5D_12935036(newNode_13695217, i_13725030), null);
               F.line = 80;
-              res_14090362 = addInt(res_14090362, 1);
+              res_14090332 = addInt(res_14090332, 1);
             }
         } while(false);
       } while(false);
@@ -6427,17 +6427,17 @@ function diff_13695215(newNode_13695217, oldNode_13695218, parent_13695219, curr
           F.line = 519;
           var i_13725037 = 0;
           F.line = 77;
-          var res_14090368 = pos_13725018;
+          var res_14090338 = pos_13725018;
           L14: do {
             F.line = 78;
               L15: while (true) {
-              if (!(res_14090368 <= newPos_13715215)) break L15;
+              if (!(res_14090338 <= newPos_13715215)) break L15;
                 F.line = 519;
-                i_13725037 = res_14090368;
+                i_13725037 = res_14090338;
                 F.line = 520;
                 addPatch_13645414(kxi_13695221, 3, current_13695220, before_13725031, HEX5BHEX5D_12935036(newNode_13695217, i_13725037), null);
                 F.line = 80;
-                res_14090368 = addInt(res_14090368, 1);
+                res_14090338 = addInt(res_14090338, 1);
               }
           } while(false);
         } while(false);
@@ -6447,19 +6447,19 @@ function diff_13695215(newNode_13695217, oldNode_13695218, parent_13695219, curr
         F.line = 522;
         var i_13725043 = 0;
         F.line = 77;
-        var res_14090374 = pos_13725018;
+        var res_14090344 = pos_13725018;
         L17: do {
           F.line = 78;
             L18: while (true) {
-            if (!(res_14090374 <= oldPos_13715214)) break L18;
+            if (!(res_14090344 <= oldPos_13715214)) break L18;
               F.line = 522;
-              i_13725043 = res_14090374;
+              i_13725043 = res_14090344;
               F.line = 523;
               addPatch_13645414(kxi_13282284[0], 4, null, null, null, HEX5BHEX5D_12935036(oldNode_13695218, i_13725043));
               F.line = 525;
               addPatch_13645414(kxi_13695221, 1, current_13695220, current_13695220.childNodes[chckIndx(i_13725043, 0, (current_13695220.childNodes).length-1)], null, null);
               F.line = 80;
-              res_14090374 = addInt(res_14090374, 1);
+              res_14090344 = addInt(res_14090344, 1);
             }
         } while(false);
       } while(false);
@@ -6556,21 +6556,21 @@ function moveDom_13655048(dest_13655050, src_13655051) {
       F.line = 391;
       var i_13670208 = 0;
       F.line = 104;
-      var colontmp__14090425 = 0;
+      var colontmp__14090395 = 0;
       F.line = 391;
-      colontmp__14090425 = len_12935014(dest_13655050);
+      colontmp__14090395 = len_12935014(dest_13655050);
       F.line = 106;
-      var i_14090426 = 0;
+      var i_14090396 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_14090426 < colontmp__14090425)) break L3;
+          if (!(i_14090396 < colontmp__14090395)) break L3;
             F.line = 391;
-            i_13670208 = i_14090426;
+            i_13670208 = i_14090396;
             F.line = 392;
             moveDom_13655048(HEX5BHEX5D_12935036(dest_13655050, i_13670208), HEX5BHEX5D_12935036(src_13655051, i_13670208));
             F.line = 109;
-            i_14090426 = addInt(i_14090426, 1);
+            i_14090396 = addInt(i_14090396, 1);
           }
       } while(false);
     } while(false);
@@ -6594,13 +6594,13 @@ function applyPatch_13670222(kxi_13670224) {
       F.line = 395;
       var i_13670232 = 0;
       F.line = 106;
-      var i_14090419 = 0;
+      var i_14090389 = 0;
       L2: do {
         F.line = 107;
           L3: while (true) {
-          if (!(i_14090419 < kxi_13670224.patchLen)) break L3;
+          if (!(i_14090389 < kxi_13670224.patchLen)) break L3;
             F.line = 395;
-            i_13670232 = i_14090419;
+            i_13670232 = i_14090389;
             F.line = 396;
             var p_13670233 = nimCopy(null, kxi_13670224.patches[chckIndx(i_13670232, 0, (kxi_13670224.patches).length-1)], NTI13282209);
             F.line = 397;
@@ -6671,7 +6671,7 @@ function applyPatch_13670222(kxi_13670224) {
               break;
             }
             F.line = 109;
-            i_14090419 = addInt(i_14090419, 1);
+            i_14090389 = addInt(i_14090389, 1);
           }
       } while(false);
     } while(false);
@@ -6681,13 +6681,13 @@ function applyPatch_13670222(kxi_13670224) {
       F.line = 426;
       var i_13680013 = 0;
       F.line = 106;
-      var i_14090422 = 0;
+      var i_14090392 = 0;
       L5: do {
         F.line = 107;
           L6: while (true) {
-          if (!(i_14090422 < kxi_13670224.patchLenV)) break L6;
+          if (!(i_14090392 < kxi_13670224.patchLenV)) break L6;
             F.line = 426;
-            i_13680013 = i_14090422;
+            i_13680013 = i_14090392;
             F.line = 427;
             var p_13680014 = nimCopy(null, kxi_13670224.patchesV[chckIndx(i_13680013, 0, (kxi_13670224.patchesV).length-1)], NTI13282211);
             F.line = 428;
@@ -6698,7 +6698,7 @@ function applyPatch_13670222(kxi_13670224) {
             }
             
             F.line = 109;
-            i_14090422 = addInt(i_14090422, 1);
+            i_14090392 = addInt(i_14090392, 1);
           }
       } while(false);
     } while(false);
@@ -6973,17 +6973,17 @@ function tree_12945445(kind_12945447, kids_12945449) {
       var k_12945483 = null;
       var k_12945483_Idx = 0;
       F.line = 8;
-      var i_14090450 = 0;
+      var i_14090420 = 0;
       L2: do {
         F.line = 9;
           L3: while (true) {
-          if (!(i_14090450 < (kids_12945449).length)) break L3;
+          if (!(i_14090420 < (kids_12945449).length)) break L3;
             F.line = 272;
-            k_12945483 = kids_12945449; k_12945483_Idx = chckIndx(i_14090450, 0, (kids_12945449).length-1);
+            k_12945483 = kids_12945449; k_12945483_Idx = chckIndx(i_14090420, 0, (kids_12945449).length-1);
             F.line = 272;
             add_12935072(result_12945450, k_12945483[k_12945483_Idx]);
             F.line = 11;
-            i_14090450 = addInt(i_14090450, 1);
+            i_14090420 = addInt(i_14090420, 1);
           }
       } while(false);
     } while(false);
@@ -7057,17 +7057,17 @@ function setAttr_12885105(n_12885107, key_12885108, val_12885109) {
         F.line = 227;
         var i_12885138 = 0;
         F.line = 39;
-        var colontmp__14090490 = 0;
+        var colontmp__14090460 = 0;
         F.line = 227;
-        colontmp__14090490 = subInt((n_12885107.attrs).length, 2);
+        colontmp__14090460 = subInt((n_12885107.attrs).length, 2);
         F.line = 56;
-        var res_14090491 = 0;
+        var res_14090461 = 0;
         L2: do {
           F.line = 57;
             L3: while (true) {
-            if (!(res_14090491 <= colontmp__14090490)) break L3;
+            if (!(res_14090461 <= colontmp__14090460)) break L3;
               F.line = 227;
-              i_12885138 = res_14090491;
+              i_12885138 = res_14090461;
               if ((n_12885107.attrs[chckIndx(i_12885138, 0, (n_12885107.attrs).length-1)] == key_12885108)) {
               F.line = 229;
               n_12885107.attrs[chckIndx(addInt(i_12885138, 1), 0, (n_12885107.attrs).length-1)] = val_12885109;
@@ -7076,7 +7076,7 @@ function setAttr_12885105(n_12885107, key_12885108, val_12885109) {
               }
               
               F.line = 59;
-              res_14090491 = addInt(res_14090491, 2);
+              res_14090461 = addInt(res_14090461, 2);
             }
         } while(false);
       } while(false);
@@ -7127,15 +7127,15 @@ function optionsMenu_13991347(name_13991349, message_13991350, selected_13991351
       var option_14010214 = null;
       var option_14010214_Idx = 0;
       F.line = 199;
-      var i_14090486 = 0;
+      var i_14090456 = 0;
       F.line = 200;
-      var L_14090487 = (options_13991353).length;
+      var L_14090457 = (options_13991353).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
-          if (!(i_14090486 < L_14090487)) break L3;
+          if (!(i_14090456 < L_14090457)) break L3;
             F.line = 120;
-            option_14010214 = options_13991353; option_14010214_Idx = chckIndx(i_14090486, 0, (options_13991353).length-1);
+            option_14010214 = options_13991353; option_14010214_Idx = chckIndx(i_14090456, 0, (options_13991353).length-1);
             if (eqStrings(option_14010214[option_14010214_Idx], selected_13991351)) {
             F.line = 122;
             var tmp_13991399 = tree_12945445(110, []);
@@ -7164,8 +7164,8 @@ function optionsMenu_13991347(name_13991349, message_13991350, selected_13991351
             }
             
             F.line = 203;
-            i_14090486 = addInt(i_14090486, 1);
-            if (!(((options_13991353).length == L_14090487))) {
+            i_14090456 = addInt(i_14090456, 1);
+            if (!(((options_13991353).length == L_14090457))) {
             F.line = 204;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -7223,23 +7223,23 @@ function default_row_14040255(obj_14040258) {
         var it_14080006 = 0;
         L3: do {
           F.line = 93;
-          var x_14090469 = 0;
+          var x_14090439 = 0;
           F.line = 77;
-          var res_14090470 = ((HEX3Atmp_14065822.a)|0);
+          var res_14090440 = ((HEX3Atmp_14065822.a)|0);
           L4: do {
             F.line = 78;
               L5: while (true) {
-              if (!(res_14090470 <= ((HEX3Atmp_14065822.b)|0))) break L5;
+              if (!(res_14090440 <= ((HEX3Atmp_14065822.b)|0))) break L5;
                 F.line = 93;
-                x_14090469 = chckRange(res_14090470, 0, 2);
+                x_14090439 = chckRange(res_14090440, 0, 2);
                 F.line = 951;
-                it_14080006 = x_14090469;
+                it_14080006 = x_14090439;
                 F.line = 53;
                 resultHEX60gensym4_14075052[chckIndx(iHEX60gensym4_14070003, 0, (resultHEX60gensym4_14075052).length-1)] = nimCopy(null, reprEnum(it_14080006, NTI14012015), NTI3573013);
                 F.line = 953;
                 iHEX60gensym4_14070003 = addInt(iHEX60gensym4_14070003, 1);
                 F.line = 80;
-                res_14090470 = addInt(res_14090470, 1);
+                res_14090440 = addInt(res_14090440, 1);
               }
           } while(false);
         } while(false);
@@ -7278,15 +7278,15 @@ function karax_table_14015001(objs_14015005) {
       F.line = 138;
       var col_14030214 = null;
       F.line = 199;
-      var i_14090434 = 0;
+      var i_14090404 = 0;
       F.line = 200;
-      var L_14090435 = (columns_14016652).length;
+      var L_14090405 = (columns_14016652).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
-          if (!(i_14090434 < L_14090435)) break L3;
+          if (!(i_14090404 < L_14090405)) break L3;
             F.line = 138;
-            col_14030214 = columns_14016652[chckIndx(i_14090434, 0, (columns_14016652).length-1)];
+            col_14030214 = columns_14016652[chckIndx(i_14090404, 0, (columns_14016652).length-1)];
             F.line = 139;
             var tmp_14016656 = tree_12945445(100, []);
             F.line = 140;
@@ -7294,8 +7294,8 @@ function karax_table_14015001(objs_14015005) {
             F.line = 140;
             add_12935072(tmp_14016655, tmp_14016656);
             F.line = 203;
-            i_14090434 = addInt(i_14090434, 1);
-            if (!(((columns_14016652).length == L_14090435))) {
+            i_14090404 = addInt(i_14090404, 1);
+            if (!(((columns_14016652).length == L_14090405))) {
             F.line = 204;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -7313,17 +7313,17 @@ function karax_table_14015001(objs_14015005) {
       F.line = 142;
       var ob_14040245 = {Field0: [], Field1: 0, Field2: 0.0, Field3: 0};
       F.line = 132;
-      var i_14090441 = 0;
+      var i_14090411 = 0;
       F.line = 133;
-      var L_14090442 = (objs_14015005).length;
+      var L_14090412 = (objs_14015005).length;
       L5: do {
         F.line = 134;
           L6: while (true) {
-          if (!(i_14090441 < L_14090442)) break L6;
+          if (!(i_14090411 < L_14090412)) break L6;
             F.line = 142;
-            row_number_14040244 = i_14090441;
+            row_number_14040244 = i_14090411;
             F.line = 135;
-            nimCopy(ob_14040245, objs_14015005[chckIndx(i_14090441, 0, (objs_14015005).length-1)], NTI14012017);
+            nimCopy(ob_14040245, objs_14015005[chckIndx(i_14090411, 0, (objs_14015005).length-1)], NTI14012017);
             if (((get_fields_14015016(ob_14040245)).length == number_of_fields_14015108)) {
             F.line = 144;
             add_12935072(tmp_14016657, default_row_14040255(ob_14040245));
@@ -7334,8 +7334,8 @@ function karax_table_14015001(objs_14015005) {
             }
             
             F.line = 136;
-            i_14090441 = addInt(i_14090441, 1);
-            if (!(((objs_14015005).length == L_14090442))) {
+            i_14090411 = addInt(i_14090411, 1);
+            if (!(((objs_14015005).length == L_14090412))) {
             F.line = 137;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(137, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -7355,31 +7355,27 @@ function karax_table_14015001(objs_14015005) {
   return result_14015006;
 
 }
-function render_14012084() {
-  var result_14012086 = null;
+function render_14012064() {
+  var result_14012066 = null;
 
   var F={procname:"test3.render",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test3.nim",line:0};
   framePtr = F;
-    F.line = 35;
-    result_14012086 = karax_table_14015001(products_14012031[0]);
+    F.line = 30;
+    result_14012066 = karax_table_14015001(products_14012031[0]);
   framePtr = F.prev;
 
-  return result_14012086;
+  return result_14012066;
 
 }
 var F={procname:"module test3",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test3.nim",line:0};
 framePtr = F;
 F.line = 15;
 var products_14012031 = [[]];
-F.line = 16;
-var some_test_14012037 = [[]];
-F.line = 18;
-some_test_14012037[0].push({Field0: makeNimstrLit("Nim is awesome"), Field1: 2, Field2: 4.0000000000000000e+00});;
-F.line = 22;
+F.line = 17;
 products_14012031[0].push({Field0: makeNimstrLit("cabbage"), Field1: 1231, Field2: 2.1000000000000001e+00, Field3: 1});;
-F.line = 26;
+F.line = 21;
 products_14012031[0].push({Field0: makeNimstrLit("hamburger helper"), Field1: 23412, Field2: 5.0000000000000000e+00, Field3: 0});;
-setRenderer_13840238(render_14012084, "ROOT", null);
+setRenderer_13840238(render_14012064, "ROOT", null);
 framePtr = F.prev;
 var F={procname:"module test3",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test3.nim",line:0};
 framePtr = F;
