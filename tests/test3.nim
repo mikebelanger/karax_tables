@@ -13,11 +13,6 @@ type
         price_per: PriceKind
 
 var products: seq[Product]
-var some_test: seq[tuple[name: string, age: int, hours_overtime_unpaid: float]]
-
-some_test.add(
-    (name: "Nim is awesome", age: 2, hours_overtime_unpaid: 4.00)
-)
 
 products.add(
     (name: "cabbage", sku: 1231, price: 2.10, price_per: Pound)
