@@ -46,9 +46,14 @@ points.add(RoadWeatherPoint(
 
 columns.add(Column(
     name: "path_order",
-    cel_kind: Integer,
+    cel_kind: TextArea,
     cel_affordance: ReadOnly,
     title: "Point number"
+))
+
+columns.add(Column(
+    name: "unix_time",
+    title: "Time"
 ))
 
 when defined(js):
@@ -57,17 +62,8 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            try:
-                points.karax_table(columns = columns)
-            except InconsistentRows:
-                echo "successfully found object variant and halted"
-                tdiv:
-                    p:
-                        text "Inconsistent object varients.  Please examine your objects and try again."
+            points.karax_table(columns = columns)
                 
     setRenderer render
 else:
-    try:
-        writeFile("stuff4.html", points.karax_table(columns = columns).to_string)
-    except InconsistentRows:
-        echo "successfully found object variant and halted"
+    writeFile("stuff4.html", points.karax_table(columns = columns).to_string)

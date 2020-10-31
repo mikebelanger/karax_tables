@@ -1,8 +1,9 @@
 import karax / [karaxdsl, vdom]
-import sequtils
+import sequtils, strutils
 
 type
-    InconsistentRows* = object of ValueError
+    InvalidColumn* = object of ValueError
+    ColumnCelDataMismatch* = object of ValueError
 
     CelAffordance* = enum
         ReadOnly
@@ -10,6 +11,7 @@ type
         Hidden
 
     CelKind* = enum
+        UnspecifiedCelKind
         Text
         Dropdown
         TextArea
@@ -25,6 +27,8 @@ type
     Cel* = object
         column*: Column
         case cel_kind: CelKind:
+            of UnspecifiedCelKind:
+                unspecified: string
             of Text:
                 text: string
             of Dropdown:
@@ -37,11 +41,54 @@ type
             of Floating:
                 floating: float
 
+const 
+    cel_kinds = (CelKind.low..CelKind.high).mapIt($it).filterIt(it != "UnspecifiedCelKind").join(", ")
+
+proc missing(column: Column, missing: string): string =
+    result = 
+        "Column: \n" & $column & "\n is missing a " & missing
+
+proc missing(column: Column, missing, suggestion: string): string =
+    result =
+        "Column: \n" & $column & "\n is missing a " & $missing & ".\n" & " such as: \n" &
+        suggestion
+
+proc mismatch_warning(column: Column, contents: string | bool | int | float | enum, suggested_column_type: CelKind): string =
+    result = 
+        "Cel and Column schema mismatch for: \n" & 
+            column.title & "\ncel content type is: " & 
+            $contents.typeof & "\n but column type is: \n" & 
+            $column.cel_kind &
+            "Either change your column type to: " & $suggested_column_type & "\n" &
+            "or examine your object/tuple's " & $column.name & " fields."
+
 proc to_string*(vnode: VNode): string =
     when defined(js):
         toString(vnode)
     else:
         $vnode
+
+proc valid(columns: seq[Column]): seq[Column] =
+    for column in columns:
+        if column.cel_affordance != Hidden:
+            let
+                missing_title = column.title.len == 0
+                missing_name = column.title.len == 0
+                missing_kind = column.cel_kind == UnspecifiedCelKind
+            
+            if missing_title:
+                raise newException(InvalidColumn, missing(column, "title"))
+            
+            elif missing_name:
+                raise newException(InvalidColumn, missing(column, "name"))
+            
+            elif missing_kind:
+                raise newException(InvalidColumn, missing(column, "cel kind", suggestion = cel_kinds)
+                )
+
+            else:
+                result.add(column)
+
 
 proc column_headers(obj: object | tuple): seq[Column] =
     for key, value in obj.fieldPairs:
@@ -65,43 +112,53 @@ proc cel(contents: string | int | float | enum, column: Column): Cel =
             cel_kind: column.cel_kind
         )
     
-    # Nim's type-checker will throw type errors if I don't specify the type in the outer
-    # clause here
+    # Nim's type-checker will throw type errors if I don't specify the type in the 'when'
+    # clause here.
+    
+    case result.cel_kind:
+        of UnspecifiedCelKind:
+            result.unspecified = ""
 
-    when contents is string:
-
-        case result.cel_kind:
-            of Text:
-                result.text = contents
-            of TextArea:
-                result.textarea = contents
-            else:
-                echo "mismatch of case: " & $contents.typeof & " vs: " & $result.cel_kind
-
-    when contents is int:
-        case result.cel_kind:
-            of Integer:
+        of Integer:
+            when contents is int:
                 result.integer = contents
-            else:
-                echo "mismatch of case: " & $contents.typeof & " vs: " & $result.cel_kind
 
-    when contents is float:
-        case result.cel_kind:
-            of Floating:
+            else:
+                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Integer))
+
+        of Text:
+            when contents is string:
+                result.text = contents
+
+            else:
+                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Text))
+
+        of TextArea:
+            when contents is string:
+                result.textarea = contents
+
+            else:
+                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, TextArea))
+
+        of Floating:
+            when contents is float:
                 result.floating = contents
-            else:
-                echo "mismatch of case: " & $contents.typeof & " vs: " & $result.cel_kind
 
-    when contents is enum:
-        case result.cel_kind:
-            of Dropdown:
+            else:
+                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Floating))
+
+        of Dropdown:
+            when contents is enum:
                 result.options = (contents.typeof.low..contents.typeof.high).mapIt($it)
                 result.chosen = $contents
+
             else:
-                echo "mismatch of case: " & $contents.typeof & " vs: " & $result.cel_kind
+                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Dropdown))
 
 proc contents(cel: Cel): string =
     case cel.cel_kind:
+        of UnspecifiedCelKind:
+            return ""
         of Text:
             return $cel.text
         of TextArea:
@@ -157,6 +214,10 @@ proc row*(obj: object | tuple, columns: seq[Column]): VNode =
 
             of ReadAndWrite:
                 case cel.column.cel_kind:
+
+                    of UnspecifiedCelKind:
+                        result.add(buildHtml(td(text(""))))
+
                     of Text:
                         let form_input = buildHtml(input(type = "text"))
                         form_input.setAttr("value", cel.contents)
@@ -181,7 +242,6 @@ proc row*(obj: object | tuple, columns: seq[Column]): VNode =
                         form_input.setAttr("value", cel.contents)
                         result.add(buildHtml(td(form_input)))
 
-            
             of Hidden:
                 let vnode = buildHtml(td())
                 vnode.setAttr("value", cel.contents)
@@ -210,4 +270,4 @@ proc karax_table*(objs: seq[object | tuple]): VNode =
 
 proc karax_table*(objs: seq[object | tuple], columns: seq[Column]): VNode =
 
-    render_table(objs, columns)
+    render_table(objs, columns.valid)
