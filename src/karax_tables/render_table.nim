@@ -8,7 +8,7 @@ type
     CelAffordance* = enum
         ReadOnly
         ReadAndWrite
-        Hidden
+        HiddenField
 
     CelKind* = enum
         UnspecifiedCelKind
@@ -16,7 +16,7 @@ type
         Dropdown
         TextArea
         Integer
-        Floating
+        FloatingPoint
 
     Column* = object
         name*, title*: string
@@ -38,8 +38,8 @@ type
                 textarea: string
             of Integer:
                 integer: int
-            of Floating:
-                floating: float
+            of FloatingPoint:
+                floating_point: float
 
 const 
     cel_kinds = (CelKind.low..CelKind.high).mapIt($it).filterIt(it != "UnspecifiedCelKind").join(", ")
@@ -70,10 +70,10 @@ proc to_string*(vnode: VNode): string =
 
 proc valid(columns: seq[Column]): seq[Column] =
     for column in columns:
-        if column.cel_affordance != Hidden:
+        if column.cel_affordance != HiddenField:
             let
                 missing_title = column.title.len == 0
-                missing_name = column.title.len == 0
+                missing_name = column.name.len == 0
                 missing_kind = column.cel_kind == UnspecifiedCelKind
             
             if missing_title:
@@ -98,7 +98,7 @@ proc column_headers(obj: object | tuple): seq[Column] =
             col.cel_kind = Integer
 
         when value.typeof is float:
-            col.cel_kind = Floating
+            col.cel_kind = FloatingPoint
         
         when value.typeof is enum:
             col.cel_kind = Dropdown
@@ -140,12 +140,12 @@ proc cel(contents: string | int | float | enum, column: Column): Cel =
             else:
                 raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, TextArea))
 
-        of Floating:
+        of FloatingPoint:
             when contents is float:
-                result.floating = contents
+                result.floating_point = contents
 
             else:
-                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Floating))
+                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, FloatingPoint))
 
         of Dropdown:
             when contents is enum:
@@ -165,8 +165,8 @@ proc contents(cel: Cel): string =
             return $cel.textarea
         of Integer:
             return $cel.integer
-        of Floating:
-            return $cel.floating
+        of FloatingPoint:
+            return $cel.floating_point
         of Dropdown:
             return $cel.chosen
 
@@ -223,7 +223,7 @@ proc row*(obj: object | tuple, columns: seq[Column]): VNode =
                         form_input.setAttr("value", cel.contents)
                         result.add(buildHtml(td(form_input)))
 
-                    of Floating, Integer:
+                    of FloatingPoint, Integer:
                         let form_input = buildHtml(input(type = "number"))
                         form_input.setAttr("increments", "1")
                         form_input.setAttr("value", cel.contents)
@@ -242,7 +242,7 @@ proc row*(obj: object | tuple, columns: seq[Column]): VNode =
                         form_input.setAttr("value", cel.contents)
                         result.add(buildHtml(td(form_input)))
 
-            of Hidden:
+            of HiddenField:
                 let vnode = buildHtml(td())
                 vnode.setAttr("value", cel.contents)
                 vnode.setAttr("style", "display: none")
@@ -257,7 +257,7 @@ proc render_table(rows: seq[object | tuple], columns: seq[Column]): VNode =
                 table:
                     thead:
                         for col in columns:
-                            if col.cel_affordance != Hidden:
+                            if col.cel_affordance != HiddenField:
                                 th:
                                     text col.name
                     tbody:
