@@ -53,7 +53,7 @@ proc missing(column: Column, missing, suggestion: string): string =
         "Column: \n" & $column & "\n is missing a " & $missing & ".\n" & " such as: \n" &
         suggestion
 
-proc mismatch_warning(column: Column, contents: string | bool | int | float | enum, suggested_column_type: CelKind): string =
+proc mismatch(column: Column, contents: string | bool | int | float | enum, suggested_column_type: CelKind): string =
     result = 
         "Cel and Column schema mismatch for: \n" & 
             column.title & "\ncel content type is: " & 
@@ -124,28 +124,28 @@ proc cel(contents: string | int | float | enum, column: Column): Cel =
                 result.integer = contents
 
             else:
-                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Integer))
+                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Integer))
 
         of Text:
             when contents is string:
                 result.text = contents
 
             else:
-                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Text))
+                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Text))
 
         of TextArea:
             when contents is string:
                 result.textarea = contents
 
             else:
-                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, TextArea))
+                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, TextArea))
 
         of FloatingPoint:
             when contents is float:
                 result.floating_point = contents
 
             else:
-                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, FloatingPoint))
+                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, FloatingPoint))
 
         of Dropdown:
             when contents is enum:
@@ -153,7 +153,7 @@ proc cel(contents: string | int | float | enum, column: Column): Cel =
                 result.chosen = $contents
 
             else:
-                raise newException(ColumnCelDataMismatch, mismatch_warning(result.column, contents, Dropdown))
+                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Dropdown))
 
 proc contents(cel: Cel): string =
     case cel.cel_kind:

@@ -27,7 +27,7 @@ let
     id_column = Column(
         name: "id", 
         cel_kind: Integer, 
-        cel_affordance: Hidden, 
+        cel_affordance: HiddenField, 
     )
 
     user_kind_column = Column(

@@ -917,11 +917,11 @@ var NNI13991019 = {kind: 2, offset: 0, typ: null, name: null, len: 5, sons: {"0"
 "1": {kind: 1, offset: 1, typ: NTI13991019, name: "Dropdown", len: 0, sons: null}, 
 "2": {kind: 1, offset: 2, typ: NTI13991019, name: "TextArea", len: 0, sons: null}, 
 "3": {kind: 1, offset: 3, typ: NTI13991019, name: "Integer", len: 0, sons: null}, 
-"4": {kind: 1, offset: 4, typ: NTI13991019, name: "Floating", len: 0, sons: null}}};
+"4": {kind: 1, offset: 4, typ: NTI13991019, name: "FloatingPoint", len: 0, sons: null}}};
 NTI13991019.node = NNI13991019;
 var NNI13991017 = {kind: 2, offset: 0, typ: null, name: null, len: 3, sons: {"0": {kind: 1, offset: 0, typ: NTI13991017, name: "ReadOnly", len: 0, sons: null}, 
 "1": {kind: 1, offset: 1, typ: NTI13991017, name: "ReadAndWrite", len: 0, sons: null}, 
-"2": {kind: 1, offset: 2, typ: NTI13991017, name: "Hidden", len: 0, sons: null}}};
+"2": {kind: 1, offset: 2, typ: NTI13991017, name: "HiddenField", len: 0, sons: null}}};
 NTI13991017.node = NNI13991017;
 var NNI13991021 = {kind: 2, len: 6, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "name", len: 0, typ: NTI3573013, name: "name", sons: null}, 
 {kind: 1, offset: "title", len: 0, typ: NTI3573013, name: "title", sons: null}, 
@@ -937,7 +937,7 @@ var NNI13991023 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{ki
 {kind: 1, offset: "options", len: 0, typ: NTI13991042, name: "options", sons: null}]}], 
 [setConstr(2), {kind: 1, offset: "textarea", len: 0, typ: NTI3573013, name: "textarea", sons: null}], 
 [setConstr(3), {kind: 1, offset: "integer", len: 0, typ: NTI3573044, name: "integer", sons: null}], 
-[setConstr(4), {kind: 1, offset: "floating", len: 0, typ: NTI3573005, name: "floating", sons: null}]]}]};
+[setConstr(4), {kind: 1, offset: "FloatingPoint", len: 0, typ: NTI3573005, name: "FloatingPoint", sons: null}]]}]};
 NTI13991023.node = NNI13991023;
 var NNI3579651 = {kind: 2, len: 0, offset: 0, typ: null, name: null, sons: []};
 NTI3579651.node = NNI3579651;
@@ -6981,12 +6981,12 @@ function cel_14045025(contents_14045028, column_14045029) {
       var Tmp1;
       var Tmp2;
 
-  var result_14045030 = ({column: ({name: [], title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0}), cel_kind: 0, text: [], chosen: [], options: [], textarea: [], integer: 0, floating: 0.0});
+  var result_14045030 = ({column: ({name: [], title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0}), cel_kind: 0, text: [], chosen: [], options: [], textarea: [], integer: 0, FloatingPoint: 0.0});
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 63;
-    nimCopy(result_14045030, {column: nimCopy(null, column_14045029, NTI13991021), cel_kind: column_14045029.cel_kind, text: [], chosen: [], options: [], textarea: [], integer: 0, floating: 0.0}, NTI13991023);
+    nimCopy(result_14045030, {column: nimCopy(null, column_14045029, NTI13991021), cel_kind: column_14045029.cel_kind, text: [], chosen: [], options: [], textarea: [], integer: 0, FloatingPoint: 0.0}, NTI13991023);
     F.line = 73;
     switch (result_14045030.cel_kind) {
     case 0:
@@ -7014,12 +7014,12 @@ function cel_14045025(contents_14045028, column_14045029) {
 function cel_14045849(contents_14045852, column_14045853) {
       var Tmp1;
 
-  var result_14045854 = ({column: ({name: [], title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0}), cel_kind: 0, text: [], chosen: [], options: [], textarea: [], integer: 0, floating: 0.0});
+  var result_14045854 = ({column: ({name: [], title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0}), cel_kind: 0, text: [], chosen: [], options: [], textarea: [], integer: 0, FloatingPoint: 0.0});
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 63;
-    nimCopy(result_14045854, {column: nimCopy(null, column_14045853, NTI13991021), cel_kind: column_14045853.cel_kind, text: [], chosen: [], options: [], textarea: [], integer: 0, floating: 0.0}, NTI13991023);
+    nimCopy(result_14045854, {column: nimCopy(null, column_14045853, NTI13991021), cel_kind: column_14045853.cel_kind, text: [], chosen: [], options: [], textarea: [], integer: 0, FloatingPoint: 0.0}, NTI13991023);
     F.line = 82;
     switch (result_14045854.cel_kind) {
     case 3:
@@ -7082,12 +7082,12 @@ function cel_14046632(contents_14046635, column_14046636) {
       var Tmp1;
       var Tmp7;
 
-  var result_14046637 = ({column: ({name: [], title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0}), cel_kind: 0, text: [], chosen: [], options: [], textarea: [], integer: 0, floating: 0.0});
+  var result_14046637 = ({column: ({name: [], title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0}), cel_kind: 0, text: [], chosen: [], options: [], textarea: [], integer: 0, FloatingPoint: 0.0});
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 63;
-    nimCopy(result_14046637, {column: nimCopy(null, column_14046636, NTI13991021), cel_kind: column_14046636.cel_kind, text: [], chosen: [], options: [], textarea: [], integer: 0, floating: 0.0}, NTI13991023);
+    nimCopy(result_14046637, {column: nimCopy(null, column_14046636, NTI13991021), cel_kind: column_14046636.cel_kind, text: [], chosen: [], options: [], textarea: [], integer: 0, FloatingPoint: 0.0}, NTI13991023);
     F.line = 96;
     switch (result_14046637.cel_kind) {
     case 1:
@@ -7276,8 +7276,8 @@ function contents_13991287(cel_13991289) {
     case 4:
       F.line = 112;
       var Tmp4 = cel_13991289;
-      if (ConstSet10[Tmp4.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'floating\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      result_13991290 = nimCopy(null, cstrToNimstr(nimFloatToString(Tmp4.floating)), NTI3573013);
+      if (ConstSet10[Tmp4.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'FloatingPoint\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
+      result_13991290 = nimCopy(null, cstrToNimstr(nimFloatToString(Tmp4.floating_point)), NTI3573013);
       break BeforeRet;
       break;
     case 1:
