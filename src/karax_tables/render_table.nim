@@ -43,7 +43,7 @@ proc to_string*(vnode: VNode): string =
     else:
         $vnode
 
-proc column_headers*(obj: object | tuple): seq[Column] =
+proc column_headers(obj: object | tuple): seq[Column] =
     for key, value in obj.fieldPairs:
         var col = Column(name: $key)
 
@@ -57,11 +57,6 @@ proc column_headers*(obj: object | tuple): seq[Column] =
             col.cel_kind = Dropdown
         
         result.add(col)
-
-proc get_fields*(obj: object | tuple): seq[string] =
-
-    for key, val in obj.fieldPairs:
-        result.add($(val.typedesc))
 
 proc cel(contents: string | int | float | enum, column: Column): Cel =
     result = 
@@ -118,7 +113,7 @@ proc contents(cel: Cel): string =
         of Dropdown:
             return $cel.chosen
 
-proc to_cels(obj: object, columns: seq[Column]): seq[Cel] =
+proc to_cels(obj: object | tuple, columns: seq[Column]): seq[Cel] =
 
     # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
     for key, val in obj.fieldPairs:
@@ -130,25 +125,30 @@ proc to_cels(obj: object, columns: seq[Column]): seq[Cel] =
                     val.cel(column)
                 )
 
-proc default_row(obj: object | tuple): VNode =
-    result = buildHtml(tr())
+proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): VNode =
 
-    for key, val in obj.fieldPairs:
-        
-        when val is enum:
-            let options = (val.typeof.low .. val.typeof.high).mapIt($it)
-            result.add(buildHtml(
-                td(optionsMenu(name = $key, message = "", selected = $val, options = options))
-                )
-            )
-        else:
-            result.add(buildHtml(td(text($val))))
+    result = buildHtml():
+        tdiv:
+            label(`for` = $name, id = $name & "_container"):
+                select(id = $name):
+                    if message.len > 0:
+                        option(value = ""):
+                            text $message
+                    
+                    for option in options:
+                        if option == selected:
+                            option(value = selected, selected = "selected"):
+                                text selected
+                        else:
+                            option(value = option):
+                                text option
 
-proc row(obj: object | tuple, columns: seq[Column]): VNode =
+
+proc row*(obj: object | tuple, columns: seq[Column]): VNode =
     result = buildHtml(tr())
 
     for cel in obj.to_cels(columns):
-                
+            
         case cel.column.cel_affordance:
             of ReadOnly:
                 result.add(
@@ -189,67 +189,25 @@ proc row(obj: object | tuple, columns: seq[Column]): VNode =
                 result.add(vnode)
 
 
-proc optionsMenu*(name, message: cstring, selected = "", options: seq[string]): VNode =
-
-    result = buildHtml():
-        tdiv:
-            label(`for` = $name, id = $name & "_container"):
-                select(id = $name):
-                    if message.len > 0:
-                        option(value = ""):
-                            text $message
-                    
-                    for option in options:
-                        if option == selected:
-                            option(value = selected, selected = "selected"):
-                                text selected
-                        else:
-                            option(value = option):
-                                text option
-
-proc karax_table*(objs: seq[object | tuple]): VNode =
-    if objs.len > 0:
-        let 
-            number_of_fields = objs[0].get_fields.len
-            columns = objs[0].column_headers
-
+proc render_table(rows: seq[object | tuple], columns: seq[Column]): VNode =
+    
+    if rows.len > 0:
         result = buildHtml():
             tdiv:
                 table:
                     thead:
                         for col in columns:
-                            th:
-                                text col.name
+                            if col.cel_affordance != Hidden:
+                                th:
+                                    text col.name
                     tbody:
-                        for row_number, ob in objs:
-                            if ob.get_fields.len == number_of_fields:
-                                ob.default_row
-                            else:
-                                raise newException(InconsistentRows, 
-                                "row number " & $row_number & " has " & $(ob.get_fields.len) & " columns, but the first row has " & $number_of_fields)
+                        for row_number, row in rows:
+                            row.row(columns)
+
+proc karax_table*(objs: seq[object | tuple]): VNode =
+
+    render_table(objs, objs[0].column_headers)
 
 proc karax_table*(objs: seq[object | tuple], columns: seq[Column]): VNode =
 
-    if objs.len > 0:
-        let number_of_fields = objs[0].get_fields.len
-
-        result = buildHtml():
-            tdiv:
-                table:
-                    thead:
-                        for col in columns:
-                            if not (col.cel_affordance == Hidden):
-                                if col.title.len > 0:
-                                    th:
-                                        text col.title
-                                else:
-                                    th:
-                                        text col.name
-
-                    tbody:
-                        for row_number, ob in objs:
-                            if ob.get_fields.len == number_of_fields:
-                                ob.row(columns)
-                            else:
-                                raise newException(InconsistentRows, 
-                                "row number " & $row_number & " has " & $(ob.get_fields.len) & " columns, but the first row has " & $number_of_fields)
+    render_table(objs, columns)
