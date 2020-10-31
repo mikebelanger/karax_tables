@@ -22,14 +22,12 @@ let
         title: "Name", 
         cel_kind: Text, 
         cel_affordance: ReadAndWrite, 
-        width: 100
     )
 
     id_column = Column(
         name: "id", 
-        cel_kind: Number, 
+        cel_kind: Integer, 
         cel_affordance: Hidden, 
-        width: 200
     )
 
     user_kind_column = Column(
@@ -37,12 +35,11 @@ let
         cel_kind: Dropdown, 
         cel_affordance: ReadAndWrite, 
         title: "Kind of user", 
-        width: 100
     )
     
     age = Column(
         name: "age",
-        cel_kind: Number,
+        cel_kind: Integer,
         cel_affordance: ReadAndWrite,
         title: "Age"
     )

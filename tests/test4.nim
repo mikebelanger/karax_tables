@@ -46,7 +46,7 @@ points.add(RoadWeatherPoint(
 
 columns.add(Column(
     name: "path_order",
-    cel_kind: Number,
+    cel_kind: Integer,
     cel_affordance: ReadOnly,
     title: "Point number"
 ))
@@ -63,7 +63,7 @@ when defined(js):
                 echo "successfully found object variant and halted"
                 tdiv:
                     p:
-                        text "Inconsistent rows.  Please examine your objects and try again."
+                        text "Inconsistent object varients.  Please examine your objects and try again."
                 
     setRenderer render
 else:
