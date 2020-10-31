@@ -17,6 +17,7 @@ type
         case integrity: DataQuality            
             of Valid:
                 longitude, latitude, unix_time: float
+                raining: bool
             else:
                 error: WeatherPointError
 
@@ -28,6 +29,7 @@ points.add(RoadWeatherPoint(
     longitude: -45.000,
     latitude: -75.3443,
     unix_time: 1603821902.00,
+    raining: true,
     integrity: Valid
 ))
 
@@ -35,6 +37,7 @@ points.add(RoadWeatherPoint(
     path_order: 2,
     longitude: -45.001,
     latitude: -75.3442,
+    raining: true,
     unix_time: 1603821903.00,
     integrity: Valid
 ))

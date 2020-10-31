@@ -14,6 +14,7 @@ type
         id: int
         user_kind: UserKind
         age: int
+        active: bool
 
 var users: seq[User]
 let 
@@ -44,11 +45,18 @@ let
         title: "Age"
     )
 
-    columns = @[id_column, name_column, user_kind_column, age]
+    active = Column(
+        name: "active",
+        cel_kind: Checkbox,
+        cel_affordance: ReadAndWrite,
+        title: "Currently Active",
+    )
 
-users.add(User(username: "mnike", id: 0, age: 36))
-users.add(User(username: "another_user", id: 2, age: 22))
-users.add(User(username: "third user", id: 4, user_kind: Admin, age: 52))
+    columns = @[id_column, name_column, user_kind_column, age, active]
+
+users.add(User(username: "mnike", id: 0, age: 36, active: false))
+users.add(User(username: "another_user", id: 2, age: 22, active: true))
+users.add(User(username: "third user", id: 4, user_kind: Admin, age: 52, active: true))
 
 when defined(js):
     include karax/prelude

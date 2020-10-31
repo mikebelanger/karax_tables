@@ -17,6 +17,8 @@ type
         TextArea
         Integer
         FloatingPoint
+        Radio
+        Checkbox
 
     Column* = object
         name*, title*: string
@@ -40,6 +42,10 @@ type
                 integer: int
             of FloatingPoint:
                 floating_point: float
+            of Radio:
+                radio: bool
+            of CheckBox:
+                checkbox: bool
 
 const 
     cel_kinds = (CelKind.low..CelKind.high).mapIt($it).filterIt(it != "UnspecifiedCelKind").join(", ")
@@ -105,7 +111,7 @@ proc column_headers(obj: object | tuple): seq[Column] =
         
         result.add(col)
 
-proc cel(contents: string | int | float | enum, column: Column): Cel =
+proc cel(contents: string | int | float | enum | bool, column: Column): Cel =
     result = 
         Cel(
             column: column,
@@ -154,6 +160,19 @@ proc cel(contents: string | int | float | enum, column: Column): Cel =
 
             else:
                 raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Dropdown))
+        
+        of Radio:
+            when contents is bool:
+                result.radio = contents
+            else:
+                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Radio))
+
+        of Checkbox:
+            when contents is bool:
+                result.checkbox = contents
+            else:
+                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Checkbox))
+
 
 proc contents(cel: Cel): string =
     case cel.cel_kind:
@@ -169,6 +188,10 @@ proc contents(cel: Cel): string =
             return $cel.floating_point
         of Dropdown:
             return $cel.chosen
+        of Radio:
+            return $cel.radio
+        of Checkbox:
+            return $cel.checkbox
 
 proc to_cels(obj: object | tuple, columns: seq[Column]): seq[Cel] =
 
@@ -242,6 +265,15 @@ proc row*(obj: object | tuple, columns: seq[Column]): VNode =
                         form_input.setAttr("value", cel.contents)
                         result.add(buildHtml(td(form_input)))
 
+                    of Radio, Checkbox:
+                        let form_input = buildHtml(input(type = "checkbox"))
+                        form_input.setAttr("value", "active")
+
+                        if cel.contents == "true":
+                            form_input.setAttr("checked", "")
+                            
+                        result.add(buildHtml(td(form_input)))
+
             of HiddenField:
                 let vnode = buildHtml(td())
                 vnode.setAttr("value", cel.contents)
@@ -259,7 +291,7 @@ proc render_table(rows: seq[object | tuple], columns: seq[Column]): VNode =
                         for col in columns:
                             if col.cel_affordance != HiddenField:
                                 th:
-                                    text col.name
+                                    text col.title
                     tbody:
                         for row_number, row in rows:
                             row.row(columns)
