@@ -26,9 +26,10 @@ let
     )
 
     id_column = Column(
-        name: "id", 
+        name: "id",
+        title: "ID",
         cel_kind: Integer, 
-        cel_affordance: HiddenField, 
+        cel_affordance: HiddenField
     )
 
     user_kind_column = Column(
@@ -52,7 +53,7 @@ let
         title: "Currently Active",
     )
 
-    columns = @[id_column, name_column, user_kind_column, age, active]
+    columns = @[id_column, active, age, name_column, user_kind_column]
 
 users.add(User(username: "mnike", id: 0, age: 36, active: false))
 users.add(User(username: "another_user", id: 2, age: 22, active: true))

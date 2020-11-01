@@ -18,6 +18,7 @@ type
         Integer
         FloatingPoint
         Checkbox
+        CustomVDom
 
     Column* = object
         name*, title*: string
@@ -27,22 +28,7 @@ type
     
     Cel* = object
         column*: Column
-        case cel_kind: CelKind:
-            of UnspecifiedCelKind:
-                unspecified: string
-            of Text:
-                text: string
-            of Dropdown:
-                chosen: string
-                options: seq[string]
-            of TextArea:
-                textarea: string
-            of Integer:
-                integer: int
-            of FloatingPoint:
-                floating_point: float
-            of CheckBox:
-                checkbox: bool
+        contents: VNode
 
 const 
     cel_kinds = (CelKind.low..CelKind.high).mapIt($it).filterIt(it != "UnspecifiedCelKind").join(", ")
@@ -73,24 +59,25 @@ proc to_string*(vnode: VNode): string =
 
 proc valid(columns: seq[Column]): seq[Column] =
     for column in columns:
-        if column.cel_affordance != HiddenField:
-            let
-                missing_title = column.title.len == 0
-                missing_name = column.name.len == 0
-                missing_kind = column.cel_kind == UnspecifiedCelKind
-            
-            if missing_title:
-                raise newException(InvalidColumn, missing(column, "title"))
-            
-            elif missing_name:
-                raise newException(InvalidColumn, missing(column, "name"))
-            
-            elif missing_kind:
-                raise newException(InvalidColumn, missing(column, "cel kind", suggestion = cel_kinds)
-                )
+        let
+            missing_title = column.title.len == 0
+            missing_name = column.name.len == 0
+            missing_kind = column.cel_kind == UnspecifiedCelKind
+        
+        if missing_title:
+            raise newException(InvalidColumn, missing(column, "title"))
+        
+        elif missing_name:
+            raise newException(InvalidColumn, missing(column, "name"))
+        
+        elif missing_kind:
+            raise newException(InvalidColumn, missing(column, "cel kind", suggestion = cel_kinds)
+            )
 
-            else:
-                result.add(column)
+        else:
+    
+            result.add(column)
+        
 
 
 proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): seq[Column] =
@@ -113,95 +100,12 @@ proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): 
         when value.typeof is bool:
             col.cel_kind = Checkbox
         
+        when value.typeof is VNode:
+            col.cel_kind = CustomVDom
+        
         col.title = key
         col.cel_affordance = affordance
         result.add(col)
-
-proc cel(contents: string | int | float | enum | bool, column: Column): Cel =
-    result = 
-        Cel(
-            column: column,
-            cel_kind: column.cel_kind
-        )
-    
-    # Nim's type-checker will throw type errors if I don't specify the type in the 'when'
-    # clause here.
-    
-    case result.cel_kind:
-        of UnspecifiedCelKind:
-            result.unspecified = ""
-
-        of Integer:
-            when contents is int:
-                result.integer = contents
-
-            else:
-                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Integer))
-
-        of Text:
-            when contents is string:
-                result.text = contents
-
-            else:
-                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Text))
-
-        of TextArea:
-            when contents is string:
-                result.textarea = contents
-
-            else:
-                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, TextArea))
-
-        of FloatingPoint:
-            when contents is float:
-                result.floating_point = contents
-
-            else:
-                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, FloatingPoint))
-
-        of Dropdown:
-            when contents is enum:
-                result.options = (contents.typeof.low..contents.typeof.high).mapIt($it)
-                result.chosen = $contents
-
-            else:
-                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Dropdown))
-        
-        of Checkbox:
-            when contents is bool:
-                result.checkbox = contents
-            else:
-                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Checkbox))
-
-
-proc contents(cel: Cel): string =
-    case cel.cel_kind:
-        of UnspecifiedCelKind:
-            return ""
-        of Text:
-            return $cel.text
-        of TextArea:
-            return $cel.textarea
-        of Integer:
-            return $cel.integer
-        of FloatingPoint:
-            return $cel.floating_point
-        of Dropdown:
-            return $cel.chosen
-        of Checkbox:
-            return $cel.checkbox
-
-proc to_cels(obj: object | tuple, columns: seq[Column]): seq[Cel] =
-
-    # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
-    for key, val in obj.fieldPairs:
-
-        for column in columns:
-
-            if column.name == key:
-                result.add(
-                    val.cel(column)
-                )
 
 proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): VNode =
 
@@ -221,62 +125,137 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
                             option(value = option):
                                 text option
 
+proc cel(contents: string | int | float | enum | bool, column: Column): Cel =
+    result = 
+        Cel(
+            column: column,
+            contents: buildHtml(td())
+        )
+    
+    # Nim's type-checker will throw type errors if I don't specify the type in the 'when'
+    # clause here.
+    case column.cel_affordance:
+
+        of ReadOnly:
+            case column.cel_kind:
+                of Checkbox:
+                    when contents is bool:
+                        let form_input = buildHtml(input(type = "checkbox"))
+                        form_input.setAttr("value", "active")
+
+                        if contents:
+                            form_input.setAttr("checked", "")
+                        
+                        form_input.setAttr("disabled", "disabled")
+                        result.contents.add(form_input)
+
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Checkbox))
+                
+                else:
+                    result.contents.add(text($contents))
+
+        of ReadAndWrite:
+            case column.cel_kind:
+                
+                of UnspecifiedCelKind:
+                    raise newException(InvalidColumn, missing(column, "cel_kind"))
+
+                of Integer:
+                    when contents is int:
+                        let form_input = buildHtml(input(type = "number"))
+                        form_input.setAttr("increments", "1")
+                        form_input.setAttr("value", $contents)
+                        result.contents.add(form_input)
+
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Integer))
+
+                of Text:
+                    when contents is string:
+                        let form_input = buildHtml(input(type = "text"))
+                        form_input.setAttr("value", contents)
+                        result.contents.add(form_input)
+
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Text))
+
+                of TextArea:
+                    when contents is string:
+                        let form_input = buildHtml(input(type = "textarea"))
+                        form_input.setAttr("value", contents)
+                        result.contents.add(form_input)
+
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, TextArea))
+
+                of FloatingPoint:
+                    when contents is float:
+                        let form_input = buildHtml(input(type = "number"))
+                        form_input.setAttr("value", $contents)
+                        result.contents.add(form_input)
+
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, FloatingPoint))
+
+                of Dropdown:
+                    when contents is enum:
+                        let options = (contents.typeof.low..contents.typeof.high).mapIt($it)
+                        result.contents =
+                                buildHtml(
+                                    td(optionsMenu(name = $column.name, 
+                                        message = "", 
+                                        selected = $contents, 
+                                        options = options))
+                                )
+
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Dropdown))
+                
+                of Checkbox:
+                    when contents is bool:
+                        let form_input = buildHtml(input(type = "checkbox"))
+                        form_input.setAttr("value", "active")
+
+                        if contents:
+                            form_input.setAttr("checked", "")
+                        
+                        result.contents.add(form_input)
+
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Checkbox))
+
+                of CustomVDom:
+                    when contents is VNode:
+                        result.contents = contents
+                    else:
+                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, CustomVDom))
+
+        of HiddenField:
+            let vnode = buildHtml(input(type = "hidden"))
+            vnode.setAttr("value", $contents)
+            vnode.setAttr("style", "display: none")
+            result.contents = vnode
+
+
+proc to_cels(obj: object | tuple, columns: seq[Column]): seq[Cel] =
+
+    # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
+    for column in columns:
+
+        for key, val in obj.fieldPairs:
+            
+            if column.name == key:
+                result.add(
+                    val.cel(column)
+                )
+
 
 proc row*(obj: object | tuple, columns: seq[Column]): VNode =
     result = buildHtml(tr())
 
     for cel in obj.to_cels(columns):
-            
-        case cel.column.cel_affordance:
-            of ReadOnly:
-                result.add(
-                    buildHtml(td(text(cel.contents)))
-                )
-
-            of ReadAndWrite:
-                case cel.column.cel_kind:
-
-                    of UnspecifiedCelKind:
-                        result.add(buildHtml(td(text(""))))
-
-                    of Text:
-                        let form_input = buildHtml(input(type = "text"))
-                        form_input.setAttr("value", cel.contents)
-                        result.add(buildHtml(td(form_input)))
-
-                    of FloatingPoint, Integer:
-                        let form_input = buildHtml(input(type = "number"))
-                        form_input.setAttr("increments", "1")
-                        form_input.setAttr("value", cel.contents)
-                        result.add(buildHtml(td(form_input)))
-
-                    of Dropdown:
-
-                        result.add(
-                                buildHtml(
-                                    td(optionsMenu(name = $cel.column.name, message = "", selected = cel.contents, options = cel.options))
-                                )
-                        )
-                    
-                    of TextArea:
-                        let form_input = buildHtml(input(type = "textarea"))
-                        form_input.setAttr("value", cel.contents)
-                        result.add(buildHtml(td(form_input)))
-
-                    of Checkbox:
-                        let form_input = buildHtml(input(type = "checkbox"))
-                        form_input.setAttr("value", "active")
-
-                        if cel.contents == "true":
-                            form_input.setAttr("checked", "")
-                            
-                        result.add(buildHtml(td(form_input)))
-
-            of HiddenField:
-                let vnode = buildHtml(td())
-                vnode.setAttr("value", cel.contents)
-                vnode.setAttr("style", "display: none")
-                result.add(vnode)
+        result.add(cel.contents)
 
 
 proc render_table(rows: seq[object | tuple], columns: seq[Column]): VNode =
