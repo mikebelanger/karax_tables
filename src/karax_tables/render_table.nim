@@ -17,7 +17,6 @@ type
         TextArea
         Integer
         FloatingPoint
-        Radio
         Checkbox
 
     Column* = object
@@ -42,8 +41,6 @@ type
                 integer: int
             of FloatingPoint:
                 floating_point: float
-            of Radio:
-                radio: bool
             of CheckBox:
                 checkbox: bool
 
@@ -161,12 +158,6 @@ proc cel(contents: string | int | float | enum | bool, column: Column): Cel =
             else:
                 raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Dropdown))
         
-        of Radio:
-            when contents is bool:
-                result.radio = contents
-            else:
-                raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Radio))
-
         of Checkbox:
             when contents is bool:
                 result.checkbox = contents
@@ -188,8 +179,6 @@ proc contents(cel: Cel): string =
             return $cel.floating_point
         of Dropdown:
             return $cel.chosen
-        of Radio:
-            return $cel.radio
         of Checkbox:
             return $cel.checkbox
 
@@ -265,7 +254,7 @@ proc row*(obj: object | tuple, columns: seq[Column]): VNode =
                         form_input.setAttr("value", cel.contents)
                         result.add(buildHtml(td(form_input)))
 
-                    of Radio, Checkbox:
+                    of Checkbox:
                         let form_input = buildHtml(input(type = "checkbox"))
                         form_input.setAttr("value", "active")
 

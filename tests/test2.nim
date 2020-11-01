@@ -68,4 +68,4 @@ when defined(js):
 
     setRenderer render
 else:
-    writeFile("stuff2.html", users.karax_table(columns = columns).to_string)
+    writeFile("./tests/stuff2.html", users.karax_table(columns = columns).to_string)

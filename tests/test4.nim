@@ -64,9 +64,19 @@ when defined(js):
     import karax / [karaxdsl, vdom]
 
     proc render(): VNode = 
-        result = buildHtml():
-            points.karax_table(columns = columns)
+        try:
+            result = buildHtml():
+                points.karax_table(columns = columns)
+        except InvalidColumn:
+            result = buildHtml():
+                tdiv:
+                    p:
+                        text "succesfully caught invalid column"
+
                 
     setRenderer render
 else:
-    writeFile("stuff4.html", points.karax_table(columns = columns).to_string)
+    try:
+        writeFile("./tests/stuff4.html", points.karax_table(columns = columns).to_string)
+    except InvalidColumn:
+        echo "succesfully caught invalid column"

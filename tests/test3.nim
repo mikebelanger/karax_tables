@@ -32,4 +32,4 @@ when defined(js):
 
     setRenderer render
 else:
-    writeFile("stuff3.html", products.karax_table.to_string)
+    writeFile("./tests/stuff3.html", products.karax_table.to_string)
