@@ -93,9 +93,13 @@ proc valid(columns: seq[Column]): seq[Column] =
                 result.add(column)
 
 
-proc column_headers(obj: object | tuple): seq[Column] =
+proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): seq[Column] =
+
     for key, value in obj.fieldPairs:
         var col = Column(name: $key)
+
+        when value.typeof is string:
+            col.cel_kind = Text
 
         when value.typeof is int:
             col.cel_kind = Integer
@@ -105,7 +109,12 @@ proc column_headers(obj: object | tuple): seq[Column] =
         
         when value.typeof is enum:
             col.cel_kind = Dropdown
+
+        when value.typeof is bool:
+            col.cel_kind = Checkbox
         
+        col.title = key
+        col.cel_affordance = affordance
         result.add(col)
 
 proc cel(contents: string | int | float | enum | bool, column: Column): Cel =
@@ -285,10 +294,8 @@ proc render_table(rows: seq[object | tuple], columns: seq[Column]): VNode =
                         for row_number, row in rows:
                             row.row(columns)
 
-proc karax_table*(objs: seq[object | tuple]): VNode =
-
-    render_table(objs, objs[0].column_headers)
+proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly): VNode =
+    render_table(objs, objs[0].column_headers(all_columns))
 
 proc karax_table*(objs: seq[object | tuple], columns: seq[Column]): VNode =
-
     render_table(objs, columns.valid)

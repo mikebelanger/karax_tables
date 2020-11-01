@@ -1,22 +1,30 @@
 <div><table>
     <thead>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>name</th>
+      <th>sku</th>
+      <th>price</th>
+      <th>price_per</th>
     </thead>
     <tbody>
       <tr>
-        <td></td>
-        <td>1231</td>
-        <td>2.1</td>
-        <td>Pound</td>
+        <td><input type="text" value="cabbage" /></td>
+        <td><input type="number" increments="1" value="1231" /></td>
+        <td><input type="number" increments="1" value="2.1" /></td>
+        <td><div><label id="price_per_container" for="price_per"><select id="price_per">
+                <option value="Unit">Unit</option>
+                <option value="Pound" selected="selected">Pound</option>
+                <option value="Kilo">Kilo</option>
+              </select></label></div></td>
       </tr>
       <tr>
-        <td></td>
-        <td>23412</td>
-        <td>5.0</td>
-        <td>Unit</td>
+        <td><input type="text" value="hamburger helper" /></td>
+        <td><input type="number" increments="1" value="23412" /></td>
+        <td><input type="number" increments="1" value="5.0" /></td>
+        <td><div><label id="price_per_container" for="price_per"><select id="price_per">
+                <option value="Unit" selected="selected">Unit</option>
+                <option value="Pound">Pound</option>
+                <option value="Kilo">Kilo</option>
+              </select></label></div></td>
       </tr>
     </tbody>
   </table></div>

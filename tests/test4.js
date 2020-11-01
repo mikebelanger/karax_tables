@@ -7122,40 +7122,40 @@ function cel_14095040(contents_14095043, column_14095044) {
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 113;
+    F.line = 122;
     nimCopy(result_14095045, {column: nimCopy(null, column_14095044, NTI13991023), cel_kind: column_14095044.cel_kind, unspecified: [], text: [], chosen: [], options: [], textarea: [], integer: 0, floating_point: 0.0, checkbox: false}, NTI13991025);
-    F.line = 121;
+    F.line = 130;
     switch (result_14095045.cel_kind) {
     case 0:
       var Tmp1 = result_14095045;
       if (ConstSet2[Tmp1.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'unspecified\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 123;
+      F.line = 132;
       Tmp1.unspecified = nimCopy(null, [], NTI3573013);
       break;
     case 4:
       var Tmp2 = result_14095045;
       if (ConstSet3[Tmp2.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'integer\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 127;
+      F.line = 136;
       Tmp2.integer = contents_14095043;
       break;
     case 1:
-      F.line = 137;
+      F.line = 146;
       raiseException({message: mismatch_14095401(result_14095045.column, contents_14095043, 1), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 3:
-      F.line = 144;
+      F.line = 153;
       raiseException({message: mismatch_14095401(result_14095045.column, contents_14095043, 3), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 5:
-      F.line = 151;
+      F.line = 160;
       raiseException({message: mismatch_14095401(result_14095045.column, contents_14095043, 5), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 2:
-      F.line = 159;
+      F.line = 168;
       raiseException({message: mismatch_14095401(result_14095045.column, contents_14095043, 2), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 6:
-      F.line = 165;
+      F.line = 174;
       raiseException({message: mismatch_14095401(result_14095045.column, contents_14095043, 6), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     }
@@ -7225,38 +7225,38 @@ function cel_14120080(contents_14120083, column_14120084) {
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 113;
+    F.line = 122;
     nimCopy(result_14120085, {column: nimCopy(null, column_14120084, NTI13991023), cel_kind: column_14120084.cel_kind, unspecified: [], text: [], chosen: [], options: [], textarea: [], integer: 0, floating_point: 0.0, checkbox: false}, NTI13991025);
-    F.line = 121;
+    F.line = 130;
     switch (result_14120085.cel_kind) {
     case 0:
       var Tmp1 = result_14120085;
       if (ConstSet4[Tmp1.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'unspecified\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 123;
+      F.line = 132;
       Tmp1.unspecified = nimCopy(null, [], NTI3573013);
       break;
     case 4:
-      F.line = 130;
+      F.line = 139;
       raiseException({message: mismatch_14120201(result_14120085.column, contents_14120083, 4), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 1:
-      F.line = 137;
+      F.line = 146;
       raiseException({message: mismatch_14120201(result_14120085.column, contents_14120083, 1), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 3:
-      F.line = 144;
+      F.line = 153;
       raiseException({message: mismatch_14120201(result_14120085.column, contents_14120083, 3), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 5:
-      F.line = 151;
+      F.line = 160;
       raiseException({message: mismatch_14120201(result_14120085.column, contents_14120083, 5), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 2:
       var Tmp2 = result_14120085;
       if (ConstSet5[Tmp2.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'options\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 155;
+      F.line = 164;
       L3: do {
-        F.line = 155;
+        F.line = 164;
         var HEX3Atmp_14145817 = HEX2EHEX2E_14140226(0, 2);
         F.line = 949;
         var iHEX60gensym11_14150003 = 0;
@@ -7278,7 +7278,7 @@ function cel_14120080(contents_14120083, column_14120084) {
                   x_14335511 = chckRange(res_14335512, 0, 2);
                   F.line = 951;
                   it_14160006 = x_14335511;
-                  F.line = 155;
+                  F.line = 164;
                   resultHEX60gensym11_14155052[chckIndx(iHEX60gensym11_14150003, 0, (resultHEX60gensym11_14155052).length-1)] = nimCopy(null, reprEnum(it_14160006, NTI14072015), NTI3573013);
                   F.line = 953;
                   iHEX60gensym11_14150003 = addInt(iHEX60gensym11_14150003, 1);
@@ -7292,11 +7292,11 @@ function cel_14120080(contents_14120083, column_14120084) {
       Tmp2.options = nimCopy(null, resultHEX60gensym11_14155052, NTI4225236);
       var Tmp8 = result_14120085;
       if (ConstSet6[Tmp8.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'chosen\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 156;
+      F.line = 165;
       Tmp8.chosen = nimCopy(null, reprEnum(contents_14120083, NTI14072015), NTI3573013);
       break;
     case 6:
-      F.line = 165;
+      F.line = 174;
       raiseException({message: mismatch_14120201(result_14120085.column, contents_14120083, 6), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     }
@@ -7325,40 +7325,40 @@ function cel_14165034(contents_14165037, column_14165038) {
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 113;
+    F.line = 122;
     nimCopy(result_14165039, {column: nimCopy(null, column_14165038, NTI13991023), cel_kind: column_14165038.cel_kind, unspecified: [], text: [], chosen: [], options: [], textarea: [], integer: 0, floating_point: 0.0, checkbox: false}, NTI13991025);
-    F.line = 121;
+    F.line = 130;
     switch (result_14165039.cel_kind) {
     case 0:
       var Tmp1 = result_14165039;
       if (ConstSet7[Tmp1.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'unspecified\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 123;
+      F.line = 132;
       Tmp1.unspecified = nimCopy(null, [], NTI3573013);
       break;
     case 4:
-      F.line = 130;
+      F.line = 139;
       raiseException({message: mismatch_14165201(result_14165039.column, contents_14165037, 4), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 1:
-      F.line = 137;
+      F.line = 146;
       raiseException({message: mismatch_14165201(result_14165039.column, contents_14165037, 1), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 3:
-      F.line = 144;
+      F.line = 153;
       raiseException({message: mismatch_14165201(result_14165039.column, contents_14165037, 3), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 5:
       var Tmp2 = result_14165039;
       if (ConstSet8[Tmp2.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'floating_point\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 148;
+      F.line = 157;
       Tmp2.floating_point = contents_14165037;
       break;
     case 2:
-      F.line = 159;
+      F.line = 168;
       raiseException({message: mismatch_14165201(result_14165039.column, contents_14165037, 2), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 6:
-      F.line = 165;
+      F.line = 174;
       raiseException({message: mismatch_14165201(result_14165039.column, contents_14165037, 6), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     }
@@ -7387,40 +7387,40 @@ function cel_14190082(contents_14190085, column_14190086) {
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 113;
+    F.line = 122;
     nimCopy(result_14190087, {column: nimCopy(null, column_14190086, NTI13991023), cel_kind: column_14190086.cel_kind, unspecified: [], text: [], chosen: [], options: [], textarea: [], integer: 0, floating_point: 0.0, checkbox: false}, NTI13991025);
-    F.line = 121;
+    F.line = 130;
     switch (result_14190087.cel_kind) {
     case 0:
       var Tmp1 = result_14190087;
       if (ConstSet12[Tmp1.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'unspecified\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 123;
+      F.line = 132;
       Tmp1.unspecified = nimCopy(null, [], NTI3573013);
       break;
     case 4:
-      F.line = 130;
+      F.line = 139;
       raiseException({message: mismatch_14190201(result_14190087.column, contents_14190085, 4), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 1:
-      F.line = 137;
+      F.line = 146;
       raiseException({message: mismatch_14190201(result_14190087.column, contents_14190085, 1), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 3:
-      F.line = 144;
+      F.line = 153;
       raiseException({message: mismatch_14190201(result_14190087.column, contents_14190085, 3), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 5:
-      F.line = 151;
+      F.line = 160;
       raiseException({message: mismatch_14190201(result_14190087.column, contents_14190085, 5), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 2:
-      F.line = 159;
+      F.line = 168;
       raiseException({message: mismatch_14190201(result_14190087.column, contents_14190085, 2), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 6:
       var Tmp2 = result_14190087;
       if (ConstSet13[Tmp2.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'checkbox\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 163;
+      F.line = 172;
       Tmp2.checkbox = contents_14190085;
       break;
     }
@@ -7474,38 +7474,38 @@ function cel_14215234(contents_14215237, column_14215238) {
 
   var F={procname:"cel.cel",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 113;
+    F.line = 122;
     nimCopy(result_14215239, {column: nimCopy(null, column_14215238, NTI13991023), cel_kind: column_14215238.cel_kind, unspecified: [], text: [], chosen: [], options: [], textarea: [], integer: 0, floating_point: 0.0, checkbox: false}, NTI13991025);
-    F.line = 121;
+    F.line = 130;
     switch (result_14215239.cel_kind) {
     case 0:
       var Tmp1 = result_14215239;
       if (ConstSet15[Tmp1.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'unspecified\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 123;
+      F.line = 132;
       Tmp1.unspecified = nimCopy(null, [], NTI3573013);
       break;
     case 4:
-      F.line = 130;
+      F.line = 139;
       raiseException({message: mismatch_14215401(result_14215239.column, contents_14215237, 4), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 1:
-      F.line = 137;
+      F.line = 146;
       raiseException({message: mismatch_14215401(result_14215239.column, contents_14215237, 1), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 3:
-      F.line = 144;
+      F.line = 153;
       raiseException({message: mismatch_14215401(result_14215239.column, contents_14215237, 3), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 5:
-      F.line = 151;
+      F.line = 160;
       raiseException({message: mismatch_14215401(result_14215239.column, contents_14215237, 5), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     case 2:
       var Tmp2 = result_14215239;
       if (ConstSet16[Tmp2.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'options\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 155;
+      F.line = 164;
       L3: do {
-        F.line = 155;
+        F.line = 164;
         var HEX3Atmp_14240817 = HEX2EHEX2E_14235226(0, 2);
         F.line = 949;
         var iHEX60gensym29_14245003 = 0;
@@ -7527,7 +7527,7 @@ function cel_14215234(contents_14215237, column_14215238) {
                   x_14335548 = chckRange(res_14335549, 0, 2);
                   F.line = 951;
                   it_14255006 = x_14335548;
-                  F.line = 155;
+                  F.line = 164;
                   resultHEX60gensym29_14250052[chckIndx(iHEX60gensym29_14245003, 0, (resultHEX60gensym29_14250052).length-1)] = nimCopy(null, reprEnum(it_14255006, NTI14072017), NTI3573013);
                   F.line = 953;
                   iHEX60gensym29_14245003 = addInt(iHEX60gensym29_14245003, 1);
@@ -7541,11 +7541,11 @@ function cel_14215234(contents_14215237, column_14215238) {
       Tmp2.options = nimCopy(null, resultHEX60gensym29_14250052, NTI4225236);
       var Tmp8 = result_14215239;
       if (ConstSet17[Tmp8.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'chosen\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      F.line = 156;
+      F.line = 165;
       Tmp8.chosen = nimCopy(null, reprEnum(contents_14215237, NTI14072017), NTI3573013);
       break;
     case 6:
-      F.line = 165;
+      F.line = 174;
       raiseException({message: mismatch_14215401(result_14215239.column, contents_14215237, 6), parent: null, m_type: NTI13991017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
       break;
     }
@@ -7566,7 +7566,7 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
   var F={procname:"to_cels.to_cels",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     L1: do {
-      F.line = 190;
+      F.line = 199;
       var column_14095037 = null;
       F.line = 199;
       var i_14335461 = 0;
@@ -7576,10 +7576,10 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
         F.line = 201;
           L3: while (true) {
           if (!(i_14335461 < L_14335462)) break L3;
-            F.line = 190;
+            F.line = 199;
             column_14095037 = columns_14095010[chckIndx(i_14335461, 0, (columns_14095010).length-1)];
             if (eqStrings(column_14095037.name, makeNimstrLit("path_order"))) {
-            F.line = 193;
+            F.line = 202;
             result_14095011.push(cel_14095040(obj_14095009.path_order, column_14095037));;
             }
             
@@ -7594,7 +7594,7 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
       } while(false);
     } while(false);
     L4: do {
-      F.line = 190;
+      F.line = 199;
       var column_14120077 = null;
       F.line = 199;
       var i_14335465 = 0;
@@ -7604,10 +7604,10 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
         F.line = 201;
           L6: while (true) {
           if (!(i_14335465 < L_14335466)) break L6;
-            F.line = 190;
+            F.line = 199;
             column_14120077 = columns_14095010[chckIndx(i_14335465, 0, (columns_14095010).length-1)];
             if (eqStrings(column_14120077.name, makeNimstrLit("integrity"))) {
-            F.line = 193;
+            F.line = 202;
             result_14095011.push(cel_14120080(obj_14095009.integrity, column_14120077));;
             }
             
@@ -7621,11 +7621,11 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
           }
       } while(false);
     } while(false);
-    F.line = 188;
+    F.line = 197;
     switch (obj_14095009.integrity) {
     case 2:
       L7: do {
-        F.line = 190;
+        F.line = 199;
         var column_14165030 = null;
         F.line = 199;
         var i_14335469 = 0;
@@ -7635,10 +7635,10 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
           F.line = 201;
             L9: while (true) {
             if (!(i_14335469 < L_14335470)) break L9;
-              F.line = 190;
+              F.line = 199;
               column_14165030 = columns_14095010[chckIndx(i_14335469, 0, (columns_14095010).length-1)];
               if (eqStrings(column_14165030.name, makeNimstrLit("longitude"))) {
-              F.line = 193;
+              F.line = 202;
               var Tmp10 = obj_14095009;
               if (ConstSet9[Tmp10.integrity]===undefined) { raiseFieldError(makeNimstrLit("\'longitude\' is not accessible using discriminant \'integrity\' of type \'RoadWeatherPoint\'")); }
               result_14095011.push(cel_14165034(Tmp10.longitude, column_14165030));;
@@ -7655,7 +7655,7 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
         } while(false);
       } while(false);
       L11: do {
-        F.line = 190;
+        F.line = 199;
         var column_14190030 = null;
         F.line = 199;
         var i_14335473 = 0;
@@ -7665,10 +7665,10 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
           F.line = 201;
             L13: while (true) {
             if (!(i_14335473 < L_14335474)) break L13;
-              F.line = 190;
+              F.line = 199;
               column_14190030 = columns_14095010[chckIndx(i_14335473, 0, (columns_14095010).length-1)];
               if (eqStrings(column_14190030.name, makeNimstrLit("latitude"))) {
-              F.line = 193;
+              F.line = 202;
               var Tmp14 = obj_14095009;
               if (ConstSet10[Tmp14.integrity]===undefined) { raiseFieldError(makeNimstrLit("\'latitude\' is not accessible using discriminant \'integrity\' of type \'RoadWeatherPoint\'")); }
               result_14095011.push(cel_14165034(Tmp14.latitude, column_14190030));;
@@ -7685,7 +7685,7 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
         } while(false);
       } while(false);
       L15: do {
-        F.line = 190;
+        F.line = 199;
         var column_14190054 = null;
         F.line = 199;
         var i_14335477 = 0;
@@ -7695,10 +7695,10 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
           F.line = 201;
             L17: while (true) {
             if (!(i_14335477 < L_14335478)) break L17;
-              F.line = 190;
+              F.line = 199;
               column_14190054 = columns_14095010[chckIndx(i_14335477, 0, (columns_14095010).length-1)];
               if (eqStrings(column_14190054.name, makeNimstrLit("unix_time"))) {
-              F.line = 193;
+              F.line = 202;
               var Tmp18 = obj_14095009;
               if (ConstSet11[Tmp18.integrity]===undefined) { raiseFieldError(makeNimstrLit("\'unix_time\' is not accessible using discriminant \'integrity\' of type \'RoadWeatherPoint\'")); }
               result_14095011.push(cel_14165034(Tmp18.unix_time, column_14190054));;
@@ -7715,7 +7715,7 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
         } while(false);
       } while(false);
       L19: do {
-        F.line = 190;
+        F.line = 199;
         var column_14190078 = null;
         F.line = 199;
         var i_14335481 = 0;
@@ -7725,10 +7725,10 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
           F.line = 201;
             L21: while (true) {
             if (!(i_14335481 < L_14335482)) break L21;
-              F.line = 190;
+              F.line = 199;
               column_14190078 = columns_14095010[chckIndx(i_14335481, 0, (columns_14095010).length-1)];
               if (eqStrings(column_14190078.name, makeNimstrLit("raining"))) {
-              F.line = 193;
+              F.line = 202;
               var Tmp22 = obj_14095009;
               if (ConstSet14[Tmp22.integrity]===undefined) { raiseFieldError(makeNimstrLit("\'raining\' is not accessible using discriminant \'integrity\' of type \'RoadWeatherPoint\'")); }
               result_14095011.push(cel_14190082(Tmp22.raining, column_14190078));;
@@ -7747,7 +7747,7 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
       break;
     default: 
       L23: do {
-        F.line = 190;
+        F.line = 199;
         var column_14215230 = null;
         F.line = 199;
         var i_14335485 = 0;
@@ -7757,10 +7757,10 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
           F.line = 201;
             L25: while (true) {
             if (!(i_14335485 < L_14335486)) break L25;
-              F.line = 190;
+              F.line = 199;
               column_14215230 = columns_14095010[chckIndx(i_14335485, 0, (columns_14095010).length-1)];
               if (eqStrings(column_14215230.name, makeNimstrLit("error"))) {
-              F.line = 193;
+              F.line = 202;
               var Tmp26 = obj_14095009;
               if (ConstSet18[Tmp26.integrity]!==undefined) { raiseFieldError(makeNimstrLit("\'error\' is not accessible using discriminant \'integrity\' of type \'RoadWeatherPoint\'")); }
               result_14095011.push(cel_14215234(Tmp26.error, column_14215230));;
@@ -7783,7 +7783,7 @@ function to_cels_14095006(obj_14095009, columns_14095010) {
   return result_14095011;
 
 }
-function contents_14060156(cel_14060158) {
+function contents_14060161(cel_14060163) {
       var Tmp1;
       var Tmp2;
       var Tmp3;
@@ -7791,65 +7791,65 @@ function contents_14060156(cel_14060158) {
       var Tmp5;
       var Tmp6;
 
-  var result_14060159 = [];
+  var result_14060164 = [];
 
   var F={procname:"render_table.contents",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
   BeforeRet: do {
-    F.line = 169;
-    switch (cel_14060158.cel_kind) {
+    F.line = 178;
+    switch (cel_14060163.cel_kind) {
     case 0:
-      F.line = 171;
-      result_14060159 = nimCopy(null, [], NTI3573013);
+      F.line = 180;
+      result_14060164 = nimCopy(null, [], NTI3573013);
       break BeforeRet;
       break;
     case 1:
-      F.line = 173;
-      var Tmp1 = cel_14060158;
+      F.line = 182;
+      var Tmp1 = cel_14060163;
       if (ConstSet19[Tmp1.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'text\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      result_14060159 = nimCopy(null, Tmp1.text, NTI3573013);
+      result_14060164 = nimCopy(null, Tmp1.text, NTI3573013);
       break BeforeRet;
       break;
     case 3:
-      F.line = 175;
-      var Tmp2 = cel_14060158;
+      F.line = 184;
+      var Tmp2 = cel_14060163;
       if (ConstSet20[Tmp2.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'textarea\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      result_14060159 = nimCopy(null, Tmp2.textarea, NTI3573013);
+      result_14060164 = nimCopy(null, Tmp2.textarea, NTI3573013);
       break BeforeRet;
       break;
     case 4:
-      F.line = 177;
-      var Tmp3 = cel_14060158;
+      F.line = 186;
+      var Tmp3 = cel_14060163;
       if (ConstSet21[Tmp3.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'integer\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      result_14060159 = nimCopy(null, cstrToNimstr((Tmp3.integer)+""), NTI3573013);
+      result_14060164 = nimCopy(null, cstrToNimstr((Tmp3.integer)+""), NTI3573013);
       break BeforeRet;
       break;
     case 5:
-      F.line = 179;
-      var Tmp4 = cel_14060158;
+      F.line = 188;
+      var Tmp4 = cel_14060163;
       if (ConstSet22[Tmp4.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'floating_point\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      result_14060159 = nimCopy(null, cstrToNimstr(nimFloatToString(Tmp4.floating_point)), NTI3573013);
+      result_14060164 = nimCopy(null, cstrToNimstr(nimFloatToString(Tmp4.floating_point)), NTI3573013);
       break BeforeRet;
       break;
     case 2:
-      F.line = 181;
-      var Tmp5 = cel_14060158;
+      F.line = 190;
+      var Tmp5 = cel_14060163;
       if (ConstSet23[Tmp5.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'chosen\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      result_14060159 = nimCopy(null, Tmp5.chosen, NTI3573013);
+      result_14060164 = nimCopy(null, Tmp5.chosen, NTI3573013);
       break BeforeRet;
       break;
     case 6:
-      F.line = 183;
-      var Tmp6 = cel_14060158;
+      F.line = 192;
+      var Tmp6 = cel_14060163;
       if (ConstSet24[Tmp6.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'checkbox\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-      result_14060159 = nimCopy(null, nimBoolToStr(Tmp6.checkbox), NTI3573013);
+      result_14060164 = nimCopy(null, nimBoolToStr(Tmp6.checkbox), NTI3573013);
       break BeforeRet;
       break;
     }
   } while (false);
   framePtr = F.prev;
 
-  return result_14060159;
+  return result_14060164;
 
 }
 function setAttr_12885105(n_12885107, key_12885108, val_12885109) {
@@ -7899,81 +7899,81 @@ function setAttr_12885105(n_12885107, key_12885108, val_12885109) {
 
   
 }
-function optionsMenu_14060203(name_14060205, message_14060206, selected_14060207, options_14060209) {
-  var result_14060210 = null;
+function optionsMenu_14060208(name_14060210, message_14060211, selected_14060212, options_14060214) {
+  var result_14060215 = null;
 
   var F={procname:"render_table.optionsMenu",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 199;
-    F.line = 200;
-    var tmp_14060246 = tree_12945445(43, []);
-    F.line = 201;
-    var tmp_14060247 = tree_12945445(104, []);
-    F.line = 201;
-    setAttr_12885105(tmp_14060247, "for", toJSStr(cstrToNimstr(name_14060205)));
-    F.line = 201;
-    tmp_14060247.id = toJSStr((cstrToNimstr(name_14060205) || []).concat(makeNimstrLit("_container") || []));
-    F.line = 202;
-    var tmp_14060253 = tree_12945445(107, []);
-    F.line = 202;
-    tmp_14060253.id = toJSStr(cstrToNimstr(name_14060205));
-    if ((0 < (message_14060206).length)) {
-    F.line = 204;
-    var tmp_14060254 = tree_12945445(110, []);
-    F.line = 204;
-    valueHEX3D_12850140(tmp_14060254, "");
-    F.line = 204;
-    setAttr_12885105(tmp_14060254, "value", "");
-    F.line = 205;
-    add_12935072(tmp_14060254, text_12945582(cstrToNimstr(message_14060206)));
-    F.line = 205;
-    add_12935072(tmp_14060253, tmp_14060254);
+    F.line = 208;
+    F.line = 209;
+    var tmp_14060251 = tree_12945445(43, []);
+    F.line = 210;
+    var tmp_14060252 = tree_12945445(104, []);
+    F.line = 210;
+    setAttr_12885105(tmp_14060252, "for", toJSStr(cstrToNimstr(name_14060210)));
+    F.line = 210;
+    tmp_14060252.id = toJSStr((cstrToNimstr(name_14060210) || []).concat(makeNimstrLit("_container") || []));
+    F.line = 211;
+    var tmp_14060258 = tree_12945445(107, []);
+    F.line = 211;
+    tmp_14060258.id = toJSStr(cstrToNimstr(name_14060210));
+    if ((0 < (message_14060211).length)) {
+    F.line = 213;
+    var tmp_14060259 = tree_12945445(110, []);
+    F.line = 213;
+    valueHEX3D_12850140(tmp_14060259, "");
+    F.line = 213;
+    setAttr_12885105(tmp_14060259, "value", "");
+    F.line = 214;
+    add_12935072(tmp_14060259, text_12945582(cstrToNimstr(message_14060211)));
+    F.line = 214;
+    add_12935072(tmp_14060258, tmp_14060259);
     }
     
     L1: do {
-      F.line = 207;
+      F.line = 216;
       var option_14070012 = null;
       var option_14070012_Idx = 0;
       F.line = 199;
       var i_14335570 = 0;
       F.line = 200;
-      var L_14335571 = (options_14060209).length;
+      var L_14335571 = (options_14060214).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
           if (!(i_14335570 < L_14335571)) break L3;
-            F.line = 207;
-            option_14070012 = options_14060209; option_14070012_Idx = chckIndx(i_14335570, 0, (options_14060209).length-1);
-            if (eqStrings(option_14070012[option_14070012_Idx], selected_14060207)) {
-            F.line = 209;
-            var tmp_14060255 = tree_12945445(110, []);
-            F.line = 209;
-            valueHEX3D_12850140(tmp_14060255, toJSStr(selected_14060207));
-            F.line = 209;
-            setAttr_12885105(tmp_14060255, "value", toJSStr(selected_14060207));
-            F.line = 209;
-            setAttr_12885105(tmp_14060255, "selected", "selected");
-            F.line = 210;
-            add_12935072(tmp_14060255, text_12945582(selected_14060207));
-            F.line = 210;
-            add_12935072(tmp_14060253, tmp_14060255);
+            F.line = 216;
+            option_14070012 = options_14060214; option_14070012_Idx = chckIndx(i_14335570, 0, (options_14060214).length-1);
+            if (eqStrings(option_14070012[option_14070012_Idx], selected_14060212)) {
+            F.line = 218;
+            var tmp_14060260 = tree_12945445(110, []);
+            F.line = 218;
+            valueHEX3D_12850140(tmp_14060260, toJSStr(selected_14060212));
+            F.line = 218;
+            setAttr_12885105(tmp_14060260, "value", toJSStr(selected_14060212));
+            F.line = 218;
+            setAttr_12885105(tmp_14060260, "selected", "selected");
+            F.line = 219;
+            add_12935072(tmp_14060260, text_12945582(selected_14060212));
+            F.line = 219;
+            add_12935072(tmp_14060258, tmp_14060260);
             }
             else {
-              F.line = 212;
-              var tmp_14060256 = tree_12945445(110, []);
-              F.line = 212;
-              valueHEX3D_12850140(tmp_14060256, toJSStr(option_14070012[option_14070012_Idx]));
-              F.line = 212;
-              setAttr_12885105(tmp_14060256, "value", toJSStr(option_14070012[option_14070012_Idx]));
-              F.line = 213;
-              add_12935072(tmp_14060256, text_12945582(option_14070012[option_14070012_Idx]));
-              F.line = 213;
-              add_12935072(tmp_14060253, tmp_14060256);
+              F.line = 221;
+              var tmp_14060261 = tree_12945445(110, []);
+              F.line = 221;
+              valueHEX3D_12850140(tmp_14060261, toJSStr(option_14070012[option_14070012_Idx]));
+              F.line = 221;
+              setAttr_12885105(tmp_14060261, "value", toJSStr(option_14070012[option_14070012_Idx]));
+              F.line = 222;
+              add_12935072(tmp_14060261, text_12945582(option_14070012[option_14070012_Idx]));
+              F.line = 222;
+              add_12935072(tmp_14060258, tmp_14060261);
             }
             
             F.line = 203;
             i_14335570 = addInt(i_14335570, 1);
-            if (!(((options_14060209).length == L_14335571))) {
+            if (!(((options_14060214).length == L_14335571))) {
             F.line = 204;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -7981,14 +7981,14 @@ function optionsMenu_14060203(name_14060205, message_14060206, selected_14060207
           }
       } while(false);
     } while(false);
-    F.line = 213;
-    add_12935072(tmp_14060247, tmp_14060253);
-    F.line = 213;
-    add_12935072(tmp_14060246, tmp_14060247);
-    result_14060210 = tmp_14060246;
+    F.line = 222;
+    add_12935072(tmp_14060252, tmp_14060258);
+    F.line = 222;
+    add_12935072(tmp_14060251, tmp_14060252);
+    result_14060215 = tmp_14060251;
   framePtr = F.prev;
 
-  return result_14060210;
+  return result_14060215;
 
 }
 function row_14090251(obj_14090254, columns_14090255) {
@@ -7998,16 +7998,16 @@ function row_14090251(obj_14090254, columns_14090255) {
 
   var F={procname:"row.row",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 217;
-    F.line = 217;
+    F.line = 226;
+    F.line = 226;
     var tmp_14090257 = tree_12945445(98, []);
     result_14090256 = tmp_14090257;
     L1: do {
-      F.line = 219;
+      F.line = 228;
       var cel_14270214 = null;
       F.line = 197;
       var colontmp__14335455 = [];
-      F.line = 219;
+      F.line = 228;
       colontmp__14335455 = to_cels_14095006(obj_14090254, columns_14090255);
       F.line = 199;
       var i_14335457 = 0;
@@ -8017,123 +8017,123 @@ function row_14090251(obj_14090254, columns_14090255) {
         F.line = 201;
           L3: while (true) {
           if (!(i_14335457 < L_14335458)) break L3;
-            F.line = 219;
+            F.line = 228;
             cel_14270214 = colontmp__14335455[chckIndx(i_14335457, 0, (colontmp__14335455).length-1)];
-            F.line = 221;
+            F.line = 230;
             switch (cel_14270214.column.cel_affordance) {
             case 0:
-              F.line = 223;
-              F.line = 224;
+              F.line = 232;
+              F.line = 233;
               var tmp_14270215 = tree_12945445(99, []);
-              F.line = 224;
-              add_12935072(tmp_14270215, text_12945582(contents_14060156(cel_14270214)));
+              F.line = 233;
+              add_12935072(tmp_14270215, text_12945582(contents_14060161(cel_14270214)));
               add_12935072(result_14090256, tmp_14270215);
               break;
             case 1:
-              F.line = 228;
+              F.line = 237;
               switch (cel_14270214.column.cel_kind) {
               case 0:
-                F.line = 231;
-                F.line = 231;
+                F.line = 240;
+                F.line = 240;
                 var tmp_14275006 = tree_12945445(99, []);
-                F.line = 231;
+                F.line = 240;
                 add_12935072(tmp_14275006, text_12945582([]));
                 add_12935072(result_14090256, tmp_14275006);
                 break;
               case 1:
-                F.line = 234;
-                F.line = 234;
+                F.line = 243;
+                F.line = 243;
                 var tmp_14280005 = tree_12945445(105, []);
-                F.line = 234;
+                F.line = 243;
                 setAttr_12885105(tmp_14280005, "type", "text");
                 var form_input_14285005 = tmp_14280005;
-                F.line = 235;
-                setAttr_12885105(form_input_14285005, "value", toJSStr(contents_14060156(cel_14270214)));
-                F.line = 236;
-                F.line = 236;
+                F.line = 244;
+                setAttr_12885105(form_input_14285005, "value", toJSStr(contents_14060161(cel_14270214)));
+                F.line = 245;
+                F.line = 245;
                 var tmp_14285007 = tree_12945445(99, []);
-                F.line = 236;
+                F.line = 245;
                 add_12935072(tmp_14285007, form_input_14285005);
                 add_12935072(result_14090256, tmp_14285007);
                 break;
               case 5:
               case 4:
-                F.line = 239;
-                F.line = 239;
+                F.line = 248;
+                F.line = 248;
                 var tmp_14290005 = tree_12945445(105, []);
-                F.line = 239;
+                F.line = 248;
                 setAttr_12885105(tmp_14290005, "type", "number");
                 var form_input_14295005 = tmp_14290005;
-                F.line = 240;
+                F.line = 249;
                 setAttr_12885105(form_input_14295005, "increments", "1");
-                F.line = 241;
-                setAttr_12885105(form_input_14295005, "value", toJSStr(contents_14060156(cel_14270214)));
-                F.line = 242;
-                F.line = 242;
+                F.line = 250;
+                setAttr_12885105(form_input_14295005, "value", toJSStr(contents_14060161(cel_14270214)));
+                F.line = 251;
+                F.line = 251;
                 var tmp_14295007 = tree_12945445(99, []);
-                F.line = 242;
+                F.line = 251;
                 add_12935072(tmp_14295007, form_input_14295005);
                 add_12935072(result_14090256, tmp_14295007);
                 break;
               case 2:
-                F.line = 246;
-                F.line = 248;
+                F.line = 255;
+                F.line = 257;
                 var tmp_14300005 = tree_12945445(99, []);
-                F.line = 248;
+                F.line = 257;
                 var Tmp4 = cel_14270214;
                 if (ConstSet25[Tmp4.cel_kind]===undefined) { raiseFieldError(makeNimstrLit("\'options\' is not accessible using discriminant \'cel_kind\' of type \'Cel\'")); }
-                add_12935072(tmp_14300005, optionsMenu_14060203(toJSStr(cel_14270214.column.name), "", contents_14060156(cel_14270214), Tmp4.options));
+                add_12935072(tmp_14300005, optionsMenu_14060208(toJSStr(cel_14270214.column.name), "", contents_14060161(cel_14270214), Tmp4.options));
                 add_12935072(result_14090256, tmp_14300005);
                 break;
               case 3:
-                F.line = 253;
-                F.line = 253;
+                F.line = 262;
+                F.line = 262;
                 var tmp_14305008 = tree_12945445(105, []);
-                F.line = 253;
+                F.line = 262;
                 setAttr_12885105(tmp_14305008, "type", "textarea");
                 var form_input_14310005 = tmp_14305008;
-                F.line = 254;
-                setAttr_12885105(form_input_14310005, "value", toJSStr(contents_14060156(cel_14270214)));
-                F.line = 255;
-                F.line = 255;
+                F.line = 263;
+                setAttr_12885105(form_input_14310005, "value", toJSStr(contents_14060161(cel_14270214)));
+                F.line = 264;
+                F.line = 264;
                 var tmp_14310007 = tree_12945445(99, []);
-                F.line = 255;
+                F.line = 264;
                 add_12935072(tmp_14310007, form_input_14310005);
                 add_12935072(result_14090256, tmp_14310007);
                 break;
               case 6:
-                F.line = 258;
-                F.line = 258;
+                F.line = 267;
+                F.line = 267;
                 var tmp_14315005 = tree_12945445(105, []);
-                F.line = 258;
+                F.line = 267;
                 setAttr_12885105(tmp_14315005, "type", "checkbox");
                 var form_input_14320005 = tmp_14315005;
-                F.line = 259;
+                F.line = 268;
                 setAttr_12885105(form_input_14320005, "value", "active");
-                if (eqStrings(contents_14060156(cel_14270214), makeNimstrLit("true"))) {
-                F.line = 262;
+                if (eqStrings(contents_14060161(cel_14270214), makeNimstrLit("true"))) {
+                F.line = 271;
                 setAttr_12885105(form_input_14320005, "checked", "");
                 }
                 
-                F.line = 264;
-                F.line = 264;
+                F.line = 273;
+                F.line = 273;
                 var tmp_14320009 = tree_12945445(99, []);
-                F.line = 264;
+                F.line = 273;
                 add_12935072(tmp_14320009, form_input_14320005);
                 add_12935072(result_14090256, tmp_14320009);
                 break;
               }
               break;
             case 2:
-              F.line = 267;
-              F.line = 267;
+              F.line = 276;
+              F.line = 276;
               var tmp_14325005 = tree_12945445(99, []);
               var vnode_14330005 = tmp_14325005;
-              F.line = 268;
-              setAttr_12885105(vnode_14330005, "value", toJSStr(contents_14060156(cel_14270214)));
-              F.line = 269;
+              F.line = 277;
+              setAttr_12885105(vnode_14330005, "value", toJSStr(contents_14060161(cel_14270214)));
+              F.line = 278;
               setAttr_12885105(vnode_14330005, "style", "display: none");
-              F.line = 270;
+              F.line = 279;
               add_12935072(result_14090256, vnode_14330005);
               break;
             }
@@ -8158,15 +8158,15 @@ function render_table_14075008(rows_14075012, columns_14075013) {
   var F={procname:"render_table.render_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     if ((0 < (rows_14075012).length)) {
-    F.line = 276;
-    F.line = 277;
+    F.line = 285;
+    F.line = 286;
     var tmp_14075020 = tree_12945445(43, []);
-    F.line = 278;
+    F.line = 287;
     var tmp_14075021 = tree_12945445(91, []);
-    F.line = 279;
+    F.line = 288;
     var tmp_14075022 = tree_12945445(96, []);
     L1: do {
-      F.line = 280;
+      F.line = 289;
       var col_14080020 = null;
       F.line = 199;
       var i_14335426 = 0;
@@ -8176,14 +8176,14 @@ function render_table_14075008(rows_14075012, columns_14075013) {
         F.line = 201;
           L3: while (true) {
           if (!(i_14335426 < L_14335427)) break L3;
-            F.line = 280;
+            F.line = 289;
             col_14080020 = columns_14075013[chckIndx(i_14335426, 0, (columns_14075013).length-1)];
             if (!((col_14080020.cel_affordance == 2))) {
-            F.line = 282;
+            F.line = 291;
             var tmp_14075023 = tree_12945445(100, []);
-            F.line = 283;
+            F.line = 292;
             add_12935072(tmp_14075023, text_12945582(col_14080020.title));
-            F.line = 283;
+            F.line = 292;
             add_12935072(tmp_14075022, tmp_14075023);
             }
             
@@ -8197,14 +8197,14 @@ function render_table_14075008(rows_14075012, columns_14075013) {
           }
       } while(false);
     } while(false);
-    F.line = 283;
+    F.line = 292;
     add_12935072(tmp_14075021, tmp_14075022);
-    F.line = 284;
+    F.line = 293;
     var tmp_14075024 = tree_12945445(95, []);
     L4: do {
-      F.line = 285;
+      F.line = 294;
       var row_number_14090248 = 0;
-      F.line = 285;
+      F.line = 294;
       var row_14090249 = ({path_order: 0, integrity: 0, longitude: 0.0, latitude: 0.0, unix_time: 0.0, raining: false, error: 0});
       F.line = 132;
       var i_14335432 = 0;
@@ -8214,11 +8214,11 @@ function render_table_14075008(rows_14075012, columns_14075013) {
         F.line = 134;
           L6: while (true) {
           if (!(i_14335432 < L_14335433)) break L6;
-            F.line = 285;
+            F.line = 294;
             row_number_14090248 = i_14335432;
             F.line = 135;
             nimCopy(row_14090249, rows_14075012[chckIndx(i_14335432, 0, (rows_14075012).length-1)], NTI14072019);
-            F.line = 286;
+            F.line = 295;
             add_12935072(tmp_14075024, row_14090251(row_14090249, columns_14075013));
             F.line = 136;
             i_14335432 = addInt(i_14335432, 1);
@@ -8230,9 +8230,9 @@ function render_table_14075008(rows_14075012, columns_14075013) {
           }
       } while(false);
     } while(false);
-    F.line = 286;
+    F.line = 295;
     add_12935072(tmp_14075021, tmp_14075024);
-    F.line = 286;
+    F.line = 295;
     add_12935072(tmp_14075020, tmp_14075021);
     result_14075014 = tmp_14075020;
     }
@@ -8665,7 +8665,7 @@ function karax_table_14075001(objs_14075005, columns_14075006) {
 
   var F={procname:"karax_table.karax_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    F.line = 294;
+    F.line = 301;
     result_14075007 = render_table_14075008(objs_14075005, valid_14034814(columns_14075006));
   framePtr = F.prev;
 
