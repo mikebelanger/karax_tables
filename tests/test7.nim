@@ -64,7 +64,7 @@ when defined(js):
 
     proc render(): VNode = 
         result = buildHtml():
-            users.karax_table
+            users.karax_table(table_style = custom_style, columns = columns)
 
     setRenderer render
 else:
