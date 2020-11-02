@@ -271,19 +271,18 @@ proc render_table(rows: seq[object | tuple], columns: seq[Column], table_style: 
     
     if rows.len > 0:
         result = buildHtml():
-            tdiv:
-                table(class = table_style.table_class, 
-                        cellpadding = $table_style.cell_padding, 
-                        cellspacing = $table_style.cell_spacing):
+            table(class = table_style.table_class, 
+                    cellpadding = $table_style.cell_padding, 
+                    cellspacing = $table_style.cell_spacing):
 
-                    thead(class = table_style.thead_class):
-                        for col in columns:
-                            if col.cel_affordance != HiddenField:
-                                th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
-                                    text col.title
-                    tbody(class = table_style.tbody_class):
-                        for row_number, row in rows:
-                            row.row(columns, table_style)
+                thead(class = table_style.thead_class):
+                    for col in columns:
+                        if col.cel_affordance != HiddenField:
+                            th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
+                                text col.title
+                tbody(class = table_style.tbody_class):
+                    for row_number, row in rows:
+                        row.row(columns, table_style)
 
 proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
 
