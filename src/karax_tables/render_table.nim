@@ -1,4 +1,4 @@
-import karax / [karaxdsl, vdom]
+import karax / [karaxdsl, vdom, vstyles]
 import sequtils, strutils
 
 type
@@ -19,12 +19,17 @@ type
         FloatingPoint
         Checkbox
         CustomVDom
+    
+    AlignContent* = enum
+        Left
+        Center
+        Right
 
     Column* = object
         name*, title*: string
         cel_kind*: CelKind
         cel_affordance*: CelAffordance
-        span, display_order*: int
+        title_align*, cel_content_align*: AlignContent
     
     Cel* = object
         column*: Column
@@ -274,7 +279,7 @@ proc render_table(rows: seq[object | tuple], columns: seq[Column], table_style: 
                     thead(class = table_style.thead_class):
                         for col in columns:
                             if col.cel_affordance != HiddenField:
-                                th(class = table_style.th_class):
+                                th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
                                     text col.title
                     tbody(class = table_style.tbody_class):
                         for row_number, row in rows:
