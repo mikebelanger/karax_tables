@@ -8301,15 +8301,17 @@ function to_cels_14090006(obj_14090009, columns_14090010) {
   return result_14090011;
 
 }
-function row_14085251(obj_14085254, columns_14085255) {
-  var result_14085256 = null;
+function row_14085251(obj_14085254, columns_14085255, row_class_14085256) {
+  var result_14085257 = null;
 
   var F={procname:"row.row",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 255;
     F.line = 255;
-    var tmp_14085257 = tree_12945445(98, []);
-    result_14085256 = tmp_14085257;
+    var tmp_14085258 = tree_12945445(98, []);
+    F.line = 255;
+    tmp_14085258.class = toJSStr(row_class_14085256);
+    result_14085257 = tmp_14085258;
     L1: do {
       F.line = 257;
       var cel_14415214 = null;
@@ -8328,7 +8330,7 @@ function row_14085251(obj_14085254, columns_14085255) {
             F.line = 257;
             cel_14415214 = colontmp__14420443[chckIndx(i_14420445, 0, (colontmp__14420443).length-1)];
             F.line = 258;
-            add_12935072(result_14085256, cel_14415214.contents);
+            add_12935072(result_14085257, cel_14415214.contents);
             F.line = 203;
             i_14420445 = addInt(i_14420445, 1);
             if (!(((colontmp__14420443).length == L_14420446))) {
@@ -8341,47 +8343,49 @@ function row_14085251(obj_14085254, columns_14085255) {
     } while(false);
   framePtr = F.prev;
 
-  return result_14085256;
+  return result_14085257;
 
 }
-function render_table_14070008(rows_14070012, columns_14070013) {
-  var result_14070014 = null;
+function render_table_14070010(rows_14070014, columns_14070015, header_class_14070016, row_class_14070017) {
+  var result_14070018 = null;
 
   var F={procname:"render_table.render_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    if ((0 < (rows_14070012).length)) {
+    if ((0 < (rows_14070014).length)) {
     F.line = 264;
     F.line = 265;
-    var tmp_14070020 = tree_12945445(43, []);
+    var tmp_14070024 = tree_12945445(43, []);
     F.line = 266;
-    var tmp_14070021 = tree_12945445(91, []);
+    var tmp_14070025 = tree_12945445(91, []);
     F.line = 267;
-    var tmp_14070022 = tree_12945445(96, []);
+    var tmp_14070026 = tree_12945445(96, []);
     L1: do {
       F.line = 268;
       var col_14075020 = null;
       F.line = 199;
       var i_14420426 = 0;
       F.line = 200;
-      var L_14420427 = (columns_14070013).length;
+      var L_14420427 = (columns_14070015).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
           if (!(i_14420426 < L_14420427)) break L3;
             F.line = 268;
-            col_14075020 = columns_14070013[chckIndx(i_14420426, 0, (columns_14070013).length-1)];
+            col_14075020 = columns_14070015[chckIndx(i_14420426, 0, (columns_14070015).length-1)];
             if (!((col_14075020.cel_affordance == 2))) {
             F.line = 270;
-            var tmp_14070023 = tree_12945445(100, []);
+            var tmp_14070027 = tree_12945445(100, []);
+            F.line = 270;
+            tmp_14070027.class = toJSStr(header_class_14070016);
             F.line = 271;
-            add_12935072(tmp_14070023, text_12945582(col_14075020.title));
+            add_12935072(tmp_14070027, text_12945582(col_14075020.title));
             F.line = 271;
-            add_12935072(tmp_14070022, tmp_14070023);
+            add_12935072(tmp_14070026, tmp_14070027);
             }
             
             F.line = 203;
             i_14420426 = addInt(i_14420426, 1);
-            if (!(((columns_14070013).length == L_14420427))) {
+            if (!(((columns_14070015).length == L_14420427))) {
             F.line = 204;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -8390,9 +8394,9 @@ function render_table_14070008(rows_14070012, columns_14070013) {
       } while(false);
     } while(false);
     F.line = 271;
-    add_12935072(tmp_14070021, tmp_14070022);
+    add_12935072(tmp_14070025, tmp_14070026);
     F.line = 272;
-    var tmp_14070024 = tree_12945445(95, []);
+    var tmp_14070028 = tree_12945445(95, []);
     L4: do {
       F.line = 273;
       var row_number_14085248 = 0;
@@ -8401,7 +8405,7 @@ function render_table_14070008(rows_14070012, columns_14070013) {
       F.line = 132;
       var i_14420432 = 0;
       F.line = 133;
-      var L_14420433 = (rows_14070012).length;
+      var L_14420433 = (rows_14070014).length;
       L5: do {
         F.line = 134;
           L6: while (true) {
@@ -8409,12 +8413,12 @@ function render_table_14070008(rows_14070012, columns_14070013) {
             F.line = 273;
             row_number_14085248 = i_14420432;
             F.line = 135;
-            nimCopy(row_14085249, rows_14070012[chckIndx(i_14420432, 0, (rows_14070012).length-1)], NTI14067019);
+            nimCopy(row_14085249, rows_14070014[chckIndx(i_14420432, 0, (rows_14070014).length-1)], NTI14067019);
             F.line = 274;
-            add_12935072(tmp_14070024, row_14085251(row_14085249, columns_14070013));
+            add_12935072(tmp_14070028, row_14085251(row_14085249, columns_14070015, row_class_14070017));
             F.line = 136;
             i_14420432 = addInt(i_14420432, 1);
-            if (!(((rows_14070012).length == L_14420433))) {
+            if (!(((rows_14070014).length == L_14420433))) {
             F.line = 137;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(137, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -8423,15 +8427,15 @@ function render_table_14070008(rows_14070012, columns_14070013) {
       } while(false);
     } while(false);
     F.line = 274;
-    add_12935072(tmp_14070021, tmp_14070024);
+    add_12935072(tmp_14070025, tmp_14070028);
     F.line = 274;
-    add_12935072(tmp_14070020, tmp_14070021);
-    result_14070014 = tmp_14070020;
+    add_12935072(tmp_14070024, tmp_14070025);
+    result_14070018 = tmp_14070024;
     }
     
   framePtr = F.prev;
 
-  return result_14070014;
+  return result_14070018;
 
 }
 function missing_14034627(column_14034629, missing_14034630, suggestion_14034631) {
@@ -8505,16 +8509,16 @@ function valid_14034814(columns_14034817) {
   return result_14034819;
 
 }
-function karax_table_14070001(objs_14070005, columns_14070006) {
-  var result_14070007 = null;
+function karax_table_14070001(objs_14070005, columns_14070006, header_class_14070007, row_class_14070008) {
+  var result_14070009 = null;
 
   var F={procname:"karax_table.karax_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 280;
-    result_14070007 = render_table_14070008(objs_14070005, valid_14034814(columns_14070006));
+    result_14070009 = render_table_14070010(objs_14070005, valid_14034814(columns_14070006), [], []);
   framePtr = F.prev;
 
-  return result_14070007;
+  return result_14070009;
 
 }
 function isNimException_3760704() {
@@ -8531,7 +8535,7 @@ function render_14067077() {
 ++excHandler;
     try {
     F.line = 68;
-    result_14067079 = karax_table_14070001(points_14067034[0], columns_14067036[0]);
+    result_14067079 = karax_table_14070001(points_14067034[0], columns_14067036[0], [], []);
 --excHandler;
 } catch (EXC) {
  var prevJSError = lastJSError;

@@ -8005,15 +8005,17 @@ function to_cels_14090005(obj_14090008, columns_14090009) {
   return result_14090010;
 
 }
-function row_14085246(obj_14085249, columns_14085250) {
-  var result_14085251 = null;
+function row_14085246(obj_14085249, columns_14085250, row_class_14085251) {
+  var result_14085252 = null;
 
   var F={procname:"row.row",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 255;
     F.line = 255;
-    var tmp_14085252 = tree_12945445(98, []);
-    result_14085251 = tmp_14085252;
+    var tmp_14085253 = tree_12945445(98, []);
+    F.line = 255;
+    tmp_14085253.class = toJSStr(row_class_14085251);
+    result_14085252 = tmp_14085253;
     L1: do {
       F.line = 257;
       var cel_14340214 = null;
@@ -8032,7 +8034,7 @@ function row_14085246(obj_14085249, columns_14085250) {
             F.line = 257;
             cel_14340214 = colontmp__14340621[chckIndx(i_14340623, 0, (colontmp__14340621).length-1)];
             F.line = 258;
-            add_12935072(result_14085251, cel_14340214.contents);
+            add_12935072(result_14085252, cel_14340214.contents);
             F.line = 203;
             i_14340623 = addInt(i_14340623, 1);
             if (!(((colontmp__14340621).length == L_14340624))) {
@@ -8045,22 +8047,22 @@ function row_14085246(obj_14085249, columns_14085250) {
     } while(false);
   framePtr = F.prev;
 
-  return result_14085251;
+  return result_14085252;
 
 }
-function render_table_14074837(rows_14074841, columns_14074842) {
-  var result_14074843 = null;
+function render_table_14074837(rows_14074841, columns_14074842, header_class_14074843, row_class_14074844) {
+  var result_14074845 = null;
 
   var F={procname:"render_table.render_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     if ((0 < (rows_14074841).length)) {
     F.line = 264;
     F.line = 265;
-    var tmp_14074849 = tree_12945445(43, []);
+    var tmp_14074851 = tree_12945445(43, []);
     F.line = 266;
-    var tmp_14074850 = tree_12945445(91, []);
+    var tmp_14074852 = tree_12945445(91, []);
     F.line = 267;
-    var tmp_14074851 = tree_12945445(96, []);
+    var tmp_14074853 = tree_12945445(96, []);
     L1: do {
       F.line = 268;
       var col_14075020 = null;
@@ -8076,11 +8078,13 @@ function render_table_14074837(rows_14074841, columns_14074842) {
             col_14075020 = columns_14074842[chckIndx(i_14340604, 0, (columns_14074842).length-1)];
             if (!((col_14075020.cel_affordance == 2))) {
             F.line = 270;
-            var tmp_14074852 = tree_12945445(100, []);
+            var tmp_14074854 = tree_12945445(100, []);
+            F.line = 270;
+            tmp_14074854.class = toJSStr(header_class_14074843);
             F.line = 271;
-            add_12935072(tmp_14074852, text_12945582(col_14075020.title));
+            add_12935072(tmp_14074854, text_12945582(col_14075020.title));
             F.line = 271;
-            add_12935072(tmp_14074851, tmp_14074852);
+            add_12935072(tmp_14074853, tmp_14074854);
             }
             
             F.line = 203;
@@ -8094,9 +8098,9 @@ function render_table_14074837(rows_14074841, columns_14074842) {
       } while(false);
     } while(false);
     F.line = 271;
-    add_12935072(tmp_14074850, tmp_14074851);
+    add_12935072(tmp_14074852, tmp_14074853);
     F.line = 272;
-    var tmp_14074853 = tree_12945445(95, []);
+    var tmp_14074855 = tree_12945445(95, []);
     L4: do {
       F.line = 273;
       var row_number_14085244 = 0;
@@ -8115,7 +8119,7 @@ function render_table_14074837(rows_14074841, columns_14074842) {
             F.line = 135;
             nimCopy(row_14085245, rows_14074841[chckIndx(i_14340610, 0, (rows_14074841).length-1)], NTI14067017);
             F.line = 274;
-            add_12935072(tmp_14074853, row_14085246(row_14085245, columns_14074842));
+            add_12935072(tmp_14074855, row_14085246(row_14085245, columns_14074842, row_class_14074844));
             F.line = 136;
             i_14340610 = addInt(i_14340610, 1);
             if (!(((rows_14074841).length == L_14340611))) {
@@ -8127,33 +8131,33 @@ function render_table_14074837(rows_14074841, columns_14074842) {
       } while(false);
     } while(false);
     F.line = 274;
-    add_12935072(tmp_14074850, tmp_14074853);
+    add_12935072(tmp_14074852, tmp_14074855);
     F.line = 274;
-    add_12935072(tmp_14074849, tmp_14074850);
-    result_14074843 = tmp_14074849;
+    add_12935072(tmp_14074851, tmp_14074852);
+    result_14074845 = tmp_14074851;
     }
     
   framePtr = F.prev;
 
-  return result_14074843;
+  return result_14074845;
 
 }
-function column_headers_14070012(obj_14070015, affordance_14070016) {
-  var result_14070017 = [];
+function column_headers_14070014(obj_14070017, affordance_14070018) {
+  var result_14070019 = [];
 
   var F={procname:"column_headers.column_headers",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 86;
-    var col_14070036 = {name: makeNimstrLit("name"), title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0};
+    var col_14070038 = {name: makeNimstrLit("name"), title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0};
     F.line = 89;
-    col_14070036.cel_kind = 1;
+    col_14070038.cel_kind = 1;
     F.line = 0;
-    col_14070036.title = nimCopy(null, makeNimstrLit("name"), NTI3573013);
+    col_14070038.title = nimCopy(null, makeNimstrLit("name"), NTI3573013);
     F.line = 107;
-    col_14070036.cel_affordance = affordance_14070016;
+    col_14070038.cel_affordance = affordance_14070018;
     F.line = 108;
-    var Tmp1 = nimCopy(null, col_14070036, NTI13991023);
-    result_14070017.push(Tmp1);;
+    var Tmp1 = nimCopy(null, col_14070038, NTI13991023);
+    result_14070019.push(Tmp1);;
     F.line = 86;
     var col_14071210 = {name: makeNimstrLit("sku"), title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0};
     F.line = 92;
@@ -8161,10 +8165,10 @@ function column_headers_14070012(obj_14070015, affordance_14070016) {
     F.line = 0;
     col_14071210.title = nimCopy(null, makeNimstrLit("sku"), NTI3573013);
     F.line = 107;
-    col_14071210.cel_affordance = affordance_14070016;
+    col_14071210.cel_affordance = affordance_14070018;
     F.line = 108;
     var Tmp2 = nimCopy(null, col_14071210, NTI13991023);
-    result_14070017.push(Tmp2);;
+    result_14070019.push(Tmp2);;
     F.line = 86;
     var col_14072410 = {name: makeNimstrLit("price"), title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0};
     F.line = 95;
@@ -8172,10 +8176,10 @@ function column_headers_14070012(obj_14070015, affordance_14070016) {
     F.line = 0;
     col_14072410.title = nimCopy(null, makeNimstrLit("price"), NTI3573013);
     F.line = 107;
-    col_14072410.cel_affordance = affordance_14070016;
+    col_14072410.cel_affordance = affordance_14070018;
     F.line = 108;
     var Tmp3 = nimCopy(null, col_14072410, NTI13991023);
-    result_14070017.push(Tmp3);;
+    result_14070019.push(Tmp3);;
     F.line = 86;
     var col_14073610 = {name: makeNimstrLit("price_per"), title: [], cel_kind: 0, cel_affordance: 0, span: 0, display_order: 0};
     F.line = 98;
@@ -8183,25 +8187,25 @@ function column_headers_14070012(obj_14070015, affordance_14070016) {
     F.line = 0;
     col_14073610.title = nimCopy(null, makeNimstrLit("price_per"), NTI3573013);
     F.line = 107;
-    col_14073610.cel_affordance = affordance_14070016;
+    col_14073610.cel_affordance = affordance_14070018;
     F.line = 108;
     var Tmp4 = nimCopy(null, col_14073610, NTI13991023);
-    result_14070017.push(Tmp4);;
+    result_14070019.push(Tmp4);;
   framePtr = F.prev;
 
-  return result_14070017;
+  return result_14070019;
 
 }
-function karax_table_14070001(objs_14070005, all_columns_14070006) {
-  var result_14070007 = null;
+function karax_table_14070001(objs_14070005, all_columns_14070006, header_class_14070007, row_class_14070008) {
+  var result_14070009 = null;
 
   var F={procname:"karax_table.karax_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 277;
-    result_14070007 = render_table_14074837(objs_14070005, column_headers_14070012(objs_14070005[chckIndx(0, 0, (objs_14070005).length-1)], all_columns_14070006));
+    result_14070009 = render_table_14074837(objs_14070005, column_headers_14070014(objs_14070005[chckIndx(0, 0, (objs_14070005).length-1)], all_columns_14070006), [], []);
   framePtr = F.prev;
 
-  return result_14070007;
+  return result_14070009;
 
 }
 function render_14067064() {
@@ -8210,7 +8214,7 @@ function render_14067064() {
   var F={procname:"test3.render",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test3.nim",line:0};
   framePtr = F;
     F.line = 30;
-    result_14067066 = karax_table_14070001(products_14067031[0], 0);
+    result_14067066 = karax_table_14070001(products_14067031[0], 0, [], []);
   framePtr = F.prev;
 
   return result_14067066;

@@ -30,6 +30,10 @@ type
         column*: Column
         contents: VNode
 
+    TableStyle* = object
+        cell_padding*, cell_spacing*: int
+        table_class*, thead_class*, th_class*, tbody_class*, tr_class*, td_class*: string
+
 const 
     cel_kinds = (CelKind.low..CelKind.high).mapIt($it).filterIt(it != "UnspecifiedCelKind").join(", ")
 
@@ -125,11 +129,11 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
                             option(value = option):
                                 text option
 
-proc cel(contents: string | int | float | enum | bool, column: Column): Cel =
+proc cel(contents: string | int | float | enum | bool, column: Column, table_style: TableStyle): Cel =
     result = 
         Cel(
             column: column,
-            contents: buildHtml(td())
+            contents: buildHtml(td(class = table_style.td_class))
         )
     
     # Nim's type-checker will throw type errors if I don't specify the type in the 'when'
@@ -238,7 +242,7 @@ proc cel(contents: string | int | float | enum | bool, column: Column): Cel =
             result.contents = vnode
 
 
-proc to_cels(obj: object | tuple, columns: seq[Column]): seq[Cel] =
+proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle): seq[Cel] =
 
     # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
     for column in columns:
@@ -247,34 +251,39 @@ proc to_cels(obj: object | tuple, columns: seq[Column]): seq[Cel] =
             
             if column.name == key:
                 result.add(
-                    val.cel(column)
+                    val.cel(column, table_style)
                 )
 
 
-proc row*(obj: object | tuple, columns: seq[Column]): VNode =
-    result = buildHtml(tr())
+proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): VNode =
+    result = buildHtml(tr(class = table_style.tr_class))
 
-    for cel in obj.to_cels(columns):
+    for cel in obj.to_cels(columns, table_style):
         result.add(cel.contents)
 
 
-proc render_table(rows: seq[object | tuple], columns: seq[Column]): VNode =
+proc render_table(rows: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     
     if rows.len > 0:
         result = buildHtml():
             tdiv:
-                table:
-                    thead:
+                table(class = table_style.table_class, 
+                        cellpadding = $table_style.cell_padding, 
+                        cellspacing = $table_style.cell_spacing):
+
+                    thead(class = table_style.thead_class):
                         for col in columns:
                             if col.cel_affordance != HiddenField:
-                                th:
+                                th(class = table_style.th_class):
                                     text col.title
-                    tbody:
+                    tbody(class = table_style.tbody_class):
                         for row_number, row in rows:
-                            row.row(columns)
+                            row.row(columns, table_style)
 
-proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly): VNode =
-    render_table(objs, objs[0].column_headers(all_columns))
+proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
 
-proc karax_table*(objs: seq[object | tuple], columns: seq[Column]): VNode =
-    render_table(objs, columns.valid)
+    render_table(objs, objs[0].column_headers(all_columns), table_style)
+
+proc karax_table*(objs: seq[object | tuple], columns: seq[Column], table_style = TableStyle()): VNode =
+
+    render_table(objs, columns.valid, table_style)
