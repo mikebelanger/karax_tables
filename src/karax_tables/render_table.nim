@@ -267,9 +267,9 @@ proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): V
         result.add(cel.contents)
 
 
-proc render_table(rows: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
+proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     
-    if rows.len > 0:
+    if objs.len > 0:
         result = buildHtml():
             table(class = table_style.table_class, 
                     cellpadding = $table_style.cell_padding, 
@@ -281,8 +281,8 @@ proc render_table(rows: seq[object | tuple], columns: seq[Column], table_style: 
                             th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
                                 text col.title
                 tbody(class = table_style.tbody_class):
-                    for row_number, row in rows:
-                        row.row(columns, table_style)
+                    for number, obj in objs:
+                        obj.row(columns, table_style)
 
 proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
 

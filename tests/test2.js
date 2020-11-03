@@ -8172,12 +8172,12 @@ function row_14085246(obj_14085249, columns_14085250, table_style_14085251) {
   return result_14085252;
 
 }
-function render_table_14070009(rows_14070013, columns_14070014, table_style_14070015) {
+function render_table_14070009(objs_14070013, columns_14070014, table_style_14070015) {
   var result_14070016 = null;
 
   var F={procname:"render_table.render_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
-    if ((0 < (rows_14070013).length)) {
+    if ((0 < (objs_14070013).length)) {
     F.line = 273;
     F.line = 274;
     var tmp_14070022 = tree_12945445(91, []);
@@ -8235,26 +8235,26 @@ function render_table_14070009(rows_14070013, columns_14070014, table_style_1407
     tmp_14070025.class = toJSStr(table_style_14070015.tbody_class);
     L4: do {
       F.line = 284;
-      var row_number_14085244 = 0;
+      var number_14085244 = 0;
       F.line = 284;
-      var row_14085245 = ({username: [], id: 0, user_kind: 0, age: 0, active: false});
+      var obj_14085245 = ({username: [], id: 0, user_kind: 0, age: 0, active: false});
       F.line = 132;
       var i_14340648 = 0;
       F.line = 133;
-      var L_14340649 = (rows_14070013).length;
+      var L_14340649 = (objs_14070013).length;
       L5: do {
         F.line = 134;
           L6: while (true) {
           if (!(i_14340648 < L_14340649)) break L6;
             F.line = 284;
-            row_number_14085244 = i_14340648;
+            number_14085244 = i_14340648;
             F.line = 135;
-            nimCopy(row_14085245, rows_14070013[chckIndx(i_14340648, 0, (rows_14070013).length-1)], NTI14067017);
+            nimCopy(obj_14085245, objs_14070013[chckIndx(i_14340648, 0, (objs_14070013).length-1)], NTI14067017);
             F.line = 285;
-            add_12935072(tmp_14070025, row_14085246(row_14085245, columns_14070014, table_style_14070015));
+            add_12935072(tmp_14070025, row_14085246(obj_14085245, columns_14070014, table_style_14070015));
             F.line = 136;
             i_14340648 = addInt(i_14340648, 1);
-            if (!(((rows_14070013).length == L_14340649))) {
+            if (!(((objs_14070013).length == L_14340649))) {
             F.line = 137;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(137, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
