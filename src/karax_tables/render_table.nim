@@ -259,13 +259,11 @@ proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle)
                     val.cel(column, table_style)
                 )
 
-
 proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): VNode =
     result = buildHtml(tr(class = table_style.tr_class))
 
     for cel in obj.to_cels(columns, table_style):
         result.add(cel.contents)
-
 
 proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     
