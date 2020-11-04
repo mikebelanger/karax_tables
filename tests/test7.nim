@@ -1,5 +1,6 @@
 import karax_tables
-import karax / [karaxdsl, vdom]
+import karax / [karaxdsl, vdom, kdom, vstyles]
+import sequtils
 
 ### using default table
 
@@ -59,8 +60,21 @@ const custom_style =
         td_class: "custom_td"
     )
 
+
 when defined(js):
     include karax/prelude
+
+    proc row_events(u: User, row: VNode): VNode =
+
+        row.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
+            echo "works!"
+            echo u
+            echo e.currentTarget.class
+            echo e.currentTarget.children.mapIt(@[it.class, it.value, $it.nodeType, it.innerText, it.nodeName])
+            echo e.currentTarget.children.mapIt(it.children.mapIt(@[it.class, it.value, $it.nodeType, it.innerText, it.nodeName]))
+        )
+
+        return row
 
     proc render(): VNode = 
         result = buildHtml():

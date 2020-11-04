@@ -150,6 +150,7 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
                 of Checkbox:
                     when contents is bool:
                         let form_input = buildHtml(input(type = "checkbox"))
+                        form_input.setAttr("class", column.name)
                         form_input.setAttr("value", "active")
 
                         if contents:
@@ -173,6 +174,7 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
                 of Integer:
                     when contents is int:
                         let form_input = buildHtml(input(type = "number"))
+                        form_input.setAttr("class", column.name)
                         form_input.setAttr("increments", "1")
                         form_input.setAttr("value", $contents)
                         result.contents.add(form_input)
@@ -183,6 +185,7 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
                 of Text:
                     when contents is string:
                         let form_input = buildHtml(input(type = "text"))
+                        form_input.setAttr("class", column.name)
                         form_input.setAttr("value", contents)
                         result.contents.add(form_input)
 
@@ -192,6 +195,7 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
                 of TextArea:
                     when contents is string:
                         let form_input = buildHtml(input(type = "textarea"))
+                        form_input.setAttr("class", column.name)
                         form_input.setAttr("value", contents)
                         result.contents.add(form_input)
 
@@ -201,6 +205,7 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
                 of FloatingPoint:
                     when contents is float:
                         let form_input = buildHtml(input(type = "number"))
+                        form_input.setAttr("class", column.name)
                         form_input.setAttr("value", $contents)
                         result.contents.add(form_input)
 
@@ -218,12 +223,15 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
                                         options = options))
                                 )
 
+                        result.contents.setAttr("class", column.name)
+
                     else:
                         raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Dropdown))
                 
                 of Checkbox:
                     when contents is bool:
                         let form_input = buildHtml(input(type = "checkbox"))
+                        form_input.setAttr("class", column.name)
                         form_input.setAttr("value", "active")
 
                         if contents:
@@ -242,6 +250,7 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
 
         of HiddenField:
             let vnode = buildHtml(input(type = "hidden"))
+            vnode.setAttr("class", column.name)
             vnode.setAttr("value", $contents)
             vnode.setAttr("style", "display: none")
             result.contents = vnode
@@ -264,6 +273,9 @@ proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): V
 
     for cel in obj.to_cels(columns, table_style):
         result.add(cel.contents)
+
+    when compiles(obj.row_events(result)):
+        return obj.row_events(result)
 
 proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     
