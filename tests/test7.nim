@@ -1,6 +1,6 @@
 import karax_tables
 import karax / [karaxdsl, vdom, kdom, vstyles]
-import sequtils
+import sequtils, json
 
 ### using default table
 
@@ -64,21 +64,32 @@ const custom_style =
 when defined(js):
     include karax/prelude
 
+    var updated_users: seq[User]
+
     proc row_events(u: User, row: VNode): VNode =
 
         row.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
-            echo "works!"
-            echo u
-            echo e.currentTarget.class
-            echo e.currentTarget.children.mapIt(@[it.class, it.value, $it.nodeType, it.innerText, it.nodeName])
-            echo e.currentTarget.children.mapIt(it.children.mapIt(@[it.class, it.value, $it.nodeType, it.innerText, it.nodeName]))
+            let updated = e.get_json_for(u)
+
+            updated_users = updated_users.filterIt(it.id != updated.id)
+            updated_users.add(updated)
+
+            echo updated_users
         )
 
         return row
 
     proc render(): VNode = 
         result = buildHtml():
-            users.karax_table(table_style = custom_style, columns = columns)
+            tdiv:
+                users.karax_table(table_style = custom_style, columns = columns)
+
+                tdiv:
+                    for u in updated_users:
+                        p:
+                            text $(u.id)
+                        p:
+                            text u.username
 
     setRenderer render
 else:

@@ -1,5 +1,5 @@
-import karax / [karaxdsl, vdom, vstyles]
-import sequtils, strutils
+import karax / [karaxdsl, vdom, kdom, vstyles]
+import sequtils, strutils, json
 
 type
     InvalidColumn* = object of ValueError
@@ -66,6 +66,40 @@ proc to_string*(vnode: VNode): string =
     else:
         $vnode
 
+proc get_dom_values(node: kdom.Node, key: string): string =
+
+    if node.nodeType == ElementNode:
+
+        if (node.hasAttribute("class")) and (node.hasAttribute("value")):
+            if node.class == key:
+                return $node.value
+
+        elif node.nodeName == "SELECT":
+            return $(node.children.mapIt($it.value))
+
+proc get_json_for*(event: kdom.Event, obj: object): object =
+    var json_vals = parseJson("{}")
+
+    for key, val in obj.fieldPairs:
+
+        if val.typeof is enum:
+            json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
+
+        elif val.typeof is int:
+            json_vals{key}= event.currentTarget.querySelector("." & key).get_dom_values(key).parseInt.newJInt
+
+        elif val.typeof is float:
+            json_vals{key}= event.currentTarget.querySelector("." & key).get_dom_values(key).parseFloat.newJFloat
+
+        elif val.typeof is bool:
+            json_vals{key}= event.currentTarget.querySelector("." & key).get_dom_values(key).parseBool.newJBool
+
+        else:
+            json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_dom_values(key)))
+
+    return json_vals.to(obj.typeof)
+
+
 proc valid(columns: seq[Column]): seq[Column] =
     for column in columns:
         let
@@ -119,20 +153,19 @@ proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): 
 proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): VNode =
 
     result = buildHtml():
-        tdiv:
-            label(`for` = $name, id = $name & "_container"):
-                select(id = $name):
-                    if message.len > 0:
-                        option(value = ""):
-                            text $message
-                    
-                    for option in options:
-                        if option == selected:
-                            option(value = selected, selected = "selected"):
-                                text selected
-                        else:
-                            option(value = option):
-                                text option
+        label(`for` = $name, id = $name & "_container"):
+            select(id = $name):
+                if message.len > 0:
+                    option(value = ""):
+                        text $message
+                
+                for option in options:
+                    if option == selected:
+                        option(value = selected, selected = "selected", id = $name):
+                            text selected
+                    else:
+                        option(value = option):
+                            text option
 
 proc cel(contents: string | int | float | enum | bool, column: Column, table_style: TableStyle): Cel =
     result = 
