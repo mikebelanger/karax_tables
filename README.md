@@ -3,9 +3,9 @@ Nim objects -> HTML Tables
 
 Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML table - with minimal hassle.  Inspired by [Datatables](https://datatables.net/) and [JExcel](https://bossanova.uk/jexcel/v3/).  Uses [Karax](https://github.com/pragmagic/karax).
 
-### Usage case
+### Why?
 
-You have a bunch of data as Nim objects/tuples.  Maybe loaded using [csvtools](https://github.com/unicredit/csvtools) or even something from an ORM, such as [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm).
+You're writing lots of enterprise-like CRUD web apps, or maybe some internal CSV processing tool.  Either way, the time comes to display this tabular data.  Your app already has a plethora of objects, which have been defined for some other reason.  Maybe to load a row using [csvtools](https://github.com/unicredit/csvtools) or even something from an ORM, such as [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm).
 ```nimrod
 type
     UserKind = enum
@@ -25,7 +25,7 @@ users.add(User(username: "jim", id: 2))
 users.add(User(username: "rob", id: 4, user_kind: Admin))
 ```
 
-You want to render them out to a an HTML table, with minimal hassle.  Like this:
+You could just write the HTML table yourself, with the help of Karax.  While writing an HTML table isn't the hardest thing in the world, you have lots of tables - and its getting tedious and error prone.  Furthermore, your database/objects schema are growing, making revisions/maitenence a source of burnout.  karax_tables to the rescue:
 
 ```nimrod
 include karax/prelude
@@ -40,9 +40,11 @@ setRenderer render
 
 karax_tables primarily operates with client-side (js) rendering.  However, a subset of its rendering functions are available server-side (c) as well.
 
-### Non-Usage case
+### Why Not?
 
-Your data is something other than an object/tuple.  Either something with homogenous data such as an [arraymancer](https://github.com/mratsim/Arraymancer) tensor, or a heterogeneous pandas dataframe-like structure, such as in [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library doesn't target these.
+karax_tables is not for everyone.  For starters, if you only have a few tables - it may make more sense to just write with 'plain' Karax.  Slightly more verbose, but easier to see how it works.
+
+Another reason to look elsewhere is if your data is something other than an object/tuple.  Either something with homogenous data such as an [arraymancer](https://github.com/mratsim/Arraymancer) tensor, or a heterogeneous pandas dataframe-like structure, such as in [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library doesn't target them.
 
 ### Requirements
 
@@ -60,7 +62,7 @@ Ensure you have nim installed, with karax's *entire* source copied into your pro
 
 #### Client-Side
 
-import karax_tables into whatever file you compile into JS.  Get your objects into a sequence, and call the `.karax_table` function in the main render loop:
+import karax_tables into whatever file you compile into JS.  Get your objects into a sequence, and call the `karax_table` function in the main render loop:
 ```nimrod
 include karax/prelude
 import karax / [karaxdsl, vdom]
