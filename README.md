@@ -5,7 +5,13 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML tabl
 
 ### Why?
 
-You're writing lots of enterprise-like CRUD web apps, or maybe some internal CSV processing tool.  Either way, the time comes to display this tabular data.  Your app already has a plethora of objects, which have been defined for some other reason.  Maybe to load a row using [csvtools](https://github.com/unicredit/csvtools) or even something from an ORM, such as [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm).
+You're writing lots of enterprise-like CRUD web apps, or maybe some internal CSV processing tool.  Either way, the time comes to display this table data.  Your app already has a loads of objects, which have been defined for some other reason.  Maybe to load a row using [csvtools](https://github.com/unicredit/csvtools) or even something from an ORM, such as [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm).
+
+You could just write the HTML table yourself, with the help of Karax.  While writing an HTML table isn't the hardest thing in the world, you have lots of tables - and its getting tedious and error prone.  Furthermore, your database/objects schema are growing, making revisions/maitenence a source of burnout.  
+
+### Simple Example
+
+Let's say you have some user objects:
 ```nimrod
 type
     UserKind = enum
@@ -24,11 +30,6 @@ users.add(User(username: "mike", id: 0))
 users.add(User(username: "david", id: 2, user_kind: Supervisor))
 users.add(User(username: "rob", id: 4, user_kind: Admin))
 ```
-
-You could just write the HTML table yourself, with the help of Karax.  While writing an HTML table isn't the hardest thing in the world, you have lots of tables - and its getting tedious and error prone.  Furthermore, your database/objects schema are growing, making revisions/maitenence a source of burnout.  
-
-### Simple Example
-
 Taking the above code, we could render out an HTML like so:
 
 ```nimrod
