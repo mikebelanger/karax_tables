@@ -1,6 +1,6 @@
 import karax_tables
 import karax / [karaxdsl, vdom, kdom, vstyles]
-import sequtils, json
+import sequtils, json, sugar
 
 ### using default table
 
@@ -74,7 +74,6 @@ when defined(js):
             updated_users = updated_users.filterIt(it.id != updated.id)
             updated_users.add(updated)
 
-            echo updated_users
         )
 
         return row
@@ -90,6 +89,11 @@ when defined(js):
                             text $(u.id)
                         p:
                             text u.username
+                        p:
+                            text $u.user_kind
+
+                button(onclick = () => echo updated_users):
+                    text "what are users now?"
 
     setRenderer render
 else:
