@@ -1,4 +1,4 @@
-import karax / [karaxdsl, vdom, kdom, vstyles]
+import karax / [karaxdsl, vdom, vstyles]
 import sequtils, strutils, json
 
 type
@@ -64,46 +64,6 @@ proc mismatch(column: Column, contents: string | bool | int | float | enum, sugg
             $column.cel_kind &
             "Either change your column type to: " & $suggested_column_type & "\n" &
             "or examine your object/tuple's " & $column.name & " fields."
-
-proc to_string*(vnode: VNode): string =
-    when defined(js):
-        toString(vnode)
-    else:
-        $vnode
-
-proc get_dom_values*(node: kdom.Node, key: string): string =
-
-    if node.nodeType == ElementNode:
-
-        if (node.hasAttribute("class")) and (node.hasAttribute("value")):
-            if node.class == key:
-                return $node.value
-
-        elif node.nodeName == "SELECT":
-            return $(node.children.mapIt($it.value))
-
-proc updated*(event: kdom.Event, obj: object): object =
-    var json_vals = parseJson("{}")
-
-    for key, val in obj.fieldPairs:
-
-        if val.typeof is enum:
-            json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
-
-        elif val.typeof is int:
-            json_vals{key}= event.currentTarget.querySelector("." & key).get_dom_values(key).parseInt.newJInt
-
-        elif val.typeof is float:
-            json_vals{key}= event.currentTarget.querySelector("." & key).get_dom_values(key).parseFloat.newJFloat
-
-        elif val.typeof is bool:
-            json_vals{key}= event.currentTarget.querySelector("." & key).get_dom_values(key).parseBool.newJBool
-
-        else:
-            json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_dom_values(key)))
-
-    return json_vals.to(obj.typedesc)
-
 
 proc valid(columns: seq[Column]): seq[Column] =
     for column in columns:
@@ -341,8 +301,50 @@ proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): V
     for cel in obj.to_cels(columns, table_style):
         result.add(cel.contents)
 
-    when compiles(obj.row_events(result)):
-        return obj.row_events(result)
+    when compiles(obj.on(result)):
+        return obj.on(result)
+
+proc to_string*(vnode: VNode): string =
+    when defined(js):
+        toString(vnode)
+    else:
+        $vnode
+
+when defined(js):
+    import karax / [kdom]
+
+    proc get_tr_values_for*(node: kdom.Node, key: string): string =
+
+        if node.nodeType == ElementNode:
+
+            if (node.hasAttribute("class")) and (node.hasAttribute("value")):
+                if node.class == key:
+                    return $node.value
+
+            elif node.nodeName == "SELECT":
+                return $(node.children.mapIt($it.value))
+
+    proc updated*(event: kdom.Event, obj: object): object =
+        var json_vals = parseJson("{}")
+
+        for key, val in obj.fieldPairs:
+
+            if val.typeof is enum:
+                json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
+
+            elif val.typeof is int:
+                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
+
+            elif val.typeof is float:
+                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
+
+            elif val.typeof is bool:
+                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseBool.newJBool
+
+            else:
+                json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_tr_values_for(key)))
+
+        return json_vals.to(obj.typedesc)
 
 proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     

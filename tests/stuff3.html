@@ -7,24 +7,24 @@
   </thead>
   <tbody>
     <tr>
-      <td><input type="text" value="cabbage" /></td>
-      <td><input type="number" increments="1" value="1231" /></td>
-      <td><input type="number" value="2.1" /></td>
-      <td><div><label id="price_per_container" for="price_per"><select id="price_per">
-              <option value="Unit">Unit</option>
-              <option value="Pound" selected="selected">Pound</option>
-              <option value="Kilo">Kilo</option>
-            </select></label></div></td>
+      <td><input type="text" class="name" value="cabbage" /></td>
+      <td><input type="number" class="sku" increments="1" value="1231" /></td>
+      <td><input type="number" class="price" value="2.1" /></td>
+      <td class="price_per"><label id="price_per_container" for="price_per"><select id="price_per">
+            <option value="Unit">Unit</option>
+            <option id="price_per" value="Pound" selected="selected">Pound</option>
+            <option value="Kilo">Kilo</option>
+          </select></label></td>
     </tr>
     <tr>
-      <td><input type="text" value="hamburger helper" /></td>
-      <td><input type="number" increments="1" value="23412" /></td>
-      <td><input type="number" value="5.0" /></td>
-      <td><div><label id="price_per_container" for="price_per"><select id="price_per">
-              <option value="Unit" selected="selected">Unit</option>
-              <option value="Pound">Pound</option>
-              <option value="Kilo">Kilo</option>
-            </select></label></div></td>
+      <td><input type="text" class="name" value="hamburger helper" /></td>
+      <td><input type="number" class="sku" increments="1" value="23412" /></td>
+      <td><input type="number" class="price" value="5.0" /></td>
+      <td class="price_per"><label id="price_per_container" for="price_per"><select id="price_per">
+            <option id="price_per" value="Unit" selected="selected">Unit</option>
+            <option value="Pound">Pound</option>
+            <option value="Kilo">Kilo</option>
+          </select></label></td>
     </tr>
   </tbody>
 </table>

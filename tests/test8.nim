@@ -1,5 +1,5 @@
 import karax_tables
-import karax / [karaxdsl, vdom, kdom, vstyles]
+import karax / [karaxdsl, vdom, vstyles]
 import sequtils, json, sugar, strutils
 import random
 
@@ -93,11 +93,12 @@ proc random_name(): string =
 
 when defined(js):
     include karax/prelude
+    import karax/[kdom]
 
     var updated_users: seq[User]
     var to_delete: seq[User]
 
-    proc row_events(u: User, row: VNode): VNode =
+    proc on(u: User, row: VNode): VNode =
 
         row.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
             let updated = e.updated(u)
@@ -163,4 +164,4 @@ else:
                 body:
                     users.karax_table(table_style = custom_style, columns = columns)
 
-    writeFile("./tests/stuff8.html", vnode.to_string)
+    writeFile("./tests/stuff8.html", $vnode.to_string)

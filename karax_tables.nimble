@@ -22,6 +22,7 @@ task all_tests, "run all tests":
     exec "nim c -r tests/test4.nim"
     exec "nim c -r tests/test6.nim"
     exec "nim c -r tests/test7.nim"
+    exec "nim c -r tests/test8.nim"
 
     # client-side
     exec "nim js tests/test1.nim"
@@ -30,3 +31,4 @@ task all_tests, "run all tests":
     exec "nim js tests/test4.nim"
     exec "nim js tests/test6.nim"
     exec "nim js tests/test7.nim"
+    exec "nim js tests/test8.nim"
