@@ -25,11 +25,16 @@ type
         Center
         Right
 
+    ColumnKind* = enum
+        ObjectAttr
+        RowAction
+
     Column* = object
         name*, title*: string
         cel_kind*: CelKind
         cel_affordance*: CelAffordance
         title_align*, cel_content_align*: AlignContent
+        column_kind*: ColumnKind
     
     Cel* = object
         column*: Column
@@ -66,7 +71,7 @@ proc to_string*(vnode: VNode): string =
     else:
         $vnode
 
-proc get_dom_values(node: kdom.Node, key: string): string =
+proc get_dom_values*(node: kdom.Node, key: string): string =
 
     if node.nodeType == ElementNode:
 
@@ -77,7 +82,7 @@ proc get_dom_values(node: kdom.Node, key: string): string =
         elif node.nodeName == "SELECT":
             return $(node.children.mapIt($it.value))
 
-proc get_json_for*(event: kdom.Event, obj: object): object =
+proc updated*(event: kdom.Event, obj: object): object =
     var json_vals = parseJson("{}")
 
     for key, val in obj.fieldPairs:
@@ -97,7 +102,7 @@ proc get_json_for*(event: kdom.Event, obj: object): object =
         else:
             json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_dom_values(key)))
 
-    return json_vals.to(obj.typeof)
+    return json_vals.to(obj.typedesc)
 
 
 proc valid(columns: seq[Column]): seq[Column] =
@@ -293,13 +298,42 @@ proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle)
 
     # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
     for column in columns:
+        if column.column_kind == ObjectAttr:
 
-        for key, val in obj.fieldPairs:
-            
-            if column.name == key:
-                result.add(
-                    val.cel(column, table_style)
-                )
+            for key, val in obj.fieldPairs:
+                
+                if column.name == key:
+                    result.add(
+                        val.cel(column, table_style)
+                    )
+
+        elif column.column_kind == RowAction:
+            case column.cel_kind:
+                of Integer:
+                    result.add(
+                        0.cel(column, table_style)
+                    )
+                
+                of FloatingPoint:
+                    result.add(
+                        (0.0).cel(column, table_style)
+                    )
+                
+                of Text, TextArea:
+                    result.add(
+                        "".cel(column, table_style)
+                    )
+
+                of Checkbox:
+                    result.add(
+                        false.cel(column, table_style)
+                    )
+                
+                else:
+                    continue
+
+        else:
+            continue
 
 proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): VNode =
     result = buildHtml(tr(class = table_style.tr_class))
@@ -312,20 +346,21 @@ proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): V
 
 proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     
-    if objs.len > 0:
-        result = buildHtml():
-            table(class = table_style.table_class, 
-                    cellpadding = $table_style.cell_padding, 
-                    cellspacing = $table_style.cell_spacing):
+    result = buildHtml():
+        table(class = table_style.table_class, 
+                cellpadding = $table_style.cell_padding, 
+                cellspacing = $table_style.cell_spacing):
 
-                thead(class = table_style.thead_class):
-                    for col in columns:
-                        if col.cel_affordance != HiddenField:
-                            th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
-                                text col.title
-                tbody(class = table_style.tbody_class):
+            thead(class = table_style.thead_class):
+                for col in columns:
+                    if col.cel_affordance != HiddenField:
+                        th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
+                            text col.title
+            tbody(class = table_style.tbody_class):
+                if objs.len > 0:
                     for number, obj in objs:
                         obj.row(columns, table_style)
+
 
 proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
 

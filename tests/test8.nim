@@ -46,6 +46,16 @@ columns.add(Column(
     )
 )
 
+columns.add(Column(
+        name: "delete",
+        cel_kind: Checkbox,
+        cel_affordance: ReadAndWrite,
+        title: "Delete",
+        title_align: Right,
+        column_kind: RowAction
+    )
+)
+
 users.add(User(username: "mnike", id: 0))
 users.add(User(username: "another_user", id: 2))
 users.add(User(username: "third user", id: 4, user_kind: Admin))
@@ -85,14 +95,23 @@ when defined(js):
     include karax/prelude
 
     var updated_users: seq[User]
+    var to_delete: seq[User]
 
     proc row_events(u: User, row: VNode): VNode =
 
         row.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
-            let updated = e.get_json_for(u)
+            let updated = e.updated(u)
 
             updated_users = updated_users.filterIt(it.id != updated.id)
             updated_users.add(updated)
+
+            # check if this is marked as delete
+            if e.currentTarget.querySelector(".delete").checked:
+                to_delete.add(updated)
+            else:
+                to_delete = to_delete.filterIt(it.id != updated.id)
+
+            echo to_delete
 
         )
 
@@ -106,6 +125,10 @@ when defined(js):
         )
 
         users.add(new_user)
+
+    proc delete_users() =
+        for d_user in to_delete:
+            users = users.filterIt(it.id != d_user.id)
 
     proc render(): VNode = 
         result = buildHtml():
@@ -126,6 +149,9 @@ when defined(js):
 
                 button(onclick = () => add_random_user()):
                     text "Add random user"
+                
+                button(onclick = () => delete_users()):
+                    text "Delete users"
 
     setRenderer render
 else:

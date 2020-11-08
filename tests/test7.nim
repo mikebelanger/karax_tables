@@ -69,7 +69,7 @@ when defined(js):
     proc row_events(u: User, row: VNode): VNode =
 
         row.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
-            let updated = e.get_json_for(u)
+            let updated = e.updated(u)
 
             updated_users = updated_users.filterIt(it.id != updated.id)
             updated_users.add(updated)
