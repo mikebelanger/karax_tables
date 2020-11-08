@@ -21,24 +21,26 @@ type
 
 var users: seq[User]
 users.add(User(username: "mike", id: 0))
-users.add(User(username: "jim", id: 2))
+users.add(User(username: "david", id: 2, user_kind: Supervisor))
 users.add(User(username: "rob", id: 4, user_kind: Admin))
 ```
 
-You could just write the HTML table yourself, with the help of Karax.  While writing an HTML table isn't the hardest thing in the world, you have lots of tables - and its getting tedious and error prone.  Furthermore, your database/objects schema are growing, making revisions/maitenence a source of burnout.  karax_tables to the rescue:
+You could just write the HTML table yourself, with the help of Karax.  While writing an HTML table isn't the hardest thing in the world, you have lots of tables - and its getting tedious and error prone.  Furthermore, your database/objects schema are growing, making revisions/maitenence a source of burnout.  
+
+### Simple Example
+
+Taking the above code, we could render out an HTML like so:
 
 ```nimrod
-include karax/prelude
-import karax / [karaxdsl, vdom]
-
-proc render(): VNode = 
-    result = buildHtml():
-        users.karax_table
-
-setRenderer render
+let user_table = users.karax_table(all_columns = ReadAndWrite)
+writeFile("./tests/user_table.html", user_table.to_string)
 ```
 
-karax_tables primarily operates with client-side (js) rendering.  However, a subset of its rendering functions are available server-side (c) as well.
+Which would render something looking like this:
+
+![Simple HTML Table](tests/html_table.png)
+
+Note that while the above renders using the c backend, most of karax_tables' functionality is targeted for client-side (js) rendering.
 
 ### Why Not?
 
