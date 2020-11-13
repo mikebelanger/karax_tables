@@ -98,7 +98,7 @@ when defined(js):
     var updated_users: seq[User]
     var to_delete: seq[User]
     
-    proc onchange(u: User, e: Event) =
+    proc onclick(u: User, e: Event) =
         echo u
         #check if this is marked as delete
         if e.currentTarget.querySelector(".delete").checked:
@@ -106,7 +106,8 @@ when defined(js):
         else:
             to_delete = to_delete.filterIt(it.id != u.id)
 
-        echo to_delete
+        updated_users = users.filterIt(it.id == u.id)
+        updated_users.add(u)
 
     proc add_random_user() =
         let new_user = User(
