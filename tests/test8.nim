@@ -97,26 +97,16 @@ when defined(js):
 
     var updated_users: seq[User]
     var to_delete: seq[User]
+    
+    proc onchange(u: User, e: Event) =
+        echo u
+        #check if this is marked as delete
+        if e.currentTarget.querySelector(".delete").checked:
+            to_delete.add(u)
+        else:
+            to_delete = to_delete.filterIt(it.id != u.id)
 
-    proc on(u: User, row: VNode): VNode =
-
-        row.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
-            let updated = e.updated(u)
-
-            updated_users = updated_users.filterIt(it.id != updated.id)
-            updated_users.add(updated)
-
-            # check if this is marked as delete
-            if e.currentTarget.querySelector(".delete").checked:
-                to_delete.add(updated)
-            else:
-                to_delete = to_delete.filterIt(it.id != updated.id)
-
-            echo to_delete
-
-        )
-
-        return row
+        echo to_delete
 
     proc add_random_user() =
         let new_user = User(

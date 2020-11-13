@@ -301,8 +301,30 @@ proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): V
     for cel in obj.to_cels(columns, table_style):
         result.add(cel.contents)
 
-    when compiles(obj.on(result)):
-        return obj.on(result)
+    when compiles(obj.onclick(Event())):
+        result.addEventListener(EventKind.onclick, proc(e: Event, v: VNode) =
+            e.updated(obj).onclick(e)
+        )
+
+    when compiles(obj.oncontextmenu(Event())):
+        result.addEventListener(EventKind.oncontextmenu, proc(e: Event, v: VNode) =
+            e.updated(obj).oncontextmenu(e)
+        )
+
+    when compiles(obj.ondblclick(Event())):
+        result.addEventListener(EventKind.ondblclick, proc(e: Event, v: VNode) =
+            e.updated(obj).ondblclick(e)
+        )
+
+    when compiles(obj.onkeyup(Event())):
+        result.addEventListener(EventKind.onkeyup, proc(e: Event, v: VNode) =
+            e.updated(obj).onkeyup(e)
+        )
+
+    when compiles(obj.onchange(Event())):
+        result.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
+            e.updated(obj).onchange(e)
+        )
 
 proc to_string*(vnode: VNode): string =
     when defined(js):
