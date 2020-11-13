@@ -14249,7 +14249,7 @@ function render_16560022() {
     F.line = 145;
     addEventHandler_13845154(tmp_16560032, 0, HEX3Aanonymous_16980001, kxi_13282284[0]);
     F.line = 146;
-    add_12935072(tmp_16560032, text_12945582(makeNimstrLit("Delete users")));
+    add_12935072(tmp_16560032, text_12945582(makeNimstrLit("Delete Selected Users")));
     F.line = 146;
     add_12935072(tmp_16560025, tmp_16560032);
     result_16560024 = tmp_16560025;
