@@ -143,7 +143,7 @@ when defined(js):
                     text "Add random user"
                 
                 button(onclick = () => delete_users()):
-                    text "Delete users"
+                    text "Delete Selected Users"
 
     setRenderer render
 else:
