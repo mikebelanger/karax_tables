@@ -98,7 +98,7 @@ when defined(js):
     var updated_users: seq[User]
     var to_delete: seq[User]
     
-    proc onclick(u: User, e: Event) =
+    proc onchange(u: User, e: Event) =
         echo u
         #check if this is marked as delete
         if e.currentTarget.querySelector(".delete").checked:

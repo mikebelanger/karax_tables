@@ -10491,8 +10491,8 @@ function newSeq_16530006(len_16530009) {
   return result_16530011;
 
 }
-function onclick_16522819(u_16522821, e_16522822) {
-  var F={procname:"test8.onclick",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test8.nim",line:0};
+function onchange_16522819(u_16522821, e_16522822) {
+  var F={procname:"test8.onchange",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test8.nim",line:0};
   framePtr = F;
     F.line = 102;
     rawEcho(HEX24_16525214(u_16522821));
@@ -13071,143 +13071,152 @@ function initFromJson_16930201(dst_16930205, dst_16930205_Idx, jsonNode_16930206
 
   
 }
-function initFromJson_16890552(dst_16890556, jsonNode_16890557, jsonPath_16890558, jsonPath_16890558_Idx) {
+function initFromJson_16892152(dst_16892156, jsonNode_16892157, jsonPath_16892158, jsonPath_16892158_Idx) {
   var F={procname:"initFromJson.initFromJson",prev:framePtr,filename:"/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/json.nim",line:0};
   framePtr = F;
     F.line = 1195;
-    var originalJsonPathLen_16890561 = (jsonPath_16890558[jsonPath_16890558_Idx]).length;
+    var originalJsonPathLen_16892161 = (jsonPath_16892158[jsonPath_16892158_Idx]).length;
     F.line = 1127;
-    jsonPath_16890558[jsonPath_16890558_Idx].push.apply(jsonPath_16890558[jsonPath_16890558_Idx], makeNimstrLit(".username"));;
+    jsonPath_16892158[jsonPath_16892158_Idx].push.apply(jsonPath_16892158[jsonPath_16892158_Idx], makeNimstrLit(".username"));;
     F.line = 1137;
-    initFromJson_15060865(dst_16890556, "username", getOrDefault_14865031(jsonNode_16890557, makeNimstrLit("username")), jsonPath_16890558, jsonPath_16890558_Idx);
+    initFromJson_15060865(dst_16892156, "username", getOrDefault_14865031(jsonNode_16892157, makeNimstrLit("username")), jsonPath_16892158, jsonPath_16892158_Idx);
     F.line = 1138;
-    (jsonPath_16890558[jsonPath_16890558_Idx].length = chckRange(originalJsonPathLen_16890561, 0, 2147483647));
+    (jsonPath_16892158[jsonPath_16892158_Idx].length = chckRange(originalJsonPathLen_16892161, 0, 2147483647));
     F.line = 1127;
-    jsonPath_16890558[jsonPath_16890558_Idx].push.apply(jsonPath_16890558[jsonPath_16890558_Idx], makeNimstrLit(".id"));;
+    jsonPath_16892158[jsonPath_16892158_Idx].push.apply(jsonPath_16892158[jsonPath_16892158_Idx], makeNimstrLit(".id"));;
     F.line = 1137;
-    initFromJson_16905201(dst_16890556, "id", getOrDefault_14865031(jsonNode_16890557, makeNimstrLit("id")), jsonPath_16890558, jsonPath_16890558_Idx);
+    initFromJson_16905201(dst_16892156, "id", getOrDefault_14865031(jsonNode_16892157, makeNimstrLit("id")), jsonPath_16892158, jsonPath_16892158_Idx);
     F.line = 1138;
-    (jsonPath_16890558[jsonPath_16890558_Idx].length = chckRange(originalJsonPathLen_16890561, 0, 2147483647));
+    (jsonPath_16892158[jsonPath_16892158_Idx].length = chckRange(originalJsonPathLen_16892161, 0, 2147483647));
     F.line = 1127;
-    jsonPath_16890558[jsonPath_16890558_Idx].push.apply(jsonPath_16890558[jsonPath_16890558_Idx], makeNimstrLit(".user_kind"));;
+    jsonPath_16892158[jsonPath_16892158_Idx].push.apply(jsonPath_16892158[jsonPath_16892158_Idx], makeNimstrLit(".user_kind"));;
     F.line = 1137;
-    initFromJson_16930201(dst_16890556, "user_kind", getOrDefault_14865031(jsonNode_16890557, makeNimstrLit("user_kind")), jsonPath_16890558, jsonPath_16890558_Idx);
+    initFromJson_16930201(dst_16892156, "user_kind", getOrDefault_14865031(jsonNode_16892157, makeNimstrLit("user_kind")), jsonPath_16892158, jsonPath_16892158_Idx);
     F.line = 1138;
-    (jsonPath_16890558[jsonPath_16890558_Idx].length = chckRange(originalJsonPathLen_16890561, 0, 2147483647));
+    (jsonPath_16892158[jsonPath_16892158_Idx].length = chckRange(originalJsonPathLen_16892161, 0, 2147483647));
   framePtr = F.prev;
 
   
 }
-function to_16890544(node_16890548) {
-  var result_16890550 = [({username: [], id: 0, user_kind: 0})];
+function to_16892144(node_16892148) {
+  var result_16892150 = [({username: [], id: 0, user_kind: 0})];
 
   var F={procname:"to.to",prev:framePtr,filename:"/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/json.nim",line:0};
   framePtr = F;
     F.line = 1243;
-    var jsonPath_16890551 = [[]];
+    var jsonPath_16892151 = [[]];
     F.line = 1244;
-    initFromJson_16890552(result_16890550[0], node_16890548, jsonPath_16890551, 0);
+    initFromJson_16892152(result_16892150[0], node_16892148, jsonPath_16892151, 0);
   framePtr = F.prev;
 
-  return result_16890550[0];
+  return result_16892150[0];
 
 }
-function updated_16890406(event_16890410, obj_16890411) {
-  var result_16890413 = ({username: [], id: 0, user_kind: 0});
+function updated_16892006(event_16892010, obj_16892011) {
+  var result_16892013 = ({username: [], id: 0, user_kind: 0});
 
   var F={procname:"updated.updated",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 510;
-    var json_vals_16890414 = parseJson_15060257(makeNimstrLit("{}"));
+    var json_vals_16892014 = parseJson_15060257(makeNimstrLit("{}"));
     if (false) {
     F.line = 515;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("username")], HEX25_14705683(cstrToNimstr(event_16890410.currentTarget.querySelector(".username").querySelector("select").value)));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("username")], HEX25_14705683(cstrToNimstr(event_16892010.currentTarget.querySelector(".username").querySelector("select").value)));
     }
     else {
     if (false) {
     F.line = 518;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("username")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("username")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
     }
     else {
     if (false) {
     F.line = 521;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("username")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("username")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
     }
     else {
     if (false) {
     F.line = 524;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("username")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("username")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
     }
     else {
       F.line = 527;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("username")], HEX25_14705683(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".username"), makeNimstrLit("username"))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("username")], HEX25_14705683(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".username"), makeNimstrLit("username"))));
     }
     }}}
     if (false) {
     F.line = 515;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("id")], HEX25_14705683(cstrToNimstr(event_16890410.currentTarget.querySelector(".id").querySelector("select").value)));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("id")], HEX25_14705683(cstrToNimstr(event_16892010.currentTarget.querySelector(".id").querySelector("select").value)));
     }
     else {
     if (true) {
     F.line = 518;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("id")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("id")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
     }
     else {
     if (false) {
     F.line = 521;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("id")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("id")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
     }
     else {
     if (false) {
     F.line = 524;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("id")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("id")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
     }
     else {
       F.line = 527;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("id")], HEX25_14705683(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".id"), makeNimstrLit("id"))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("id")], HEX25_14705683(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".id"), makeNimstrLit("id"))));
     }
     }}}
     if (true) {
     F.line = 515;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("user_kind")], HEX25_14705683(cstrToNimstr(event_16890410.currentTarget.querySelector(".user_kind").querySelector("select").value)));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("user_kind")], HEX25_14705683(cstrToNimstr(event_16892010.currentTarget.querySelector(".user_kind").querySelector("select").value)));
     }
     else {
     if (false) {
     F.line = 518;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("user_kind")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("user_kind")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
     }
     else {
     if (false) {
     F.line = 521;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("user_kind")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("user_kind")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
     }
     else {
     if (false) {
     F.line = 524;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("user_kind")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("user_kind")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
     }
     else {
       F.line = 527;
-    HEX7BHEX7DHEX3D_14865271(json_vals_16890414, [makeNimstrLit("user_kind")], HEX25_14705683(get_tr_values_for_15205414(event_16890410.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind"))));
+    HEX7BHEX7DHEX3D_14865271(json_vals_16892014, [makeNimstrLit("user_kind")], HEX25_14705683(get_tr_values_for_15205414(event_16892010.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind"))));
     }
     }}}
     F.line = 529;
-    nimCopy(result_16890413, to_16890544(json_vals_16890414), NTI16522017);
+    nimCopy(result_16892013, to_16892144(json_vals_16892014), NTI16522017);
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_16890413;
+  return result_16892013;
 
 }
 function row_16580231(obj_16580234, columns_16580235, table_style_16580236) {
     obj_16580234 = nimCopy(null, obj_16580234, NTI16522017);
-    function HEX3Aanonymous_16890402(e_16890404, v_16890405) {
+    function HEX3Aanonymous_16892002(e_16892004, v_16892005) {
       var F={procname:"row.:anonymous",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
       framePtr = F;
-        F.line = 311;
-        onclick_16522819(updated_16890406(e_16890404, obj_16580234), e_16890404);
+        F.line = 351;
+        onchange_16522819(updated_16892006(e_16892004, obj_16580234), e_16892004);
+      framePtr = F.prev;
+
+      
+    }
+    function HEX3Aanonymous_16965602(e_16965604, v_16965605) {
+      var F={procname:"row.:anonymous",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
+      framePtr = F;
+        F.line = 486;
+        onchange_16522819(updated_16892006(e_16965604, obj_16580234), e_16965604);
       framePtr = F.prev;
 
       
@@ -13252,8 +13261,10 @@ function row_16580231(obj_16580234, columns_16580235, table_style_16580236) {
           }
       } while(false);
     } while(false);
-    F.line = 310;
-    addEventListener_12950014(result_16580237, 0, HEX3Aanonymous_16890402);
+    F.line = 350;
+    addEventListener_12950014(result_16580237, 8, HEX3Aanonymous_16892002);
+    F.line = 485;
+    addEventListener_12950014(result_16580237, 8, HEX3Aanonymous_16965602);
   framePtr = F.prev;
 
   return result_16580237;
@@ -14187,7 +14198,7 @@ function render_16560022() {
     var tmp_16560026 = tree_12945445(43, []);
     L1: do {
       F.line = 131;
-      var u_16967282 = null;
+      var u_16965708 = null;
       F.line = 199;
       var i_16980405 = 0;
       F.line = 200;
@@ -14197,23 +14208,23 @@ function render_16560022() {
           L3: while (true) {
           if (!(i_16980405 < L_16980406)) break L3;
             F.line = 131;
-            u_16967282 = updated_users_16522816[0][chckIndx(i_16980405, 0, (updated_users_16522816[0]).length-1)];
+            u_16965708 = updated_users_16522816[0][chckIndx(i_16980405, 0, (updated_users_16522816[0]).length-1)];
             F.line = 132;
             var tmp_16560027 = tree_12945445(31, []);
             F.line = 133;
-            add_12935072(tmp_16560027, text_12945582(cstrToNimstr((u_16967282.id)+"")));
+            add_12935072(tmp_16560027, text_12945582(cstrToNimstr((u_16965708.id)+"")));
             F.line = 133;
             add_12935072(tmp_16560026, tmp_16560027);
             F.line = 134;
             var tmp_16560028 = tree_12945445(31, []);
             F.line = 135;
-            add_12935072(tmp_16560028, text_12945582(u_16967282.username));
+            add_12935072(tmp_16560028, text_12945582(u_16965708.username));
             F.line = 135;
             add_12935072(tmp_16560026, tmp_16560028);
             F.line = 136;
             var tmp_16560029 = tree_12945445(31, []);
             F.line = 137;
-            add_12935072(tmp_16560029, text_12945582(reprEnum(u_16967282.user_kind, NTI16522015)));
+            add_12935072(tmp_16560029, text_12945582(reprEnum(u_16965708.user_kind, NTI16522015)));
             F.line = 137;
             add_12935072(tmp_16560026, tmp_16560029);
             F.line = 203;
