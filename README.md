@@ -5,18 +5,15 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML tabl
 
 ### Why?
 
-* Your project is written in Nim, and with it, Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or a something parsing a big CSV (like [csvtools](https://github.com/unicredit/csvtools)).
+* Your project is written in Nim, and that uses Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or a something parsing a big CSV (like [csvtools](https://github.com/unicredit/csvtools)).
 
-* Your project already has its data defined as objects/tuples.
-
-* Your project is subject to lots of schema-changes, and updating your table code is burning you out.
+* Your project has its data defined in objects/tuples, and is subject to lots of schema-changes.  Keeping your tables up-to-date with these schema changes is burning you out.
 
 ### Why Not?
 
-* You only have a few tables, and they don't change that frequently.
+* Your project only has a few tables, and they don't change that frequently.
 
-* Your data is stored in a more all-encompassing data-structure.  Either something with homogenous data like [arraymancer](https://github.com/mratsim/Arraymancer) tensors, heterogeneous, Pandas dataframe-like structure, such as in [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library doesn't target them.
-
+* Your project data structures aren't objects or tuples. Maybe the data is represtend by something homogenous, like [arraymancer](https://github.com/mratsim/Arraymancer) tensors.  Or the data is heterogeneous, but contained in a dataframe, such as [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library isn't designed with these paradigms in mind.
 
 ### Simple Example
 
