@@ -41,7 +41,7 @@ columns.add(Column(
     )
 )
 ```
-*Note*: Ensure the `name` field of the Column object matches the object/tuple field name. So in the above example, the `name` field has to be `"username"` in order for that to override the User object's username title into `"Name"`.
+***Note***: Ensure the `name` field of the Column object matches the object/tuple field name. So in the above example, the `name` field has to be `"username"` in order for that to override the User object's username title into `"Name"`.
 
 Then, pass in the `columns` array into the karax_table function call:
 
@@ -49,7 +49,7 @@ Then, pass in the `columns` array into the karax_table function call:
 users.karax_table(columns = columns)
 ```
 
-**Also note**: if you use the columns argument for karax_table, karax_table will render *only* the columns that correspond to the object attribtue.  It will ignore any other attributes that don't have columns specified.
+***Also note***: if you use the columns argument for karax_table, karax_table will render *only* the columns that correspond to the object attribtue.  It will ignore any other attributes that don't have columns specified.
 
 
 
