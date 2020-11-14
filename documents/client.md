@@ -49,7 +49,7 @@ Then, pass in the `columns` array into the karax_table function call:
 users.karax_table(columns = columns)
 ```
 
-***Also note***: if you use the columns argument for karax_table, karax_table will render *only* the columns that correspond to the object attribute.  It will ignore any other attributes that don't have columns specified.
+***Also note***: if you use the columns argument for karax_table, karax_table will render *only* the columns that correspond to the object attribute.  It will ignore any other attributes that don't have corresponding column objects.
 
 
 
