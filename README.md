@@ -72,6 +72,9 @@ For example, if we wanted to get an updated user everytime we changed a row, we'
 proc onchange(u: User, e: Event) =
     echo u # should print updated user to console
     echo e.currentTarget.querySelector("extra") # prints dom stuff of row
+
+    # you have access to the global scope here, so you can modify
+    # the original users array, make new ones, etc. 
 ```
 
 To get the entire table, do the same as above, but make the first argument a `seq[User]` instead.
