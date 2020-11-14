@@ -1,3 +1,5 @@
+(***WARNING - Subject to breaking changes***)
+
 # karax_tables
 Nim objects/tuples -> HTML (VDom) Tables
 
