@@ -64,7 +64,7 @@ Note that while the above renders using the c backend, most of karax_tables' fun
 karax_tables supports listening to row and table updates.
 
 To get updated row data, just define a function whose':
-* name is based on the event (List of supported events here) 
+* name is based on the event [List of supported events here.](./event_listeners.md])
 * first parameter is the object that gets converted to a row
 * second parameter is an Event object.  
 
@@ -92,12 +92,12 @@ To get the entire table, do the same as above, but make the first argument a `se
 ```
 --path: "$HOME/.nimble/pkgs/karax-1.1.3"
 ```
+*TODO*: Determine how this works in Windows.
+
 2.  Navigate to your project directory, and clone this repo:
 ```
 git clone https://github.com/mikebelanger/karax_tables.git
 ```
-
-
 
 ## Using
 
@@ -122,9 +122,7 @@ setRenderer render
 
 ## Other Features
 
+* Styling
 
 ## Guides
 [Client Side Usage Guide](./documents/client.md)
-
-#### Server Side
-TODO: Determine the above works with Windows.
