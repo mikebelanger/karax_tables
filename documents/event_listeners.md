@@ -60,3 +60,13 @@ If you write a function whose:
     ontransitionstart
 ```
 
+Then you got yourself an event listener!  Here's an example:
+
+```nimrod
+proc onchange(u: User, e: Event) =
+    echo u # should print updated user to console
+    echo e.currentTarget.querySelector("extra") # prints dom stuff of row
+
+    # you have access to the global scope here, so you can modify
+    # the original users array, make new ones, etc. 
+```
