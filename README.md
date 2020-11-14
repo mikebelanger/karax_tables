@@ -3,7 +3,7 @@ Nim objects/tuples -> HTML (VDom) Tables
 
 Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML table - with minimal hassle.  Inspired by [Datatables](https://datatables.net/) and [JExcel](https://bossanova.uk/jexcel/v3/).  Uses [Karax](https://github.com/pragmagic/karax).
 
-### Why Use karax_tables?
+### Why?
 
 * Your project is written in Nim, and with it, Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or a something parsing a big CSV (like [csvtools](https://github.com/unicredit/csvtools)).
 
@@ -11,11 +11,11 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML tabl
 
 * Your project is subject to lots of schema-changes, and updating your table code is burning you out.
 
-### Why Not Use karax_tables?
+### Why Not?
 
 * You only have a few tables, and they don't change that frequently.
 
-* Your data is stored in a more all-encompassing data-structure.  Either something with homogenous data such as an [arraymancer](https://github.com/mratsim/Arraymancer) tensor, or a heterogeneous pandas dataframe-like structure, such as in [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library doesn't target them.
+* Your data is stored in a more all-encompassing data-structure.  Either something with homogenous data like [arraymancer](https://github.com/mratsim/Arraymancer) tensors, heterogeneous, Pandas dataframe-like structure, such as in [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library doesn't target them.
 
 
 ### Simple Example
@@ -52,6 +52,34 @@ Which would render something looking like this:
 
 Note that while the above renders using the c backend, most of karax_tables' functionality is targeted for client-side (js) rendering.
 
+### Supported Input Types
+
+* text/textarea
+* numbers
+* drop-down menus 
+* check-boxes 
+* hidden fields
+
+### Supported Event Listeners
+
+karax_tables supports listening to row and table updates.
+
+To get updated row data, just define a function whose':
+* name is based on the event (List of supported events here) 
+* first parameter is the object that gets converted to a row
+* second parameter is an Event object.  
+
+For example, if we wanted to get an updated user everytime we changed a row, we'd do:
+
+```nimrod
+proc onchange(u: User, e: Event) =
+    echo u # should print updated user to console
+    echo e.currentTarget.querySelector("extra") # prints dom stuff of row
+```
+
+To get the entire table, do the same as above, but make the first argument a `seq[User]` instead.
+
+
 ### Requirements
 
 * Nim v.1.4.0
@@ -85,8 +113,10 @@ proc render(): VNode =
 setRenderer render
 ```
 
-## Guides
+## Other Features
 
+
+## Guides
 [Client Side Usage Guide](./documents/client.md)
 
 #### Server Side
