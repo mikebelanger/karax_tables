@@ -83,11 +83,16 @@ To get the entire table, do the same as above, but make the first argument a `se
 * Karax v.1.1.3
 
 ## Installing
-
-Ensure you have nim installed, with karax's *entire* source copied into your project directory.  Alternatively, you could put a `config.nims` file in your project dir, and just enter the path to wherever Karax is:
+1.  Ensure you have nim installed, with karax's *entire* source copied into your project directory.  Alternatively, you could put a `config.nims` file in your project dir, and just enter the path to wherever Karax is:
 ```
 --path: "$HOME/.nimble/pkgs/karax-1.1.3"
 ```
+2.  Navigate to your project directory, and clone this repo:
+```
+git clone https://github.com/mikebelanger/karax_tables.git
+```
+
+
 
 ## Using
 
