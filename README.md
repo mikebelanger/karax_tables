@@ -1,13 +1,22 @@
 # karax_tables
-Nim objects -> HTML Tables
+Nim objects/tuples -> HTML (VDom) Tables
 
 Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML table - with minimal hassle.  Inspired by [Datatables](https://datatables.net/) and [JExcel](https://bossanova.uk/jexcel/v3/).  Uses [Karax](https://github.com/pragmagic/karax).
 
-### Why?
+### Why Use karax_tables?
 
-You're writing lots of enterprise-like CRUD web apps, or maybe some internal CSV processing tool.  Either way, the time comes to display this table data.  Your app already has a loads of objects, which have been defined for some other reason.  Maybe to load a row using [csvtools](https://github.com/unicredit/csvtools) or even something from an ORM, such as [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm).
+* Your project is written in Nim, and with it, Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or a something parsing a big CSV (like [csvtools](https://github.com/unicredit/csvtools)).
 
-You could just write the HTML table yourself, with the help of Karax.  While writing an HTML table isn't the hardest thing in the world, you have lots of tables - and its getting tedious and error prone.  Furthermore, your database/objects schema are growing, making revisions/maitenence a source of burnout.  
+* Your project already has its data defined as objects/tuples.
+
+* Your project is subject to lots of schema-changes, and updating your table code is burning you out.
+
+### Why Not Use karax_tables?
+
+* You only have a few tables, and they don't change that frequently.
+
+* Your data is stored in a more all-encompassing data-structure.  Either something with homogenous data such as an [arraymancer](https://github.com/mratsim/Arraymancer) tensor, or a heterogeneous pandas dataframe-like structure, such as in [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library doesn't target them.
+
 
 ### Simple Example
 
@@ -42,12 +51,6 @@ Which would render something looking like this:
 ![Simple HTML Table](tests/html_table.png)
 
 Note that while the above renders using the c backend, most of karax_tables' functionality is targeted for client-side (js) rendering.
-
-### Why Not?
-
-karax_tables is not for everyone.  For starters, if you only have a few tables - it may make more sense to just write with 'plain' Karax.  Slightly more verbose, but easier to see how it works.
-
-Another reason to look elsewhere is if your data is something other than an object/tuple.  Either something with homogenous data such as an [arraymancer](https://github.com/mratsim/Arraymancer) tensor, or a heterogeneous pandas dataframe-like structure, such as in [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library doesn't target them.
 
 ### Requirements
 
