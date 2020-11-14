@@ -3,7 +3,7 @@
 # karax_tables
 Nim objects/tuples -> HTML (VDom) Tables
 
-Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML table - with minimal hassle.  Inspired by [Datatables](https://datatables.net/) and [JExcel](https://bossanova.uk/jexcel/v3/).  Uses [Karax](https://github.com/pragmagic/karax).
+Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamic HTML table - with minimal hassle.  Uses [Karax](https://github.com/pragmagic/karax).
 
 ### Why?
 
