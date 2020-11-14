@@ -64,7 +64,7 @@ Note that while the above renders using the c backend, most of karax_tables' fun
 karax_tables supports listening to row and table updates.
 
 To get updated row data, just define a function whose':
-* name is based on the event [List of supported events here.](./documents/event_listeners.md])
+* name is based on the event [List of supported events here.](./documents/event_listeners.md)
 * first parameter is the object that gets converted to a row
 * second parameter is an Event object.  
 
