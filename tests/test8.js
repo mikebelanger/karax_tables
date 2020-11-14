@@ -11,7 +11,7 @@ if (typeof Uint32Array === 'undefined') Uint32Array = Array;
 if (typeof Float32Array === 'undefined') Float32Array = Array;
 if (typeof Float64Array === 'undefined') Float64Array = Array;
 var NTI16575016 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
-var NTI16966601 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
+var NTI16966801 = {size: 0,kind: 24,base: null,node: null,finalizer: null};
 var NTI4765020 = {size: 0, kind: 18, base: null, node: null, finalizer: null};
 var NTI14406039 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
 var NTI3579645 = {size: 0, kind: 17, base: null, node: null, finalizer: null};
@@ -1030,7 +1030,7 @@ NTI14406039.base = NTI3579643;
 var NNI4765020 = {kind: 2, len: 2, offset: 0, typ: null, name: null, sons: [{kind: 1, offset: "a", len: 0, typ: NTI3573044, name: "a", sons: null}, 
 {kind: 1, offset: "b", len: 0, typ: NTI3573044, name: "b", sons: null}]};
 NTI4765020.node = NNI4765020;
-NTI16966601.base = NTI16522017;
+NTI16966801.base = NTI16522017;
 NTI16575016.base = NTI16522017;
 function makeNimstrLit(c_3840062) {
       var ln = c_3840062.length;
@@ -13926,8 +13926,8 @@ function rand_16550148(x_16550152) {
   return result_16550153;
 
 }
-function oncontextmenu_16550250(table_users_16550253, e_16550254) {
-  var F={procname:"test8.oncontextmenu",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test8.nim",line:0};
+function ondblclick_16550250(table_users_16550253, e_16550254) {
+  var F={procname:"test8.ondblclick",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/tests/test8.nim",line:0};
   framePtr = F;
     F.line = 123;
     rawEcho(makeNimstrLit("right hand click"));
@@ -13966,106 +13966,106 @@ function oncontextmenu_16550250(table_users_16550253, e_16550254) {
 
   
 }
-function updated_16966206(event_16966209, obj_16966210) {
-  var result_16966211 = [];
+function updated_16966406(event_16966409, obj_16966410) {
+  var result_16966411 = [];
 
   var F={procname:"updated.updated",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
   BeforeRet: do {
     F.line = 540;
-    var return_objs_16966607 = [];
+    var return_objs_16966807 = [];
     L1: do {
       F.line = 542;
-      var o_16966615 = null;
+      var o_16966815 = null;
       F.line = 199;
       var i_16985750 = 0;
       F.line = 200;
-      var L_16985751 = (obj_16966210).length;
+      var L_16985751 = (obj_16966410).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
           if (!(i_16985750 < L_16985751)) break L3;
             F.line = 542;
-            o_16966615 = obj_16966210[chckIndx(i_16985750, 0, (obj_16966210).length-1)];
+            o_16966815 = obj_16966410[chckIndx(i_16985750, 0, (obj_16966410).length-1)];
             F.line = 543;
-            var json_vals_16966616 = parseJson_15060257(makeNimstrLit("{}"));
+            var json_vals_16966816 = parseJson_15060257(makeNimstrLit("{}"));
             if (false) {
             F.line = 548;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("username")], HEX25_14705683(cstrToNimstr(event_16966209.currentTarget.querySelector(".username").querySelector("select").value)));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("username")], HEX25_14705683(cstrToNimstr(event_16966409.currentTarget.querySelector(".username").querySelector("select").value)));
             }
             else {
             if (false) {
             F.line = 551;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("username")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("username")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
             }
             else {
             if (false) {
             F.line = 554;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("username")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("username")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
             }
             else {
             if (false) {
             F.line = 557;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("username")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("username")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".username"), makeNimstrLit("username")))));
             }
             else {
               F.line = 560;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("username")], HEX25_14705683(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".username"), makeNimstrLit("username"))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("username")], HEX25_14705683(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".username"), makeNimstrLit("username"))));
             }
             }}}
             if (false) {
             F.line = 548;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("id")], HEX25_14705683(cstrToNimstr(event_16966209.currentTarget.querySelector(".id").querySelector("select").value)));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("id")], HEX25_14705683(cstrToNimstr(event_16966409.currentTarget.querySelector(".id").querySelector("select").value)));
             }
             else {
             if (true) {
             F.line = 551;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("id")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("id")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
             }
             else {
             if (false) {
             F.line = 554;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("id")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("id")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
             }
             else {
             if (false) {
             F.line = 557;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("id")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("id")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".id"), makeNimstrLit("id")))));
             }
             else {
               F.line = 560;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("id")], HEX25_14705683(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".id"), makeNimstrLit("id"))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("id")], HEX25_14705683(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".id"), makeNimstrLit("id"))));
             }
             }}}
             if (true) {
             F.line = 548;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("user_kind")], HEX25_14705683(cstrToNimstr(event_16966209.currentTarget.querySelector(".user_kind").querySelector("select").value)));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("user_kind")], HEX25_14705683(cstrToNimstr(event_16966409.currentTarget.querySelector(".user_kind").querySelector("select").value)));
             }
             else {
             if (false) {
             F.line = 551;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("user_kind")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("user_kind")], newJInt_14576181(nsuParseInt(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
             }
             else {
             if (false) {
             F.line = 554;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("user_kind")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("user_kind")], newJFloat_14576198(nsuParseFloat(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
             }
             else {
             if (false) {
             F.line = 557;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("user_kind")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("user_kind")], newJBool_14576215(parseBool_12360022(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind")))));
             }
             else {
               F.line = 560;
-            HEX7BHEX7DHEX3D_14865271(json_vals_16966616, [makeNimstrLit("user_kind")], HEX25_14705683(get_tr_values_for_15205414(event_16966209.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind"))));
+            HEX7BHEX7DHEX3D_14865271(json_vals_16966816, [makeNimstrLit("user_kind")], HEX25_14705683(get_tr_values_for_15205414(event_16966409.currentTarget.querySelector(".user_kind"), makeNimstrLit("user_kind"))));
             }
             }}}
             F.line = 562;
-            return_objs_16966607.push(to_16892331(json_vals_16966616));;
+            return_objs_16966807.push(to_16892331(json_vals_16966816));;
             F.line = 203;
             i_16985750 = addInt(i_16985750, 1);
-            if (!(((obj_16966210).length == L_16985751))) {
+            if (!(((obj_16966410).length == L_16985751))) {
             F.line = 204;
             failedAssertImpl_3690480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -14074,21 +14074,21 @@ function updated_16966206(event_16966209, obj_16966210) {
       } while(false);
     } while(false);
     F.line = 564;
-    result_16966211 = nimCopy(null, return_objs_16966607, NTI16966601);
+    result_16966411 = nimCopy(null, return_objs_16966807, NTI16966801);
     break BeforeRet;
   } while (false);
   framePtr = F.prev;
 
-  return result_16966211;
+  return result_16966411;
 
 }
 function add_any_listeners_16965887(vnode_16965890, thing_16965891) {
     thing_16965891 = nimCopy(null, thing_16965891, NTI16575016);
-    function HEX3Aanonymous_16966202(e_16966204, v_16966205) {
+    function HEX3Aanonymous_16966402(e_16966404, v_16966405) {
       var F={procname:"add_any_listeners.:anonymous",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
       framePtr = F;
-        F.line = 311;
-        oncontextmenu_16550250(updated_16966206(e_16966204, thing_16965891), e_16966204);
+        F.line = 316;
+        ondblclick_16550250(updated_16966406(e_16966404, thing_16965891), e_16966404);
       framePtr = F.prev;
 
       
@@ -14101,8 +14101,8 @@ function add_any_listeners_16965887(vnode_16965890, thing_16965891) {
   BeforeRet: do {
     F.line = 303;
     result_16965892 = vnode_16965890;
-    F.line = 310;
-    addEventHandler_13845118(result_16965892, 1, HEX3Aanonymous_16966202, kxi_13282284[0]);
+    F.line = 315;
+    addEventHandler_13845118(result_16965892, 2, HEX3Aanonymous_16966402, kxi_13282284[0]);
     F.line = 484;
     break BeforeRet;
   } while (false);

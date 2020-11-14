@@ -119,7 +119,7 @@ when defined(js):
         users.add(new_user)
 
 
-    proc oncontextmenu(table_users: seq[User], e: Event) =
+    proc ondblclick(table_users: seq[User], e: Event) =
         echo "right hand click"
         echo table_users
         for index, user in users:
