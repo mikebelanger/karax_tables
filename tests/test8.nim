@@ -118,6 +118,17 @@ when defined(js):
 
         users.add(new_user)
 
+
+    proc oncontextmenu(table_users: seq[User], e: Event) =
+        echo "right hand click"
+        echo table_users
+        for index, user in users:
+            users[index] = User(
+                username: random_name(),
+                id: rand(100),
+                user_kind: rand(UserKind.low..UserKind.high)
+            )
+
     proc delete_users() =
         for d_user in to_delete:
             users = users.filterIt(it.id != d_user.id)
@@ -125,6 +136,7 @@ when defined(js):
     proc render(): VNode = 
         result = buildHtml():
             tdiv:
+                # users.karax_table(table_style = custom_style, all_columns = ReadAndWrite)
                 users.karax_table(table_style = custom_style, columns = columns)
 
                 tdiv:

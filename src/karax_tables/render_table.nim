@@ -512,27 +512,56 @@ when defined(js):
             elif node.nodeName == "SELECT":
                 return $(node.children.mapIt($it.value))
 
-    proc updated*(event: kdom.Event, obj: object): object =
-        var json_vals = parseJson("{}")
+    proc updated*[T](event: kdom.Event, obj: T): T =
 
-        for key, val in obj.fieldPairs:
+        when obj is object:
+            var json_vals = parseJson("{}")
 
-            if val.typeof is enum:
-                json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
+            for key, val in obj.fieldPairs:
 
-            elif val.typeof is int:
-                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
+                if val.typeof is enum:
+                    json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
 
-            elif val.typeof is float:
-                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
+                elif val.typeof is int:
+                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
 
-            elif val.typeof is bool:
-                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseBool.newJBool
+                elif val.typeof is float:
+                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
 
-            else:
-                json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_tr_values_for(key)))
+                elif val.typeof is bool:
+                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseBool.newJBool
 
-        return json_vals.to(obj.typedesc)
+                else:
+                    json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_tr_values_for(key)))
+
+            return json_vals.to(obj.typedesc)
+
+        when obj is seq[object]:
+            var return_objs: seq[obj[0].typedesc]
+            
+            for o in obj:
+                var json_vals = parseJson("{}")
+
+                for key, val in o.fieldPairs:
+                    
+                    if val.typeof is enum:
+                        json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
+
+                    elif val.typeof is int:
+                        json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
+
+                    elif val.typeof is float:
+                        json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
+
+                    elif val.typeof is bool:
+                        json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseBool.newJBool
+
+                    else:
+                        json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_tr_values_for(key)))
+
+                return_objs.add(json_vals.to(obj[0].typedesc))
+
+            return return_objs
 
 proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     
@@ -550,7 +579,10 @@ proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: 
                 if objs.len > 0:
                     for number, obj in objs:
                         obj.row(columns, table_style)
-
+    if objs.len > 0:
+        return result.add_any_listeners(objs)
+    else:
+        return result
 
 proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
 
