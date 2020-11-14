@@ -65,7 +65,20 @@ Then you got yourself an event listener!  Here's an example:
 ```nimrod
 proc onchange(u: User, e: Event) =
     echo u # should print updated user to console
-    echo e.currentTarget.querySelector("extra") # prints dom stuff of row
+    echo e.currentTarget.querySelector("extra") # prints dom stuff of row WARNING: may not find anything.
+
+    # you have access to the global scope here, so you can modify
+    # the original users array, make new ones, etc. 
+```
+
+That one will listen to an individual row, and print out the updated row (a user) to the console.
+
+If you'd like to listen to the whole table, basically just change the first parameter from `User` to `seq[User]`:
+
+```nimrod
+proc onchange(usrs: seq[User], e: Event) =
+    echo usrs # should print each user to the console.
+    echo e.currentTarget.querySelector("extra") # prints dom stuff of row.  WARNING: may not find anything.
 
     # you have access to the global scope here, so you can modify
     # the original users array, make new ones, etc. 
