@@ -5,7 +5,7 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into an HTML tabl
 
 ### Why?
 
-* Your project is written in Nim, and that uses Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or a something parsing a big CSV (like [csvtools](https://github.com/unicredit/csvtools)).
+* Your project is written in Nim, and that uses Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or CSV parsing stuff (like [csvtools](https://github.com/unicredit/csvtools)).
 
 * Your project has its data defined in objects/tuples, and is subject to lots of schema-changes.  Keeping your tables up-to-date with these schema changes is burning you out.
 
