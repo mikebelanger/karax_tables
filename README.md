@@ -85,5 +85,9 @@ proc render(): VNode =
 setRenderer render
 ```
 
+## Guides
+
+[Client Side Usage Guide](./documents/client.md)
+
 #### Server Side
 TODO: Determine the above works with Windows.
