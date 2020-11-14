@@ -302,182 +302,182 @@ proc add_any_listeners[T](vnode: VNode, thing: T): VNode =
     # without sacrifcing intuitiveness.
     result = vnode
     when compiles(thing.onclick(Event())):
-        result.addEventListener(EventKind.onclick, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onclick, proc(e: Event, v: VNode) =
             e.updated(thing).onclick(e)
         )
 
     when compiles(thing.oncontextmenu(Event())):
-        result.addEventListener(EventKind.oncontextmenu, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.oncontextmenu, proc(e: Event, v: VNode) =
             e.updated(thing).oncontextmenu(e)
         )
 
     when compiles(thing.ondblclick(Event())):
-        result.addEventListener(EventKind.ondblclick, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondblclick, proc(e: Event, v: VNode) =
             e.updated(thing).ondblclick(e)
         )
 
     when compiles(thing.onkeyup(Event())):
-        result.addEventListener(EventKind.onkeyup, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onkeyup, proc(e: Event, v: VNode) =
             e.updated(thing).onkeyup(e)
         )
 
     when compiles(thing.onkeydown(Event())):
-        result.addEventListener(EventKind.onkeydown, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onkeydown, proc(e: Event, v: VNode) =
             e.updated(thing).onkeydown(e)
         )
 
     when compiles(thing.onkeypressed(Event())):
-        result.addEventListener(EventKind.onkeypressed, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onkeypressed, proc(e: Event, v: VNode) =
             e.updated(thing).onkeypressed(e)
         )
 
     when compiles(thing.onfocus(Event())):
-        result.addEventListener(EventKind.onfocus, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onfocus, proc(e: Event, v: VNode) =
             e.updated(thing).onfocus(e)
         )
 
     when compiles(thing.onblur(Event())):
-        result.addEventListener(EventKind.onblur, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onblur, proc(e: Event, v: VNode) =
             e.updated(thing).onblur(e)
         )
 
     when compiles(thing.onchange(Event())):
-        result.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onchange, proc(e: Event, v: VNode) =
             e.updated(thing).onchange(e)
         )
 
     when compiles(thing.onscroll(Event())):
-        result.addEventListener(EventKind.onscroll, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onscroll, proc(e: Event, v: VNode) =
             e.updated(thing).onscroll(e)
         )
 
     when compiles(thing.onmousedown(Event())):
-        result.addEventListener(EventKind.onmousedown, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onmousedown, proc(e: Event, v: VNode) =
             e.updated(thing).onmousedown(e)
         )
 
     when compiles(thing.onmouseleave(Event())):
-        result.addEventListener(EventKind.onmouseleave, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onmouseleave, proc(e: Event, v: VNode) =
             e.updated(thing).onmouseleave(e)
         )
 
     when compiles(thing.onmousemove(Event())):
-        result.addEventListener(EventKind.onmousemove, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onmousemove, proc(e: Event, v: VNode) =
             e.updated(thing).onmousemove(e)
         )
 
     when compiles(thing.onmouseout(Event())):
-        result.addEventListener(EventKind.onmouseout, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onmouseout, proc(e: Event, v: VNode) =
             e.updated(thing).onmouseout(e)
         )
 
     when compiles(thing.onmouseover(Event())):
-        result.addEventListener(EventKind.onmouseover, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onmouseover, proc(e: Event, v: VNode) =
             e.updated(thing).onmouseover(e)
         )
 
     when compiles(thing.onmouseup(Event())):
-        result.addEventListener(EventKind.onmouseup, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onmouseup, proc(e: Event, v: VNode) =
             e.updated(thing).onmouseup(e)
         )
 
     when compiles(thing.ondrag(Event())):
-        result.addEventListener(EventKind.ondrag, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondrag, proc(e: Event, v: VNode) =
             e.updated(thing).ondrag(e)
         )
 
     when compiles(thing.ondragend(Event())):
-        result.addEventListener(EventKind.ondragend, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondragend, proc(e: Event, v: VNode) =
             e.updated(thing).ondragend(e)
         )
 
     when compiles(thing.ondragenter(Event())):
-        result.addEventListener(EventKind.ondragenter, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondragenter, proc(e: Event, v: VNode) =
             e.updated(thing).ondragenter(e)
         )
 
     when compiles(thing.ondragleave(Event())):
-        result.addEventListener(EventKind.ondragleave, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondragleave, proc(e: Event, v: VNode) =
             e.updated(thing).ondragleave(e)
         )
 
     when compiles(thing.ondragover(Event())):
-        result.addEventListener(EventKind.ondragover, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondragover, proc(e: Event, v: VNode) =
             e.updated(thing).ondragover(e)
         )
 
     when compiles(thing.ondragstart(Event())):
-        result.addEventListener(EventKind.ondragstart, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondragstart, proc(e: Event, v: VNode) =
             e.updated(thing).ondragstart(e)
         )
 
     when compiles(thing.ondrop(Event())):
-        result.addEventListener(EventKind.ondrop, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ondrop, proc(e: Event, v: VNode) =
             e.updated(thing).ondrop(e)
         )
 
     when compiles(thing.onsubmit(Event())):
-        result.addEventListener(EventKind.onsubmit, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onsubmit, proc(e: Event, v: VNode) =
             e.updated(thing).onsubmit(e)
         )
 
     when compiles(thing.oninput(Event())):
-        result.addEventListener(EventKind.oninput, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.oninput, proc(e: Event, v: VNode) =
             e.updated(thing).oninput(e)
         )
 
     when compiles(thing.onanimationstart(Event())):
-        result.addEventListener(EventKind.onanimationstart, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onanimationstart, proc(e: Event, v: VNode) =
             e.updated(thing).onanimationstart(e)
         )
 
     when compiles(thing.onanimationend(Event())):
-        result.addEventListener(EventKind.onanimationend, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onanimationend, proc(e: Event, v: VNode) =
             e.updated(thing).onanimationstart(e)
         )
 
     when compiles(thing.onanimationiteration(Event())):
-        result.addEventListener(EventKind.onanimationiteration, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onanimationiteration, proc(e: Event, v: VNode) =
             e.updated(thing).onanimationiteration(e)
         )
 
     when compiles(thing.onkeyupenter(Event())):
-        result.addEventListener(EventKind.onkeyupenter, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onkeyupenter, proc(e: Event, v: VNode) =
             e.updated(thing).onkeyupenter(e)
         )
 
     when compiles(thing.onkeyuplater(Event())):
-        result.addEventListener(EventKind.onkeyuplater, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onkeyuplater, proc(e: Event, v: VNode) =
             e.updated(thing).onkeyuplater(e)
         )
 
     when compiles(thing.onload(Event())):
-        result.addEventListener(EventKind.onload, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onload, proc(e: Event, v: VNode) =
             e.updated(thing).onload(e)
         )
 
     when compiles(thing.ontransitioncancel(Event())):
-        result.addEventListener(EventKind.ontransitioncancel, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ontransitioncancel, proc(e: Event, v: VNode) =
             e.updated(thing).ontransitioncancel(e)
         )
 
     when compiles(thing.ontransitionend(Event())):
-        result.addEventListener(EventKind.ontransitionend, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ontransitionend, proc(e: Event, v: VNode) =
             e.updated(thing).ontransitionend(e)
         )
 
     when compiles(thing.ontransitionrun(Event())):
-        result.addEventListener(EventKind.ontransitionrun, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ontransitionrun, proc(e: Event, v: VNode) =
             e.updated(thing).ontransitionrun(e)
         )
 
     when compiles(thing.ontransitionstart(Event())):
-        result.addEventListener(EventKind.ontransitionstart, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.ontransitionstart, proc(e: Event, v: VNode) =
             e.updated(thing).ontransitionstart(e)
         )
 
     when compiles(thing.onchange(Event())):
-        result.addEventListener(EventKind.onchange, proc(e: Event, v: VNode) =
+        result.addEventHandler(EventKind.onchange, proc(e: Event, v: VNode) =
             e.updated(thing).onchange(e)
         )
 
