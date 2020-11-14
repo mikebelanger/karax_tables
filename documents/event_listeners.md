@@ -6,7 +6,7 @@
 If you write a function whose:
 * first param is whatever object you use a row
 * second param is an Event object
-* name is named after Karax' [available EventKinds]((https://github.com/pragmagic/karax/blob/40daae64e339da00b81ddd5972b16de9f8ef35aa/karax/vdom.nim#L53))
+* name is named after Karax' [available EventKinds](https://github.com/pragmagic/karax/blob/40daae64e339da00b81ddd5972b16de9f8ef35aa/karax/vdom.nim#L53)
 ```nimrod
     onclick, ## An element is clicked.
     oncontextmenu, ## An element is right-clicked.
