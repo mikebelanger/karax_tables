@@ -99,7 +99,28 @@ To get the entire table, do the same as above, but make the first argument a `se
 git clone https://github.com/mikebelanger/karax_tables.git
 ```
 
-## Using
+## Usage Guide
+
+* ### Installing
+* ### Creating tables
+* ### Customizing
+    + [Columns](./documents/columns.md)
+        + Text/Textarea
+        + Numbers
+        + Drop-downs 
+        + Check-boxes 
+        + Hidden fields
+    + [Styling](./documents/styling.md)
+        + Headers
+        + Rows
+
+    + [Event Callbacks](./documents/event_handlers.md)
+        + Row-updates
+        + Table updates
+
+    + [Pagination](./documents/pagination.md)
+
+    + [Developing](./documents/developing.md)
 
 #### Client-Side
 
