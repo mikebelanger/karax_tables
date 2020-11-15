@@ -3,7 +3,7 @@
 # karax_tables
 Nim objects/tuples -> HTML (VDom) Tables
 
-Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamic HTML table - with minimal hassle.  Uses [Karax](https://github.com/pragmagic/karax).
+Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamically-rendered HTML table - with minimal hassle.  Uses [Karax](https://github.com/pragmagic/karax).
 
 ### Why?
 
@@ -103,6 +103,8 @@ git clone https://github.com/mikebelanger/karax_tables.git
 
 * ### Installing
 * ### Creating tables
+    + [With Objects](./documents/creating/with_objects.md)
+    + [With Tuples](./documents/creating/with_tuples.md)
 * ### Customizing
     + [Columns](./documents/columns.md)
         + Text/Textarea
@@ -120,7 +122,7 @@ git clone https://github.com/mikebelanger/karax_tables.git
 
     + [Pagination](./documents/pagination.md)
 
-    + [Developing](./documents/developing.md)
+* ### Developing
 
 #### Client-Side
 
