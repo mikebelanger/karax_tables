@@ -96,15 +96,16 @@ when defined(js):
     import karax/[kdom]
 
     var updated_users: seq[User]
-    var to_delete: seq[User]
+    var to_delete: seq[int]
     
     proc onchange(u: User, e: Event) =
-        echo u
+        # echo u
+        echo to_delete
         #check if this is marked as delete
+        to_delete.keepIf((td) => td != u.id)
+
         if e.currentTarget.querySelector(".delete").checked:
-            to_delete.add(u)
-        else:
-            to_delete = to_delete.filterIt(it.id != u.id)
+            to_delete.add(u.id)
 
         updated_users = users.filterIt(it.id == u.id)
         updated_users.add(u)
@@ -130,8 +131,9 @@ when defined(js):
             )
 
     proc delete_users() =
-        for d_user in to_delete:
-            users = users.filterIt(it.id != d_user.id)
+        users.keepIf((user) => not(to_delete.contains(user.id)))
+        to_delete = @[]
+        echo users
 
     proc render(): VNode = 
         result = buildHtml():
