@@ -1,6 +1,7 @@
 import karax / [karaxdsl, vdom, vstyles]
 import sequtils, strutils, json
 import macros
+import random
 
 type
     InvalidColumn* = object of ValueError
@@ -57,7 +58,7 @@ proc missing(column: Column, missing, suggestion: string): string =
         "Column: \n" & $column & "\n is missing a " & $missing & ".\n" & " such as: \n" &
         suggestion
 
-proc mismatch(column: Column, contents: string | bool | int | float | enum, suggested_column_type: CelKind): string =
+proc mismatch(column: Column, contents: string | bool | int | float | enum | object, suggested_column_type: CelKind): string =
     result = 
         "Cel and Column schema mismatch for: \n" & 
             column.title & "\ncel content type is: " & 
@@ -138,12 +139,12 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
                         option(value = option):
                             text option
 
-proc cel(contents: string | int | float | enum | bool, column: Column, table_style: TableStyle): Cel =
+proc cel(contents: string | int | float | enum | bool, id: int, column: Column, table_style: TableStyle): Cel =
     ## generates cel based on an object/tuples's value
     result = 
         Cel(
             column: column,
-            contents: buildHtml(td(class = table_style.td_class))
+            contents: buildHtml(td(class = table_style.td_class, id = $id))
         )
     
     # Nim's type-checker will throw type errors if I don't specify the type in the 'when'
@@ -235,10 +236,13 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
                 
                 of Checkbox:
                     when contents is bool:
-                        let form_input = buildHtml(input(type = "checkbox"))
+                        let form_input = buildHtml(input(`type` = "checkbox"))
                         form_input.setAttr("class", column.name)
                         form_input.setAttr("value", "active")
 
+                        # echo "contents: ", contents
+                        # echo "for"
+                        # echo column.name
                         if contents:
                             form_input.setAttr("checked", "")
                         
@@ -266,46 +270,23 @@ proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle)
     # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
 
     # if a column is just based on the object fields themselves.
-    for column in columns:
-        if column.column_kind == ObjectAttr:
+    var idx = 0
+    for key, val in obj.fieldPairs:
+        
+        when val is object:
 
-            for key, val in obj.fieldPairs:
-                
-                if column.name == key:
-                    result.add(
-                        val.cel(column, table_style)
-                    )
-
-        # if a column is related to something the user would do
-        # (as opposed to just viewing an object field)
-        # for example, a "delete" column where you'd check which ones to get deleted.ee
-        elif column.column_kind == RowAction:
-            case column.cel_kind:
-                of Integer:
-                    result.add(
-                        0.cel(column, table_style)
-                    )
-                
-                of FloatingPoint:
-                    result.add(
-                        (0.0).cel(column, table_style)
-                    )
-                
-                of Text, TextArea:
-                    result.add(
-                        "".cel(column, table_style)
-                    )
-
-                of Checkbox:
-                    result.add(
-                        false.cel(column, table_style)
-                    )
-                
-                else:
-                    continue
+            result.add(val.to_cels(columns, table_style))
 
         else:
-            continue
+            for column in columns:
+
+                if column.name == key:
+
+                    result.add(
+                        val.cel(idx, column, table_style)
+                    )
+
+        idx.inc
 
 proc add_any_listeners[T](vnode: VNode, thing: T): VNode =
     ## any procs named after js event listeners whose first argument type is
@@ -497,10 +478,10 @@ proc add_any_listeners[T](vnode: VNode, thing: T): VNode =
 
     return result
 
-proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): VNode =
+proc row*(obj: object | tuple, columns: seq[Column], index: int, table_style: TableStyle): VNode =
     ## Generates a single row from an object/tuple.
     
-    result = buildHtml(tr(class = table_style.tr_class))
+    result = buildHtml(tr(class = table_style.tr_class, id = $index))
 
     for cel in obj.to_cels(columns, table_style):
         result.add(cel.contents)
@@ -530,7 +511,7 @@ when defined(js):
             elif node.nodeName == "SELECT":
                 return $(node.children.mapIt($it.value))
 
-    proc updated*[T](event: kdom.Event, obj: T): T =
+    proc tr_to_json*[T](event: kdom.Event, obj: T): JsonNode =
         ## Get updated object/seq[object | tuple] (T) from a table-row or table
 
         when obj is object:
@@ -538,49 +519,56 @@ when defined(js):
 
             for key, val in obj.fieldPairs:
 
-                if val.typeof is enum:
+                when val.typeof is object:
+                    json_vals{key}= event.tr_to_json(val)
+
+                when val.typeof is string:
+                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).newJString
+
+                when val.typeof is enum:
                     json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
 
-                elif val.typeof is int:
+                when val.typeof is int:
                     json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
 
-                elif val.typeof is float:
+                when val.typeof is float:
                     json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
 
-                elif val.typeof is bool:
-                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseBool.newJBool
+                when val is bool:
+                    json_vals{key}= event.currentTarget.querySelector("." & key).checked.newJBool
 
-                else:
-                    json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_tr_values_for(key)))
-
-            return json_vals.to(obj.typedesc)
+            return json_vals
 
         when obj is seq[object]:
-            var return_objs: seq[obj[0].typedesc]
+            var return_json = parseJson("[]")
             
             for o in obj:
                 var json_vals = parseJson("{}")
 
                 for key, val in o.fieldPairs:
                     
-                    if val.typeof is enum:
+                    when val.typeof is enum:
                         json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
 
-                    elif val.typeof is int:
+                    when val.typeof is int:
                         json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
 
-                    elif val.typeof is float:
+                    when val.typeof is float:
                         json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
 
-                    elif val.typeof is bool:
+                    when val.typeof is bool:
                         json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseBool.newJBool
 
                     else:
                         json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_tr_values_for(key)))
 
-                return_objs.add(json_vals.to(obj[0].typedesc))
+                return_json.add(json_vals)
 
-            return return_objs
+            return return_json
+
+    proc updated*[T](event: kdom.Event, obj: T): T =
+        return event.tr_to_json(obj).to(obj.typedesc)
+
 
 proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     ## renders table based on sequence of objects/tuples and Columns.
@@ -598,7 +586,7 @@ proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: 
             tbody(class = table_style.tbody_class):
                 if objs.len > 0:
                     for number, obj in objs:
-                        obj.row(columns, table_style)
+                        obj.row(columns, number, table_style)
     if objs.len > 0:
         return result.add_any_listeners(objs)
     else:

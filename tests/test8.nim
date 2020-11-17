@@ -17,7 +17,11 @@ type
         id: int
         user_kind: UserKind
 
-var users: seq[User]
+    UserRow = object
+        user: User
+        to_delete: bool
+
+var users: seq[UserRow]
 var columns: seq[Column]
 
 columns.add(Column(
@@ -47,7 +51,7 @@ columns.add(Column(
 )
 
 columns.add(Column(
-        name: "delete",
+        name: "to_delete",
         cel_kind: Checkbox,
         cel_affordance: ReadAndWrite,
         title: "Delete",
@@ -56,9 +60,9 @@ columns.add(Column(
     )
 )
 
-users.add(User(username: "mnike", id: 0))
-users.add(User(username: "another_user", id: 2))
-users.add(User(username: "third user", id: 4, user_kind: Admin))
+users.add(UserRow(user: User(username: "mnike", id: 0)))
+users.add(UserRow(user: User(username: "another_user", id: 2)))
+users.add(UserRow(user: User(username: "third user", id: 4, user_kind: Admin)))
 
 const custom_style = 
     TableStyle(
@@ -95,20 +99,16 @@ when defined(js):
     include karax/prelude
     import karax/[kdom]
 
-    var updated_users: seq[User]
+    var updated_users: seq[UserRow]
     var to_delete: seq[int]
     
-    proc onchange(u: User, e: Event) =
+    proc onclick(u: UserRow, e: Event) =
         # echo u
-        echo to_delete
+        echo u
         #check if this is marked as delete
-        to_delete.keepIf((td) => td != u.id)
-
-        if e.currentTarget.querySelector(".delete").checked:
-            to_delete.add(u.id)
-
-        updated_users = users.filterIt(it.id == u.id)
-        updated_users.add(u)
+        for index, user_row in users:
+            if user_row.user.id == u.user.id:
+                users[index] = u
 
     proc add_random_user() =
         let new_user = User(
@@ -117,23 +117,28 @@ when defined(js):
             user_kind: rand(UserKind.low..UserKind.high)
         )
 
-        users.add(new_user)
+        users.add(UserRow(user: new_user))
 
 
     proc ondblclick(table_users: seq[User], e: Event) =
         echo "right hand click"
         echo table_users
         for index, user in users:
-            users[index] = User(
-                username: random_name(),
-                id: rand(100),
-                user_kind: rand(UserKind.low..UserKind.high)
+            users[index] = UserRow(
+                user: User(
+                    username: random_name(),
+                    id: rand(100),
+                    user_kind: rand(UserKind.low..UserKind.high)
+                )
             )
 
     proc delete_users() =
-        users.keepIf((user) => not(to_delete.contains(user.id)))
-        to_delete = @[]
-        echo users
+        updated_users = @[]
+        for index, user_row in users:
+            if not user_row.to_delete:
+                updated_users.add(user_row)
+        
+        users = updated_users
 
     proc render(): VNode = 
         result = buildHtml():
@@ -144,11 +149,13 @@ when defined(js):
                 tdiv:
                     for u in updated_users:
                         p:
-                            text $(u.id)
+                            text $(u.user.id)
                         p:
-                            text u.username
+                            text u.user.username
                         p:
-                            text $u.user_kind
+                            text $u.user.user_kind
+                        p:
+                            text $u.to_delete
 
                 button(onclick = () => echo updated_users):
                     text "what are users now?"
