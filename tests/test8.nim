@@ -102,7 +102,7 @@ when defined(js):
     var updated_users: seq[UserRow]
     var to_delete: seq[int]
     
-    proc onclick(u: UserRow, e: Event) =
+    proc onchange(u: UserRow, e: Event) =
         # echo u
         echo u
         #check if this is marked as delete

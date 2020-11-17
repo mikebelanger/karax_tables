@@ -141,10 +141,11 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
 
 proc cel(contents: string | int | float | enum | bool, id: int, column: Column, table_style: TableStyle): Cel =
     ## generates cel based on an object/tuples's value
+    let the_id = $id & "_" & $(500.rand)
     result = 
         Cel(
             column: column,
-            contents: buildHtml(td(class = table_style.td_class, id = $id))
+            contents: buildHtml(td(class = table_style.td_class, id = the_id))
         )
     
     # Nim's type-checker will throw type errors if I don't specify the type in the 'when'
@@ -236,7 +237,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                 
                 of Checkbox:
                     when contents is bool:
-                        let form_input = buildHtml(input(`type` = "checkbox"))
+                        let form_input = buildHtml(input(`type` = "checkbox", id = $id & "_checkmark"))
                         form_input.setAttr("class", column.name)
                         form_input.setAttr("value", "active")
 
