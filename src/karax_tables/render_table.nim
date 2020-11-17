@@ -19,6 +19,7 @@ type
         Integer
         FloatingPoint
         Checkbox
+        Object
         CustomVDom
     
     AlignContent* = enum
@@ -57,7 +58,7 @@ proc missing(column: Column, missing, suggestion: string): string =
         "Column: \n" & $column & "\n is missing a " & $missing & ".\n" & " such as: \n" &
         suggestion
 
-proc mismatch(column: Column, contents: string | bool | int | float | enum, suggested_column_type: CelKind): string =
+proc mismatch(column: Column, contents: string | bool | int | float | enum | object, suggested_column_type: CelKind): string =
     result = 
         "Cel and Column schema mismatch for: \n" & 
             column.title & "\ncel content type is: " & 
@@ -138,7 +139,7 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
                         option(value = option):
                             text option
 
-proc cel(contents: string | int | float | enum | bool, column: Column, table_style: TableStyle): Cel =
+proc cel(contents: string | int | float | enum | bool | object, column: Column, table_style: TableStyle): Cel =
     ## generates cel based on an object/tuples's value
     result = 
         Cel(
@@ -246,6 +247,11 @@ proc cel(contents: string | int | float | enum | bool, column: Column, table_sty
 
                     else:
                         raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Checkbox))
+                
+                of Object:
+                    when contents is object:
+                        for field, value in contents.fieldPairs:
+                            result.contents.add(value.cel(column, table_style).contents)
 
                 of CustomVDom:
                     when contents is VNode:
@@ -497,13 +503,18 @@ proc add_any_listeners[T](vnode: VNode, thing: T): VNode =
 
     return result
 
-proc row*(obj: object | tuple, columns: seq[Column], table_style: TableStyle): VNode =
+proc row*(obj: object | tuple, table_style: TableStyle): VNode =
     ## Generates a single row from an object/tuple.
     
     result = buildHtml(tr(class = table_style.tr_class))
 
-    for cel in obj.to_cels(columns, table_style):
-        result.add(cel.contents)
+    when compiles(obj.columns):
+        for cel in obj.to_cels(obj.columns, table_style):
+            result.add(cel.contents)
+
+    else:
+        for cel in obj.to_cels(obj.column_headers, table_style):
+            result.add(cel.contents)
 
     # now add any event listeners
     return result.add_any_listeners(obj)
@@ -582,19 +593,19 @@ when defined(js):
 
             return return_objs
 
-proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
+proc render_table(objs: seq[object | tuple], table_style: TableStyle): VNode =
     ## renders table based on sequence of objects/tuples and Columns.
-
     result = buildHtml():
         table(class = table_style.table_class, 
                 cellpadding = $table_style.cell_padding, 
                 cellspacing = $table_style.cell_spacing):
 
             thead(class = table_style.thead_class):
-                for col in columns:
-                    if col.cel_affordance != HiddenField:
-                        th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
-                            text col.title
+                when compiles(objs[0].columns):
+                    for col in objs[0].columns:
+                        if col.cel_affordance != HiddenField:
+                            th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
+                                text col.title
             tbody(class = table_style.tbody_class):
                 if objs.len > 0:
                     for number, obj in objs:
@@ -604,17 +615,17 @@ proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: 
     else:
         return result
 
-proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
-    ## render table with default column names and attributes
-    runnableExamples:
-        some_object_array.karax_table
-        some_object_array.karax_table(all_columns = ReadAndWrite)
+# proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
+#     ## render table with default column names and attributes
+#     runnableExamples:
+#         some_object_array.karax_table
+#         some_object_array.karax_table(all_columns = ReadAndWrite)
 
-    render_table(objs, objs[0].column_headers(all_columns), table_style)
+#     render_table(objs, table_style)
 
-proc karax_table*(objs: seq[object | tuple], columns: seq[Column], table_style = TableStyle()): VNode =
+proc karax_table*(objs: seq[object | tuple], table_style = TableStyle()): VNode =
     ## render table with custom columns names and attributes
     runnableExamples:
-        some_object_array.karax_table(columns = @[Column(title: "My Column", name: "my_column")])
+        some_object_array.karax_table()
 
-    render_table(objs, columns.valid, table_style)
+    render_table(objs, table_style)
