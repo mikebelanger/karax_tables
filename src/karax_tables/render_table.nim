@@ -96,7 +96,7 @@ proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): 
         var col = Column(name: $key)
 
         when value.typeof is object:
-            result.add(value.column_headers)
+            result.add(value.column_headers(affordance))
         
         else:
 
