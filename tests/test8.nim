@@ -134,8 +134,8 @@ when defined(js):
         users.add(UserRow(user: new_user))
 
 
-    proc ondblclick(table_users: seq[User], e: Event) =
-        echo "right hand click"
+    proc ondblclick(table_users: seq[UserRow], e: Event) =
+        echo "double click"
         echo table_users
         for index, user in users:
             users[index] = UserRow(

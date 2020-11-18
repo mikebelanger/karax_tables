@@ -512,58 +512,45 @@ when defined(js):
             elif node.nodeName == "SELECT":
                 return $(node.children.mapIt($it.value))
 
+    proc get_tr_for_object(obj: object | tuple, event: kdom.Event): JsonNode =
+        ## this is for getting a table row from a clicked event
+        ## and creating a JSON modelled after obj's Typedesc
+        var json_vals = parseJson("{}")
+
+        for key, val in obj.fieldPairs:
+
+            when val.typeof is object:
+                json_vals{key}= event.tr_to_json(val)
+
+            when val.typeof is string:
+                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).newJString
+
+            when val.typeof is enum:
+                json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
+
+            when val.typeof is int:
+                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
+
+            when val.typeof is float:
+                json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
+
+            when val is bool:
+                json_vals{key}= event.currentTarget.querySelector("." & key).checked.newJBool
+
+        return json_vals
+
+
     proc tr_to_json*[T](event: kdom.Event, obj: T): JsonNode =
         ## Get updated object/seq[object | tuple] (T) from a table-row or table
 
         when obj is object:
-            var json_vals = parseJson("{}")
-
-            for key, val in obj.fieldPairs:
-
-                when val.typeof is object:
-                    json_vals{key}= event.tr_to_json(val)
-
-                when val.typeof is string:
-                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).newJString
-
-                when val.typeof is enum:
-                    json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
-
-                when val.typeof is int:
-                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
-
-                when val.typeof is float:
-                    json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
-
-                when val is bool:
-                    json_vals{key}= event.currentTarget.querySelector("." & key).checked.newJBool
-
-            return json_vals
+            return obj.get_tr_for_object(event)
 
         when obj is seq[object]:
             var return_json = parseJson("[]")
             
             for o in obj:
-                var json_vals = parseJson("{}")
-
-                for key, val in o.fieldPairs:
-                    
-                    when val.typeof is enum:
-                        json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
-
-                    when val.typeof is int:
-                        json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseInt.newJInt
-
-                    when val.typeof is float:
-                        json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseFloat.newJFloat
-
-                    when val.typeof is bool:
-                        json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).parseBool.newJBool
-
-                    else:
-                        json_vals{key}= %*($(event.currentTarget.querySelector("." & key).get_tr_values_for(key)))
-
-                return_json.add(json_vals)
+                return_json.add(o.get_tr_for_object(event))
 
             return return_json
 
