@@ -1,7 +1,7 @@
 import karax_tables
 import karax / [karaxdsl, vdom, vstyles]
 import sequtils, json, sugar, strutils
-import random
+import random, stats
 
 ### using default table
 
@@ -101,7 +101,21 @@ when defined(js):
 
     var updated_users: seq[UserRow]
     var to_delete: seq[int]
-    
+
+    proc mode(es: seq[UserKind]): enum =
+
+        # make nested arrays of how often a user kind is there
+        let user_kind_freqs = 
+            (UserKind.low..UserKind.high)
+            .toSeq
+            .map((ukind) => es.filter((each_user_kind) => each_user_kind == ukind))
+        
+        # get index of nested array that's the longest - therefore the most frequent enum
+        let most_frequent_index = user_kind_freqs.map((user_kinds) => user_kinds.len).maxIndex
+
+        # return the most frequent based on thefrequent index.
+        return user_kind_freqs[most_frequent_index][0]
+
     proc onchange(u: UserRow, e: Event) =
         # echo u
         echo u
@@ -147,15 +161,9 @@ when defined(js):
                 users.karax_table(table_style = custom_style, columns = columns)
 
                 tdiv:
-                    for u in updated_users:
-                        p:
-                            text $(u.user.id)
-                        p:
-                            text u.user.username
-                        p:
-                            text $u.user.user_kind
-                        p:
-                            text $u.to_delete
+                    p: text "Most common kind of user: " & $(users
+                                                            .map((user_row) => user_row.user.user_kind)
+                                                            .mode)
 
                 button(onclick = () => echo updated_users):
                     text "what are users now?"
