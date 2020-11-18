@@ -518,15 +518,15 @@ when defined(js):
         ## node is the tr node, key is the name of the class who'se value you want.
         if node.nodeType == ElementNode:
 
-            if node.nodeName == "input":
+            if node.nodeName == "INPUT":
                 if (node.hasAttribute("class")) and (node.hasAttribute("value")):
 
                     if node.class == key:
 
                         return $node.value
 
-                elif node.nodeName == "SELECT":
-                    return $(node.children.mapIt($it.value))
+            elif node.nodeName == "SELECT":
+                return $(node.value)
 
             else:
                 if node.hasAttribute("class") and node.class == key:
@@ -545,8 +545,8 @@ when defined(js):
                 json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).newJString
 
             when val.typeof is enum:
-                if event.currentTarget.querySelector("." & key).hasAttribute("select"):
-                    json_vals{key}= %*($(event.currentTarget.querySelector("." & key).querySelector("select").value))
+                if event.currentTarget.querySelector("." & key).querySelector("select") != nil:
+                    json_vals{key}= event.currentTarget.querySelector("." & key).querySelector("select").get_tr_values_for(key).newJString
                 else:
                     json_vals{key}= event.currentTarget.querySelector("." & key).get_tr_values_for(key).newJString
 
