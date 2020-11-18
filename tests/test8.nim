@@ -170,7 +170,7 @@ when defined(js):
         result = buildHtml():
             tdiv:
                 # users.karax_table(table_style = custom_style, all_columns = ReadAndWrite)
-                users.karax_table(table_style = custom_style, columns = columns)
+                users.karax_table(all_columns = ReadAndWrite, table_style = custom_style)
 
                 tdiv:
                     p: text "Most common kind of user: " & $(users
