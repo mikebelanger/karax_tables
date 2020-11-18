@@ -15,6 +15,7 @@ type
     User = object
         username: string
         id: int
+        age: float
         user_kind: UserKind
 
     UserRow = object
@@ -51,6 +52,15 @@ columns.add(Column(
 )
 
 columns.add(Column(
+        name: "age", 
+        cel_kind: FloatingPoint, 
+        cel_affordance: ReadAndWrite, 
+        title: "Age", 
+        title_align: Left
+    )
+)
+
+columns.add(Column(
         name: "to_delete",
         cel_kind: Checkbox,
         cel_affordance: ReadAndWrite,
@@ -60,9 +70,9 @@ columns.add(Column(
     )
 )
 
-users.add(UserRow(user: User(username: "mnike", id: 0)))
-users.add(UserRow(user: User(username: "another_user", id: 2)))
-users.add(UserRow(user: User(username: "third user", id: 4, user_kind: Admin)))
+users.add(UserRow(user: User(username: "mnike", id: 0, age: 37.0)))
+users.add(UserRow(user: User(username: "another_user", id: 2, age: 25.0)))
+users.add(UserRow(user: User(username: "third user", id: 4, user_kind: Admin, age: 55.0)))
 
 const custom_style = 
     TableStyle(
@@ -128,6 +138,7 @@ when defined(js):
         let new_user = User(
             username: random_name(),
             id: rand(20),
+            age: rand(100).toFloat,
             user_kind: rand(UserKind.low..UserKind.high)
         )
 
@@ -142,6 +153,7 @@ when defined(js):
                 user: User(
                     username: random_name(),
                     id: rand(100),
+                    age: rand(100.00),
                     user_kind: rand(UserKind.low..UserKind.high)
                 )
             )
@@ -164,6 +176,9 @@ when defined(js):
                     p: text "Most common kind of user: " & $(users
                                                             .map((user_row) => user_row.user.user_kind)
                                                             .mode)
+
+                tdiv:
+                    p: text "Average age: " & $(users.map((user_row) => user_row.user.age).mean)
 
                 button(onclick = () => echo updated_users):
                     text "what are users now?"

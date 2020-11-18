@@ -271,15 +271,22 @@ proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle)
     # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
 
     # if a column is just based on the object fields themselves.
-    var idx = 0
     for key, val in obj.fieldPairs:
         
         when val is object:
 
             result.add(val.to_cels(columns, table_style))
 
-        else:
-            for column in columns:
+
+    # we have to iterate twice over the object fieldPairs so we iterate
+    # through columns in the outermost loop
+    # this is to preserve the column order inside the <tr>
+    for column in columns:
+        var idx = 0
+
+        for key, val in obj.fieldPairs:
+
+            when (val is int) or (val is float) or (val is enum) or (val is string) or (val is bool):
 
                 if column.name == key:
 
