@@ -175,6 +175,14 @@ when defined(js):
         else:
             return 0
 
+    proc by_user_kind(first, second: UserRow): int =
+        if first.user.user_kind > second.user.user_kind:
+            return 1
+        elif first.user.user_kind < second.user.user_kind:
+            return -1
+        else:
+            return 0
+
     proc ondblclick(c: Column, e: Event) =
         echo "ondbl click"
         if c.name == "age":
@@ -189,6 +197,12 @@ when defined(js):
                 users.sort(by_username, Descending)
             else:
                 users.sort(by_username)
+
+        elif c.name == "user_kind":
+            if users.isSorted(by_user_kind):
+                users.sort(by_user_kind, Descending)
+            else:
+                users.sort(by_user_kind)
 
     proc delete_users() =
         updated_users = @[]
