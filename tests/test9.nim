@@ -1,7 +1,7 @@
 import karax_tables
 import karax / [karaxdsl, vdom, vstyles]
 import sequtils, json, sugar, strutils
-import random, stats
+import random, stats, algorithm
 
 ### using default table
 
@@ -158,11 +158,37 @@ when defined(js):
         #             user_kind: rand(UserKind.low..UserKind.high)
         #         )
         #     )
+
+    proc by_age(first, second: UserRow): int =
+        if first.user.age > second.user.age:
+            return 1
+        elif first.user.age < second.user.age:
+            return -1
+        else:
+            return 0
+
+    proc by_username(first, second: UserRow): int =
+        if first.user.username.len() > second.user.username.len():
+            return 1
+        elif first.user.username.len() < second.user.username.len():
+            return -1
+        else:
+            return 0
+
     proc ondblclick(c: Column, e: Event) =
         echo "ondbl click"
         if c.name == "age":
             echo "clicked on age"
+            if users.isSorted(by_age):
+                users.sort(by_age, Descending)
+            else:
+                users.sort(by_age)
 
+        elif c.name == "username":
+            if users.isSorted(by_username):
+                users.sort(by_username, Descending)
+            else:
+                users.sort(by_username)
 
     proc delete_users() =
         updated_users = @[]
@@ -176,7 +202,7 @@ when defined(js):
         result = buildHtml():
             tdiv:
                 # users.karax_table(table_style = custom_style, all_columns = ReadAndWrite)
-                users.karax_table(columns = columns, table_style = custom_style)
+                users.karax_table(table_style = custom_style)
 
                 tdiv:
                     p: text "Most common kind of user: " & $(users
