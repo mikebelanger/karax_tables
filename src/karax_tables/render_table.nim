@@ -303,7 +303,7 @@ proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle)
 
         idx.inc
 
-proc add_any_listeners[T](vnode: VNode, thing: T): VNode =
+proc add_any_listeners(vnode: VNode, thing: object | seq[object]): VNode =
     ## any procs named after js event listeners whose first argument type is
     ## the object being converted into a row get detected here.
 
@@ -311,6 +311,7 @@ proc add_any_listeners[T](vnode: VNode, thing: T): VNode =
     # TODO: Find a less verbose way of testing for these procs
     # without sacrifcing intuitiveness.
     result = vnode
+
     when compiles(thing.onclick(Event())):
         result.addEventHandler(EventKind.onclick, proc(e: Event, v: VNode) =
             e.updated(thing).onclick(e)
@@ -504,6 +505,21 @@ proc row*(obj: object | tuple, columns: seq[Column], index: int, table_style: Ta
     # now add any event listeners
     return result.add_any_listeners(obj)
 
+proc headers(columns: seq[object], table_style: TableStyle): VNode =
+    result = buildHtml(thead(class = table_style.thead_class))
+
+    for col in columns:
+        if col.cel_affordance != HiddenField:
+            result.add(
+                buildHtml(
+                    th(class = table_style.th_class, 
+                        style = style(StyleAttr.text_align, $col.title_align), 
+                        id = col.title, text(col.title))
+                ).add_any_listeners(
+                    col
+                )
+            )
+
 proc to_string*(vnode: VNode): string =
     when defined(js):
         toString(vnode)
@@ -577,8 +593,11 @@ when defined(js):
             return return_json
 
     proc updated*[T](event: kdom.Event, obj: T): T =
-        return event.tr_to_json(obj).to(obj.typedesc)
 
+        when obj is Column:
+            return obj
+        else:
+            return event.tr_to_json(obj).to(obj.typedesc)
 
 proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
     ## renders table based on sequence of objects/tuples and Columns.
@@ -588,11 +607,8 @@ proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: 
                 cellpadding = $table_style.cell_padding, 
                 cellspacing = $table_style.cell_spacing):
 
-            thead(class = table_style.thead_class):
-                for col in columns:
-                    if col.cel_affordance != HiddenField:
-                        th(class = table_style.th_class, style = style(StyleAttr.text_align, $col.title_align)):
-                            text col.title
+            columns.headers(table_style)
+            
             tbody(class = table_style.tbody_class):
                 if objs.len > 0:
                     for number, obj in objs:

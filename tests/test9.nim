@@ -145,9 +145,10 @@ when defined(js):
         users.add(UserRow(user: new_user))
 
 
-    proc ondblclick(table_users: seq[UserRow], e: Event) =
-        echo "double click"
-        echo table_users
+    # proc ondblclick(table_users: seq[UserRow], e: Event) =
+    #     echo "double click"
+    #     echo table_users
+    #     echo e.currentTarget.querySelector("#username").innerHtml
         # for index, user in users:
         #     users[index] = UserRow(
         #         user: User(
@@ -157,6 +158,11 @@ when defined(js):
         #             user_kind: rand(UserKind.low..UserKind.high)
         #         )
         #     )
+    proc ondblclick(c: Column, e: Event) =
+        echo "ondbl click"
+        if c.name == "age":
+            echo "clicked on age"
+
 
     proc delete_users() =
         updated_users = @[]
@@ -170,7 +176,7 @@ when defined(js):
         result = buildHtml():
             tdiv:
                 # users.karax_table(table_style = custom_style, all_columns = ReadAndWrite)
-                users.karax_table(all_columns = ReadAndWrite, table_style = custom_style)
+                users.karax_table(columns = columns, table_style = custom_style)
 
                 tdiv:
                     p: text "Most common kind of user: " & $(users
