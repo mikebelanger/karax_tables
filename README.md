@@ -71,7 +71,7 @@ To get updated row data, just define a function whose':
 * first parameter is the object that gets converted to a row
 * second parameter is an Event object.  
 
-For example, if we wanted to get an updated user everytime we changed a row, we'd do:
+For example, to get an updated user everytime we changed that same users row, we'd do:
 
 ```nimrod
 proc onchange(u: User, e: Event) =
