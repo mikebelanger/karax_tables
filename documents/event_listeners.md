@@ -1,5 +1,25 @@
 ## Event Listeners
 
+karax_tables allows event listeners for rows, column headers or an entire table.  This is done by defining procs that are named one of the event listeners (listed below), and whose' first parameter is either the object that represents a row (for a row listener) or a Column (for a column header), or a sequence of the row object (for the entire table).  The second parameter is always an `Event` object.Details listed below
+
+### Row Event Listeners
+
+Suppose you're rows are derived from a `User` object, and you want an event process to grab the updated `User` object whenever it changes.  That could be defined as so:
+
+```nimrod
+proc onchange(u: User, e: Event) =
+    echo u # should print updated user to console
+    echo e.currentTarget.querySelector("extra") # prints dom stuff of row WARNING: may not find anything.
+
+    # you have access to the global scope here, so you can modify
+    # the original users array, make new ones, etc. 
+```
+
+That one will listen to an individual row, and print out the updated row (a user) to the console.
+
+#### Column Header Event Listeners
+
+If you'd like some functionality added to clicking on a header (think double-clicking one to sort), then a proc can be named as an event (listed below) that takes in `Column` and `Event`
 
 #### Supported Event Listeners
 
@@ -61,17 +81,6 @@ If you write a function whose:
 ```
 
 Then you got yourself an event listener!  Here's an example:
-
-```nimrod
-proc onchange(u: User, e: Event) =
-    echo u # should print updated user to console
-    echo e.currentTarget.querySelector("extra") # prints dom stuff of row WARNING: may not find anything.
-
-    # you have access to the global scope here, so you can modify
-    # the original users array, make new ones, etc. 
-```
-
-That one will listen to an individual row, and print out the updated row (a user) to the console.
 
 If you'd like to listen to the whole table, basically just change the first parameter from `User` to `seq[User]`:
 
