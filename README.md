@@ -11,6 +11,16 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamicall
 
 * Your project has its data defined in objects/tuples, and is subject to lots of schema-changes.  Keeping your frontend's tables up-to-date with these schema changes is burning you out.
 
+* Your project could use automatic:
+    + Object instance -> table row.
+    + Object field -> table column.
+    + Object's data-types -> table's td `<input type>`s:
+        * String -> text/textarea
+        * Int/float -> input number
+        * Boolean -> checkboxes
+        * Enumerations -> option menus
+        * Any data type -> hidden fields
+
 ### Why Not?
 
 * Your project only has a few tables, and they don't change that frequently.
@@ -19,7 +29,7 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamicall
 
 ### Simple Example
 
-Let's say you have some user objects:
+Let's say your project has an object defined, called `User`:
 ```nimrod
 type
     UserKind = enum
@@ -51,15 +61,8 @@ Which would render something looking like this:
 
 Note that while the above renders using the c backend, most of karax_tables' functionality is targeted for client-side (js) rendering.
 
-### Supported Input Types
 
-* text/textarea
-* numbers
-* drop-down menus 
-* check-boxes 
-* hidden fields
-
-### Supported Event Listeners
+### Event Listeners
 
 karax_tables supports listening to row and table updates.
 
