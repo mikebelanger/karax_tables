@@ -9,7 +9,9 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamicall
 
 * Your project is written in Nim, and that uses Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or CSV parsing stuff (like [csvtools](https://github.com/unicredit/csvtools)).
 
-* Your project has its data defined in objects/tuples, and is subject to lots of schema-changes.  Keeping your frontend's tables up-to-date with these schema changes is burning you out.
+* Your project has its data already defined as objects/tuples, and it needs them rendered out to HTML tables.
+
+* Your objects' schema gets changed frequently, and propagating those changes to the HTML tables is burning you out.
 
 * Your project could use automatic:
     + Object instance -> table row.
@@ -26,6 +28,8 @@ Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamicall
 * Your project only has a few tables, and they don't change that frequently.
 
 * Your project data structures aren't objects or tuples. Maybe the data is represtend by something homogenous, like [arraymancer](https://github.com/mratsim/Arraymancer) tensors.  Or the data is heterogeneous, but contained in a dataframe, such as [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library isn't designed with these paradigms in mind.
+
+* Your looking for full-out spreadsheet functionality, like [JExcel](https://bossanova.uk/jexcel/v3/)
 
 ### Simple Example
 
