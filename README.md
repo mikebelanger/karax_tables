@@ -1,4 +1,4 @@
-(***WARNING - Very WIP - Subject to breaking changes***)
+(***WARNING - Very WIP - Subject to breaking changes, missing docs***)
 
 # karax_tables
 Nim objects/tuples -> HTML (VDom) Tables
