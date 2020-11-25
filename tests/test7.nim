@@ -17,9 +17,9 @@ type
         user_kind: UserKind
 
 var users: seq[User]
-var columns: seq[Column]
+var columns: seq[ColumnHeader]
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "username", 
         title: "Name", 
         cel_kind: Text, 
@@ -28,7 +28,7 @@ columns.add(Column(
     )
 )
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "id",
         title: "ID",
         cel_kind: Integer, 
@@ -36,7 +36,7 @@ columns.add(Column(
     )
 )
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "user_kind", 
         cel_kind: Dropdown, 
         cel_affordance: ReadAndWrite, 

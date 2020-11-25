@@ -22,7 +22,7 @@ type
                 error: WeatherPointError
 
 var points: seq[RoadWeatherPoint]
-var columns: seq[Column]
+var columns: seq[ColumnHeader]
 
 points.add(RoadWeatherPoint(
     path_order: 1,
@@ -47,14 +47,14 @@ points.add(RoadWeatherPoint(
     integrity: Incomplete
 ))
 
-columns.add(Column(
+columns.add(ColumnHeader(
     name: "path_order",
     cel_kind: TextArea,
     cel_affordance: ReadOnly,
     title: "Point number"
 ))
 
-columns.add(Column(
+columns.add(ColumnHeader(
     name: "unix_time",
     title: "Time"
 ))
@@ -67,7 +67,7 @@ when defined(js):
         try:
             result = buildHtml():
                 points.karax_table(columns = columns)
-        except InvalidColumn:
+        except InvalidColumnHeader:
             result = buildHtml():
                 tdiv:
                     p:
@@ -78,5 +78,5 @@ when defined(js):
 else:
     try:
         writeFile("./tests/stuff4.html", points.karax_table(columns = columns).to_string)
-    except InvalidColumn:
+    except InvalidColumnHeader:
         echo "succesfully caught invalid column"

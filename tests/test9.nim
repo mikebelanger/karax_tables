@@ -23,9 +23,9 @@ type
         to_delete: bool
 
 var users: seq[UserRow]
-var columns: seq[Column]
+var columns: seq[ColumnHeader]
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "username", 
         title: "Name", 
         cel_kind: Text, 
@@ -34,7 +34,7 @@ columns.add(Column(
     )
 )
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "id",
         title: "ID",
         cel_kind: Integer, 
@@ -42,7 +42,7 @@ columns.add(Column(
     )
 )
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "user_kind", 
         cel_kind: Dropdown, 
         cel_affordance: ReadAndWrite, 
@@ -51,7 +51,7 @@ columns.add(Column(
     )
 )
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "age", 
         cel_kind: FloatingPoint, 
         cel_affordance: ReadAndWrite, 
@@ -60,7 +60,7 @@ columns.add(Column(
     )
 )
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "to_delete",
         cel_kind: Checkbox,
         cel_affordance: ReadAndWrite,
@@ -183,7 +183,7 @@ when defined(js):
         else:
             return 0
 
-    proc ondblclick(c: Column, e: Event) =
+    proc ondblclick(c: ColumnHeader, e: Event) =
         echo "ondbl click"
         if c.name == "age":
             echo "clicked on age"

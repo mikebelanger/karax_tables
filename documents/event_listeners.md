@@ -1,6 +1,6 @@
 ## Event Listeners
 
-karax_tables allows event listeners for rows, column headers or an entire table.  This is done by defining procs that are named one of the event listeners (listed below), and whose' first parameter is either the object that represents a row (for a row listener) or a Column (for a column header), or a sequence of the row object (for the entire table).  The second parameter is always an `Event` object.Details listed below
+karax_tables allows event listeners for rows, column headers or an entire table.  This is done by defining procs that are named one of the event listeners (listed below), and whose' first parameter is either the object that represents a row (for a row listener) or a ColumnHeader (for a column header), or a sequence of the row object (for the entire table).  The second parameter is always an `Event` object.Details listed below
 
 ### Row Event Listeners
 
@@ -17,9 +17,9 @@ proc onchange(u: User, e: Event) =
 
 That one will listen to an individual row, and print out the updated row (a user) to the console.
 
-#### Column Header Event Listeners
+#### ColumnHeader Header Event Listeners
 
-If you'd like some functionality added to clicking on a header (think double-clicking one to sort), then a proc can be named as an event (listed below) that takes in `Column` and `Event`
+If you'd like some functionality added to clicking on a header (think double-clicking one to sort), then a proc can be named as an event (listed below) that takes in `ColumnHeader` and `Event`
 
 #### Supported Event Listeners
 

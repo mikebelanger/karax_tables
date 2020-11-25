@@ -26,13 +26,13 @@ After that...
 
 ## Customizing
 
-#### Column-titles
+#### ColumnHeader-titles
 
-As a default, column titles are determined by object attribute names.  To overrwrite that, pass in a sequence of `Column` objects.
+As a default, column titles are determined by object attribute names.  To overrwrite that, pass in a sequence of `ColumnHeader` objects.
 ```nimrod
-var columns: seq[Column]
+var columns: seq[ColumnHeader]
 
-columns.add(Column(
+columns.add(ColumnHeader(
         name: "username", 
         title: "Name", 
         cel_kind: Text, 
@@ -41,7 +41,7 @@ columns.add(Column(
     )
 )
 ```
-***Note***: Ensure the `name` field of the Column object matches the object/tuple field name. So in the above example, the `name` field has to be `"username"` in order for that to override the User object's username title into `"Name"`.
+***Note***: Ensure the `name` field of the ColumnHeader object matches the object/tuple field name. So in the above example, the `name` field has to be `"username"` in order for that to override the User object's username title into `"Name"`.
 
 Then, pass in the `columns` array into the karax_table function call:
 

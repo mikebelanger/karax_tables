@@ -307,18 +307,18 @@ var NNI4466293 = {kind: 2, len: 368, offset: 0, typ: null, name: null, sons: [{k
 {kind: 1, offset: "gap", len: 0, typ: NTI3573015, name: "gap", sons: null}, 
 {kind: 1, offset: "grid", len: 0, typ: NTI3573015, name: "grid", sons: null}, 
 {kind: 1, offset: "gridArea", len: 0, typ: NTI3573015, name: "gridArea", sons: null}, 
-{kind: 1, offset: "gridAutoColumns", len: 0, typ: NTI3573015, name: "gridAutoColumns", sons: null}, 
+{kind: 1, offset: "gridAutoColumnHeaders", len: 0, typ: NTI3573015, name: "gridAutoColumnHeaders", sons: null}, 
 {kind: 1, offset: "gridAutoFlow", len: 0, typ: NTI3573015, name: "gridAutoFlow", sons: null}, 
 {kind: 1, offset: "gridAutoRows", len: 0, typ: NTI3573015, name: "gridAutoRows", sons: null}, 
-{kind: 1, offset: "gridColumn", len: 0, typ: NTI3573015, name: "gridColumn", sons: null}, 
-{kind: 1, offset: "gridColumnEnd", len: 0, typ: NTI3573015, name: "gridColumnEnd", sons: null}, 
-{kind: 1, offset: "gridColumnStart", len: 0, typ: NTI3573015, name: "gridColumnStart", sons: null}, 
+{kind: 1, offset: "gridColumnHeader", len: 0, typ: NTI3573015, name: "gridColumnHeader", sons: null}, 
+{kind: 1, offset: "gridColumnHeaderEnd", len: 0, typ: NTI3573015, name: "gridColumnHeaderEnd", sons: null}, 
+{kind: 1, offset: "gridColumnHeaderStart", len: 0, typ: NTI3573015, name: "gridColumnHeaderStart", sons: null}, 
 {kind: 1, offset: "gridRow", len: 0, typ: NTI3573015, name: "gridRow", sons: null}, 
 {kind: 1, offset: "gridRowEnd", len: 0, typ: NTI3573015, name: "gridRowEnd", sons: null}, 
 {kind: 1, offset: "gridRowStart", len: 0, typ: NTI3573015, name: "gridRowStart", sons: null}, 
 {kind: 1, offset: "gridTemplate", len: 0, typ: NTI3573015, name: "gridTemplate", sons: null}, 
 {kind: 1, offset: "gridTemplateAreas", len: 0, typ: NTI3573015, name: "gridTemplateAreas", sons: null}, 
-{kind: 1, offset: "gridTemplateColumns", len: 0, typ: NTI3573015, name: "gridTemplateColumns", sons: null}, 
+{kind: 1, offset: "gridTemplateColumnHeaders", len: 0, typ: NTI3573015, name: "gridTemplateColumnHeaders", sons: null}, 
 {kind: 1, offset: "gridTemplateRows", len: 0, typ: NTI3573015, name: "gridTemplateRows", sons: null}, 
 {kind: 1, offset: "hangingPunctuation", len: 0, typ: NTI3573015, name: "hangingPunctuation", sons: null}, 
 {kind: 1, offset: "height", len: 0, typ: NTI3573015, name: "height", sons: null}, 
@@ -7819,7 +7819,7 @@ function updateStyles_13620034(newNode_13620036, oldNode_13620037) {
     }
     else {
       F.line = 317;
-      oldNode_13620037.dom.style = {m_type: NTI4466293, alignContent: null, alignItems: null, alignSelf: null, all: null, animation: null, animationDelay: null, animationDirection: null, animationDuration: null, animationFillMode: null, animationIterationCount: null, animationName: null, animationPlayState: null, animationTimingFunction: null, backdropFilter: null, backfaceVisibility: null, background: null, backgroundAttachment: null, backgroundBlendMode: null, backgroundClip: null, backgroundColor: null, backgroundImage: null, backgroundOrigin: null, backgroundPosition: null, backgroundRepeat: null, backgroundSize: null, blockSize: null, border: null, borderBlock: null, borderBlockColor: null, borderBlockEnd: null, borderBlockEndColor: null, borderBlockEndStyle: null, borderBlockEndWidth: null, borderBlockStart: null, borderBlockStartColor: null, borderBlockStartStyle: null, borderBlockStartWidth: null, borderBlockStyle: null, borderBlockWidth: null, borderBottom: null, borderBottomColor: null, borderBottomLeftRadius: null, borderBottomRightRadius: null, borderBottomStyle: null, borderBottomWidth: null, borderCollapse: null, borderColor: null, borderEndEndRadius: null, borderEndStartRadius: null, borderImage: null, borderImageOutset: null, borderImageRepeat: null, borderImageSlice: null, borderImageSource: null, borderImageWidth: null, borderInline: null, borderInlineColor: null, borderInlineEnd: null, borderInlineEndColor: null, borderInlineEndStyle: null, borderInlineEndWidth: null, borderInlineStart: null, borderInlineStartColor: null, borderInlineStartStyle: null, borderInlineStartWidth: null, borderInlineStyle: null, borderInlineWidth: null, borderLeft: null, borderLeftColor: null, borderLeftStyle: null, borderLeftWidth: null, borderRadius: null, borderRight: null, borderRightColor: null, borderRightStyle: null, borderRightWidth: null, borderSpacing: null, borderStartEndRadius: null, borderStartStartRadius: null, borderStyle: null, borderTop: null, borderTopColor: null, borderTopLeftRadius: null, borderTopRightRadius: null, borderTopStyle: null, borderTopWidth: null, borderWidth: null, bottom: null, boxDecorationBreak: null, boxShadow: null, boxSizing: null, breakAfter: null, breakBefore: null, breakInside: null, captionSide: null, caretColor: null, clear: null, clip: null, clipPath: null, color: null, colorAdjust: null, columnCount: null, columnFill: null, columnGap: null, columnRule: null, columnRuleColor: null, columnRuleStyle: null, columnRuleWidth: null, columnSpan: null, columnWidth: null, columns: null, contain: null, content: null, counterIncrement: null, counterReset: null, counterSet: null, cursor: null, direction: null, display: null, emptyCells: null, filter: null, flex: null, flexBasis: null, flexDirection: null, flexFlow: null, flexGrow: null, flexShrink: null, flexWrap: null, cssFloat: null, font: null, fontFamily: null, fontFeatureSettings: null, fontKerning: null, fontLanguageOverride: null, fontOpticalSizing: null, fontSize: null, fontSizeAdjust: null, fontStretch: null, fontStyle: null, fontSynthesis: null, fontVariant: null, fontVariantAlternates: null, fontVariantCaps: null, fontVariantEastAsian: null, fontVariantLigatures: null, fontVariantNumeric: null, fontVariantPosition: null, fontVariationSettings: null, fontWeight: null, gap: null, grid: null, gridArea: null, gridAutoColumns: null, gridAutoFlow: null, gridAutoRows: null, gridColumn: null, gridColumnEnd: null, gridColumnStart: null, gridRow: null, gridRowEnd: null, gridRowStart: null, gridTemplate: null, gridTemplateAreas: null, gridTemplateColumns: null, gridTemplateRows: null, hangingPunctuation: null, height: null, hyphens: null, imageOrientation: null, imageRendering: null, inlineSize: null, inset: null, insetBlock: null, insetBlockEnd: null, insetBlockStart: null, insetInline: null, insetInlineEnd: null, insetInlineStart: null, isolation: null, justifyContent: null, justifyItems: null, justifySelf: null, left: null, letterSpacing: null, lineBreak: null, lineHeight: null, listStyle: null, listStyleImage: null, listStylePosition: null, listStyleType: null, margin: null, marginBlock: null, marginBlockEnd: null, marginBlockStart: null, marginBottom: null, marginInline: null, marginInlineEnd: null, marginInlineStart: null, marginLeft: null, marginRight: null, marginTop: null, mask: null, maskBorder: null, maskBorderMode: null, maskBorderOutset: null, maskBorderRepeat: null, maskBorderSlice: null, maskBorderSource: null, maskBorderWidth: null, maskClip: null, maskComposite: null, maskImage: null, maskMode: null, maskOrigin: null, maskPosition: null, maskRepeat: null, maskSize: null, maskType: null, maxBlockSize: null, maxHeight: null, maxInlineSize: null, maxWidth: null, minBlockSize: null, minHeight: null, minInlineSize: null, minWidth: null, mixBlendMode: null, objectFit: null, objectPosition: null, offset: null, offsetAnchor: null, offsetDistance: null, offsetPath: null, offsetRotate: null, opacity: null, order: null, orphans: null, outline: null, outlineColor: null, outlineOffset: null, outlineStyle: null, outlineWidth: null, overflow: null, overflowAnchor: null, overflowBlock: null, overflowInline: null, overflowWrap: null, overflowX: null, overflowY: null, overscrollBehavior: null, overscrollBehaviorBlock: null, overscrollBehaviorInline: null, overscrollBehaviorX: null, overscrollBehaviorY: null, padding: null, paddingBlock: null, paddingBlockEnd: null, paddingBlockStart: null, paddingBottom: null, paddingInline: null, paddingInlineEnd: null, paddingInlineStart: null, paddingLeft: null, paddingRight: null, paddingTop: null, pageBreakAfter: null, pageBreakBefore: null, pageBreakInside: null, paintOrder: null, perspective: null, perspectiveOrigin: null, placeContent: null, placeItems: null, placeSelf: null, pointerEvents: null, position: null, quotes: null, resize: null, right: null, rotate: null, rowGap: null, scale: null, scrollBehavior: null, scrollMargin: null, scrollMarginBlock: null, scrollMarginBlockEnd: null, scrollMarginBlockStart: null, scrollMarginBottom: null, scrollMarginInline: null, scrollMarginInlineEnd: null, scrollMarginInlineStart: null, scrollMarginLeft: null, scrollMarginRight: null, scrollMarginTop: null, scrollPadding: null, scrollPaddingBlock: null, scrollPaddingBlockEnd: null, scrollPaddingBlockStart: null, scrollPaddingBottom: null, scrollPaddingInline: null, scrollPaddingInlineEnd: null, scrollPaddingInlineStart: null, scrollPaddingLeft: null, scrollPaddingRight: null, scrollPaddingTop: null, scrollSnapAlign: null, scrollSnapStop: null, scrollSnapType: null, scrollbar3dLightColor: null, scrollbarArrowColor: null, scrollbarBaseColor: null, scrollbarColor: null, scrollbarDarkshadowColor: null, scrollbarFaceColor: null, scrollbarHighlightColor: null, scrollbarShadowColor: null, scrollbarTrackColor: null, scrollbarWidth: null, shapeImageThreshold: null, shapeMargin: null, shapeOutside: null, tabSize: null, tableLayout: null, textAlign: null, textAlignLast: null, textCombineUpright: null, textDecoration: null, textDecorationColor: null, textDecorationLine: null, textDecorationSkipInk: null, textDecorationStyle: null, textDecorationThickness: null, textEmphasis: null, textEmphasisColor: null, textEmphasisPosition: null, textEmphasisStyle: null, textIndent: null, textJustify: null, textOrientation: null, textOverflow: null, textRendering: null, textShadow: null, textTransform: null, textUnderlineOffset: null, textUnderlinePosition: null, top: null, touchAction: null, transform: null, transformBox: null, transformOrigin: null, transformStyle: null, transition: null, transitionDelay: null, transitionDuration: null, transitionProperty: null, transitionTimingFunction: null, translate: null, unicodeBidi: null, verticalAlign: null, visibility: null, whiteSpace: null, widows: null, width: null, willChange: null, wordBreak: null, wordSpacing: null, writingMode: null, zIndex: null};
+      oldNode_13620037.dom.style = {m_type: NTI4466293, alignContent: null, alignItems: null, alignSelf: null, all: null, animation: null, animationDelay: null, animationDirection: null, animationDuration: null, animationFillMode: null, animationIterationCount: null, animationName: null, animationPlayState: null, animationTimingFunction: null, backdropFilter: null, backfaceVisibility: null, background: null, backgroundAttachment: null, backgroundBlendMode: null, backgroundClip: null, backgroundColor: null, backgroundImage: null, backgroundOrigin: null, backgroundPosition: null, backgroundRepeat: null, backgroundSize: null, blockSize: null, border: null, borderBlock: null, borderBlockColor: null, borderBlockEnd: null, borderBlockEndColor: null, borderBlockEndStyle: null, borderBlockEndWidth: null, borderBlockStart: null, borderBlockStartColor: null, borderBlockStartStyle: null, borderBlockStartWidth: null, borderBlockStyle: null, borderBlockWidth: null, borderBottom: null, borderBottomColor: null, borderBottomLeftRadius: null, borderBottomRightRadius: null, borderBottomStyle: null, borderBottomWidth: null, borderCollapse: null, borderColor: null, borderEndEndRadius: null, borderEndStartRadius: null, borderImage: null, borderImageOutset: null, borderImageRepeat: null, borderImageSlice: null, borderImageSource: null, borderImageWidth: null, borderInline: null, borderInlineColor: null, borderInlineEnd: null, borderInlineEndColor: null, borderInlineEndStyle: null, borderInlineEndWidth: null, borderInlineStart: null, borderInlineStartColor: null, borderInlineStartStyle: null, borderInlineStartWidth: null, borderInlineStyle: null, borderInlineWidth: null, borderLeft: null, borderLeftColor: null, borderLeftStyle: null, borderLeftWidth: null, borderRadius: null, borderRight: null, borderRightColor: null, borderRightStyle: null, borderRightWidth: null, borderSpacing: null, borderStartEndRadius: null, borderStartStartRadius: null, borderStyle: null, borderTop: null, borderTopColor: null, borderTopLeftRadius: null, borderTopRightRadius: null, borderTopStyle: null, borderTopWidth: null, borderWidth: null, bottom: null, boxDecorationBreak: null, boxShadow: null, boxSizing: null, breakAfter: null, breakBefore: null, breakInside: null, captionSide: null, caretColor: null, clear: null, clip: null, clipPath: null, color: null, colorAdjust: null, columnCount: null, columnFill: null, columnGap: null, columnRule: null, columnRuleColor: null, columnRuleStyle: null, columnRuleWidth: null, columnSpan: null, columnWidth: null, columns: null, contain: null, content: null, counterIncrement: null, counterReset: null, counterSet: null, cursor: null, direction: null, display: null, emptyCells: null, filter: null, flex: null, flexBasis: null, flexDirection: null, flexFlow: null, flexGrow: null, flexShrink: null, flexWrap: null, cssFloat: null, font: null, fontFamily: null, fontFeatureSettings: null, fontKerning: null, fontLanguageOverride: null, fontOpticalSizing: null, fontSize: null, fontSizeAdjust: null, fontStretch: null, fontStyle: null, fontSynthesis: null, fontVariant: null, fontVariantAlternates: null, fontVariantCaps: null, fontVariantEastAsian: null, fontVariantLigatures: null, fontVariantNumeric: null, fontVariantPosition: null, fontVariationSettings: null, fontWeight: null, gap: null, grid: null, gridArea: null, gridAutoColumnHeaders: null, gridAutoFlow: null, gridAutoRows: null, gridColumnHeader: null, gridColumnHeaderEnd: null, gridColumnHeaderStart: null, gridRow: null, gridRowEnd: null, gridRowStart: null, gridTemplate: null, gridTemplateAreas: null, gridTemplateColumnHeaders: null, gridTemplateRows: null, hangingPunctuation: null, height: null, hyphens: null, imageOrientation: null, imageRendering: null, inlineSize: null, inset: null, insetBlock: null, insetBlockEnd: null, insetBlockStart: null, insetInline: null, insetInlineEnd: null, insetInlineStart: null, isolation: null, justifyContent: null, justifyItems: null, justifySelf: null, left: null, letterSpacing: null, lineBreak: null, lineHeight: null, listStyle: null, listStyleImage: null, listStylePosition: null, listStyleType: null, margin: null, marginBlock: null, marginBlockEnd: null, marginBlockStart: null, marginBottom: null, marginInline: null, marginInlineEnd: null, marginInlineStart: null, marginLeft: null, marginRight: null, marginTop: null, mask: null, maskBorder: null, maskBorderMode: null, maskBorderOutset: null, maskBorderRepeat: null, maskBorderSlice: null, maskBorderSource: null, maskBorderWidth: null, maskClip: null, maskComposite: null, maskImage: null, maskMode: null, maskOrigin: null, maskPosition: null, maskRepeat: null, maskSize: null, maskType: null, maxBlockSize: null, maxHeight: null, maxInlineSize: null, maxWidth: null, minBlockSize: null, minHeight: null, minInlineSize: null, minWidth: null, mixBlendMode: null, objectFit: null, objectPosition: null, offset: null, offsetAnchor: null, offsetDistance: null, offsetPath: null, offsetRotate: null, opacity: null, order: null, orphans: null, outline: null, outlineColor: null, outlineOffset: null, outlineStyle: null, outlineWidth: null, overflow: null, overflowAnchor: null, overflowBlock: null, overflowInline: null, overflowWrap: null, overflowX: null, overflowY: null, overscrollBehavior: null, overscrollBehaviorBlock: null, overscrollBehaviorInline: null, overscrollBehaviorX: null, overscrollBehaviorY: null, padding: null, paddingBlock: null, paddingBlockEnd: null, paddingBlockStart: null, paddingBottom: null, paddingInline: null, paddingInlineEnd: null, paddingInlineStart: null, paddingLeft: null, paddingRight: null, paddingTop: null, pageBreakAfter: null, pageBreakBefore: null, pageBreakInside: null, paintOrder: null, perspective: null, perspectiveOrigin: null, placeContent: null, placeItems: null, placeSelf: null, pointerEvents: null, position: null, quotes: null, resize: null, right: null, rotate: null, rowGap: null, scale: null, scrollBehavior: null, scrollMargin: null, scrollMarginBlock: null, scrollMarginBlockEnd: null, scrollMarginBlockStart: null, scrollMarginBottom: null, scrollMarginInline: null, scrollMarginInlineEnd: null, scrollMarginInlineStart: null, scrollMarginLeft: null, scrollMarginRight: null, scrollMarginTop: null, scrollPadding: null, scrollPaddingBlock: null, scrollPaddingBlockEnd: null, scrollPaddingBlockStart: null, scrollPaddingBottom: null, scrollPaddingInline: null, scrollPaddingInlineEnd: null, scrollPaddingInlineStart: null, scrollPaddingLeft: null, scrollPaddingRight: null, scrollPaddingTop: null, scrollSnapAlign: null, scrollSnapStop: null, scrollSnapType: null, scrollbar3dLightColor: null, scrollbarArrowColor: null, scrollbarBaseColor: null, scrollbarColor: null, scrollbarDarkshadowColor: null, scrollbarFaceColor: null, scrollbarHighlightColor: null, scrollbarShadowColor: null, scrollbarTrackColor: null, scrollbarWidth: null, shapeImageThreshold: null, shapeMargin: null, shapeOutside: null, tabSize: null, tableLayout: null, textAlign: null, textAlignLast: null, textCombineUpright: null, textDecoration: null, textDecorationColor: null, textDecorationLine: null, textDecorationSkipInk: null, textDecorationStyle: null, textDecorationThickness: null, textEmphasis: null, textEmphasisColor: null, textEmphasisPosition: null, textEmphasisStyle: null, textIndent: null, textJustify: null, textOrientation: null, textOverflow: null, textRendering: null, textShadow: null, textTransform: null, textUnderlineOffset: null, textUnderlinePosition: null, top: null, touchAction: null, transform: null, transformBox: null, transformOrigin: null, transformStyle: null, transition: null, transitionDelay: null, transitionDuration: null, transitionProperty: null, transitionTimingFunction: null, translate: null, unicodeBidi: null, verticalAlign: null, visibility: null, whiteSpace: null, widows: null, width: null, willChange: null, wordBreak: null, wordSpacing: null, writingMode: null, zIndex: null};
     }
     
     F.line = 318;
@@ -8900,7 +8900,7 @@ function mismatch_16430201(column_16430204, contents_16430205, suggested_column_
   var F={procname:"mismatch.mismatch",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 68;
-    result_16430207 = nimCopy(null, (makeNimstrLit("Cel and Column schema mismatch for: \x0A") || []).concat(column_16430204.title || [],makeNimstrLit("\x0Acel content type is: int\x0A but column type is: \x0A") || [],reprEnum(column_16430204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16430206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16430204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
+    result_16430207 = nimCopy(null, (makeNimstrLit("Cel and ColumnHeader schema mismatch for: \x0A") || []).concat(column_16430204.title || [],makeNimstrLit("\x0Acel content type is: int\x0A but column type is: \x0A") || [],reprEnum(column_16430204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16430206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16430204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
   framePtr = F.prev;
 
   return result_16430207;
@@ -9257,7 +9257,7 @@ function missing_16330065(column_16330067, missing_16330068) {
   var F={procname:"render_table.missing",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 54;
-    result_16330069 = nimCopy(null, (makeNimstrLit("Column: \x0A") || []).concat(HEX24_16330070(column_16330067) || [],makeNimstrLit("\x0A is missing a ") || [],missing_16330068 || []), NTI3573013);
+    result_16330069 = nimCopy(null, (makeNimstrLit("ColumnHeader: \x0A") || []).concat(HEX24_16330070(column_16330067) || [],makeNimstrLit("\x0A is missing a ") || [],missing_16330068 || []), NTI3573013);
   framePtr = F.prev;
 
   return result_16330069;
@@ -9285,7 +9285,7 @@ function cel_16426432(contents_16426435, id_16426436, column_16426437, table_sty
       switch (column_16426437.cel_kind) {
       case 6:
         F.line = 170;
-        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       default: 
         F.line = 173;
@@ -9298,7 +9298,7 @@ function cel_16426432(contents_16426435, id_16426436, column_16426437, table_sty
       switch (column_16426437.cel_kind) {
       case 0:
         F.line = 179;
-        raiseException({message: missing_16330065(column_16426437, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+        raiseException({message: missing_16330065(column_16426437, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
         break;
       case 4:
         F.line = 183;
@@ -9318,27 +9318,27 @@ function cel_16426432(contents_16426435, id_16426436, column_16426437, table_sty
         break;
       case 1:
         F.line = 200;
-        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 3:
         F.line = 210;
-        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 5:
         F.line = 220;
-        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 2:
         F.line = 236;
-        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 2), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 2), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 6:
         F.line = 253;
-        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 7:
         F.line = 259;
-        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16430201(result_16426439.column, contents_16426435, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       }
       break;
@@ -9370,7 +9370,7 @@ function mismatch_16485201(column_16485204, contents_16485205, suggested_column_
   var F={procname:"mismatch.mismatch",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 68;
-    result_16485207 = nimCopy(null, (makeNimstrLit("Cel and Column schema mismatch for: \x0A") || []).concat(column_16485204.title || [],makeNimstrLit("\x0Acel content type is: DataQuality\x0A but column type is: \x0A") || [],reprEnum(column_16485204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16485206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16485204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
+    result_16485207 = nimCopy(null, (makeNimstrLit("Cel and ColumnHeader schema mismatch for: \x0A") || []).concat(column_16485204.title || [],makeNimstrLit("\x0Acel content type is: DataQuality\x0A but column type is: \x0A") || [],reprEnum(column_16485204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16485206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16485204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
   framePtr = F.prev;
 
   return result_16485207;
@@ -9523,7 +9523,7 @@ function cel_16480217(contents_16480220, id_16480221, column_16480222, table_sty
       switch (column_16480222.cel_kind) {
       case 6:
         F.line = 170;
-        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       default: 
         F.line = 173;
@@ -9536,23 +9536,23 @@ function cel_16480217(contents_16480220, id_16480221, column_16480222, table_sty
       switch (column_16480222.cel_kind) {
       case 0:
         F.line = 179;
-        raiseException({message: missing_16330065(column_16480222, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+        raiseException({message: missing_16330065(column_16480222, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
         break;
       case 4:
         F.line = 190;
-        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 1:
         F.line = 200;
-        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 3:
         F.line = 210;
-        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 5:
         F.line = 220;
-        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 2:
         F.line = 224;
@@ -9602,11 +9602,11 @@ function cel_16480217(contents_16480220, id_16480221, column_16480222, table_sty
         break;
       case 6:
         F.line = 253;
-        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 7:
         F.line = 259;
-        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16485201(result_16480224.column, contents_16480220, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       }
       break;
@@ -9638,7 +9638,7 @@ function mismatch_16560201(column_16560204, contents_16560205, suggested_column_
   var F={procname:"mismatch.mismatch",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 68;
-    result_16560207 = nimCopy(null, (makeNimstrLit("Cel and Column schema mismatch for: \x0A") || []).concat(column_16560204.title || [],makeNimstrLit("\x0Acel content type is: float\x0A but column type is: \x0A") || [],reprEnum(column_16560204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16560206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16560204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
+    result_16560207 = nimCopy(null, (makeNimstrLit("Cel and ColumnHeader schema mismatch for: \x0A") || []).concat(column_16560204.title || [],makeNimstrLit("\x0Acel content type is: float\x0A but column type is: \x0A") || [],reprEnum(column_16560204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16560206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16560204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
   framePtr = F.prev;
 
   return result_16560207;
@@ -9666,7 +9666,7 @@ function cel_16555223(contents_16555226, id_16555227, column_16555228, table_sty
       switch (column_16555228.cel_kind) {
       case 6:
         F.line = 170;
-        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       default: 
         F.line = 173;
@@ -9679,19 +9679,19 @@ function cel_16555223(contents_16555226, id_16555227, column_16555228, table_sty
       switch (column_16555228.cel_kind) {
       case 0:
         F.line = 179;
-        raiseException({message: missing_16330065(column_16555228, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+        raiseException({message: missing_16330065(column_16555228, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
         break;
       case 4:
         F.line = 190;
-        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 1:
         F.line = 200;
-        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 3:
         F.line = 210;
-        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 5:
         F.line = 214;
@@ -9709,15 +9709,15 @@ function cel_16555223(contents_16555226, id_16555227, column_16555228, table_sty
         break;
       case 2:
         F.line = 236;
-        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 2), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 2), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 6:
         F.line = 253;
-        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 7:
         F.line = 259;
-        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16560201(result_16555230.column, contents_16555226, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       }
       break;
@@ -9749,7 +9749,7 @@ function mismatch_16625201(column_16625204, contents_16625205, suggested_column_
   var F={procname:"mismatch.mismatch",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 68;
-    result_16625207 = nimCopy(null, (makeNimstrLit("Cel and Column schema mismatch for: \x0A") || []).concat(column_16625204.title || [],makeNimstrLit("\x0Acel content type is: bool\x0A but column type is: \x0A") || [],reprEnum(column_16625204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16625206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16625204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
+    result_16625207 = nimCopy(null, (makeNimstrLit("Cel and ColumnHeader schema mismatch for: \x0A") || []).concat(column_16625204.title || [],makeNimstrLit("\x0Acel content type is: bool\x0A but column type is: \x0A") || [],reprEnum(column_16625204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16625206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16625204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
   framePtr = F.prev;
 
   return result_16625207;
@@ -9807,27 +9807,27 @@ function cel_16610623(contents_16610626, id_16610627, column_16610628, table_sty
       switch (column_16610628.cel_kind) {
       case 0:
         F.line = 179;
-        raiseException({message: missing_16330065(column_16610628, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+        raiseException({message: missing_16330065(column_16610628, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
         break;
       case 4:
         F.line = 190;
-        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 1:
         F.line = 200;
-        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 3:
         F.line = 210;
-        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 5:
         F.line = 220;
-        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 2:
         F.line = 236;
-        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 2), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 2), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 6:
         F.line = 240;
@@ -9852,7 +9852,7 @@ function cel_16610623(contents_16610626, id_16610627, column_16610628, table_sty
         break;
       case 7:
         F.line = 259;
-        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16625201(result_16610630.column, contents_16610626, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       }
       break;
@@ -9884,7 +9884,7 @@ function mismatch_16670201(column_16670204, contents_16670205, suggested_column_
   var F={procname:"mismatch.mismatch",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 68;
-    result_16670207 = nimCopy(null, (makeNimstrLit("Cel and Column schema mismatch for: \x0A") || []).concat(column_16670204.title || [],makeNimstrLit("\x0Acel content type is: WeatherPointError\x0A but column type is: \x0A") || [],reprEnum(column_16670204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16670206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16670204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
+    result_16670207 = nimCopy(null, (makeNimstrLit("Cel and ColumnHeader schema mismatch for: \x0A") || []).concat(column_16670204.title || [],makeNimstrLit("\x0Acel content type is: WeatherPointError\x0A but column type is: \x0A") || [],reprEnum(column_16670204.cel_kind, NTI16292021) || [],makeNimstrLit("Either change your column type to: ") || [],reprEnum(suggested_column_type_16670206, NTI16292021) || [],makeNimstrLit("\x0Aor examine your object/tuple\'s ") || [],column_16670204.name || [],makeNimstrLit(" fields.") || []), NTI3573013);
   framePtr = F.prev;
 
   return result_16670207;
@@ -9936,7 +9936,7 @@ function cel_16665223(contents_16665226, id_16665227, column_16665228, table_sty
       switch (column_16665228.cel_kind) {
       case 6:
         F.line = 170;
-        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       default: 
         F.line = 173;
@@ -9949,23 +9949,23 @@ function cel_16665223(contents_16665226, id_16665227, column_16665228, table_sty
       switch (column_16665228.cel_kind) {
       case 0:
         F.line = 179;
-        raiseException({message: missing_16330065(column_16665228, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+        raiseException({message: missing_16330065(column_16665228, makeNimstrLit("cel_kind")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
         break;
       case 4:
         F.line = 190;
-        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 4), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 1:
         F.line = 200;
-        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 1), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 3:
         F.line = 210;
-        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 3), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 5:
         F.line = 220;
-        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 5), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 2:
         F.line = 224;
@@ -10015,11 +10015,11 @@ function cel_16665223(contents_16665226, id_16665227, column_16665228, table_sty
         break;
       case 6:
         F.line = 253;
-        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 6), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       case 7:
         F.line = 259;
-        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnCelDataMismatch");
+        raiseException({message: mismatch_16670201(result_16665230.column, contents_16665226, 7), parent: null, m_type: NTI16292017, name: null, trace: [], up: null}, "ColumnHeaderCelDataMismatch");
         break;
       }
       break;
@@ -10349,7 +10349,7 @@ function missing_16335427(column_16335429, missing_16335430, suggestion_16335431
   var F={procname:"render_table.missing",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     F.line = 58;
-    result_16335432 = nimCopy(null, (makeNimstrLit("Column: \x0A") || []).concat(HEX24_16330070(column_16335429) || [],makeNimstrLit("\x0A is missing a ") || [],missing_16335430 || [],makeNimstrLit(".\x0A such as: \x0A") || [],suggestion_16335431 || []), NTI3573013);
+    result_16335432 = nimCopy(null, (makeNimstrLit("ColumnHeader: \x0A") || []).concat(HEX24_16330070(column_16335429) || [],makeNimstrLit("\x0A is missing a ") || [],missing_16335430 || [],makeNimstrLit(".\x0A such as: \x0A") || [],suggestion_16335431 || []), NTI3573013);
   framePtr = F.prev;
 
   return result_16335432;
@@ -10381,17 +10381,17 @@ function valid_16335485(columns_16335488) {
             var missing_kind_16345222 = (column_16345214.cel_kind == 0);
             if (missing_title_16345215) {
             F.line = 79;
-            raiseException({message: missing_16330065(column_16345214, makeNimstrLit("title")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+            raiseException({message: missing_16330065(column_16345214, makeNimstrLit("title")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
             }
             else {
             if (missing_name_16345216) {
             F.line = 82;
-            raiseException({message: missing_16330065(column_16345214, makeNimstrLit("name")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+            raiseException({message: missing_16330065(column_16345214, makeNimstrLit("name")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
             }
             else {
             if (missing_kind_16345222) {
             F.line = 85;
-            raiseException({message: missing_16335427(column_16345214, makeNimstrLit("cel kind"), makeNimstrLit("Text, Dropdown, TextArea, Integer, FloatingPoint, Checkbox, CustomVDom")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumn");
+            raiseException({message: missing_16335427(column_16345214, makeNimstrLit("cel kind"), makeNimstrLit("Text, Dropdown, TextArea, Integer, FloatingPoint, Checkbox, CustomVDom")), parent: null, m_type: NTI16292015, name: null, trace: [], up: null}, "InvalidColumnHeader");
             }
             else {
               F.line = 90;

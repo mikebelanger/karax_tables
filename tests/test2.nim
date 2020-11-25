@@ -18,35 +18,35 @@ type
 
 var users: seq[User]
 let 
-    name_column = Column(
+    name_column = ColumnHeader(
         name: "username", 
         title: "Name", 
         cel_kind: Text, 
         cel_affordance: ReadAndWrite, 
     )
 
-    id_column = Column(
+    id_column = ColumnHeader(
         name: "id",
         title: "ID",
         cel_kind: Integer, 
         cel_affordance: HiddenField
     )
 
-    user_kind_column = Column(
+    user_kind_column = ColumnHeader(
         name: "user_kind", 
         cel_kind: Dropdown, 
         cel_affordance: ReadAndWrite, 
         title: "Kind of user", 
     )
     
-    age = Column(
+    age = ColumnHeader(
         name: "age",
         cel_kind: Integer,
         cel_affordance: ReadAndWrite,
         title: "Age"
     )
 
-    active = Column(
+    active = ColumnHeader(
         name: "active",
         cel_kind: Checkbox,
         cel_affordance: ReadAndWrite,

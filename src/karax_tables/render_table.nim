@@ -4,8 +4,8 @@ import macros
 import random
 
 type
-    InvalidColumn* = object of ValueError
-    ColumnCelDataMismatch* = object of ValueError
+    InvalidColumnHeader* = object of ValueError
+    ColumnHeaderCelDataMismatch* = object of ValueError
 
     CelAffordance* = enum
         ReadOnly
@@ -27,47 +27,56 @@ type
         Center
         Right
 
-    ColumnKind* = enum
+    ColumnHeaderKind* = enum
         ObjectAttr
         RowAction
 
-    Column* = object
+    ColumnHeader* = object
         name*, title*: string
         cel_kind*: CelKind
         cel_affordance*: CelAffordance
         title_align*, cel_content_align*: AlignContent
-        column_kind*: ColumnKind
+        column_kind*: ColumnHeaderKind
     
     Cel* = object
-        column*: Column
+        column*: ColumnHeader
         contents: VNode
+    
+    Row* = object
+        visible*: bool
+        cels*: seq[Cel]
 
     TableStyle* = object
         cell_padding*, cell_spacing*: int
         table_class*, thead_class*, th_class*, tbody_class*, tr_class*, td_class*: string
 
+    KTable*[T] = object
+        column_headers*: seq[ColumnHeader]
+        rows*: seq[T]
+        style*: TableStyle
+
 const 
     cel_kinds = (CelKind.low..CelKind.high).mapIt($it).filterIt(it != "UnspecifiedCelKind").join(", ")
 
-proc missing(column: Column, missing: string): string =
+proc missing(column: ColumnHeader, missing: string): string =
     result = 
-        "Column: \n" & $column & "\n is missing a " & missing
+        "ColumnHeader: \n" & $column & "\n is missing a " & missing
 
-proc missing(column: Column, missing, suggestion: string): string =
+proc missing(column: ColumnHeader, missing, suggestion: string): string =
     result =
-        "Column: \n" & $column & "\n is missing a " & $missing & ".\n" & " such as: \n" &
+        "ColumnHeader: \n" & $column & "\n is missing a " & $missing & ".\n" & " such as: \n" &
         suggestion
 
-proc mismatch(column: Column, contents: string | bool | int | float | enum | object, suggested_column_type: CelKind): string =
+proc mismatch(column: ColumnHeader, contents: string | bool | int | float | enum | object, suggested_column_type: CelKind): string =
     result = 
-        "Cel and Column schema mismatch for: \n" & 
+        "Cel and ColumnHeader schema mismatch for: \n" & 
             column.title & "\ncel content type is: " & 
             $contents.typeof & "\n but column type is: \n" & 
             $column.cel_kind &
             "Either change your column type to: " & $suggested_column_type & "\n" &
             "or examine your object/tuple's " & $column.name & " fields."
 
-proc valid(columns: seq[Column]): seq[Column] =
+proc valid(columns: seq[ColumnHeader]): seq[ColumnHeader] =
     ## Determine which columns are completed and which aren't.2
     for column in columns:
         let
@@ -76,13 +85,13 @@ proc valid(columns: seq[Column]): seq[Column] =
             missing_kind = column.cel_kind == UnspecifiedCelKind
         
         if missing_title:
-            raise newException(InvalidColumn, missing(column, "title"))
+            raise newException(InvalidColumnHeader, missing(column, "title"))
         
         elif missing_name:
-            raise newException(InvalidColumn, missing(column, "name"))
+            raise newException(InvalidColumnHeader, missing(column, "name"))
         
         elif missing_kind:
-            raise newException(InvalidColumn, missing(column, "cel kind", suggestion = cel_kinds)
+            raise newException(InvalidColumnHeader, missing(column, "cel kind", suggestion = cel_kinds)
             )
 
         else:
@@ -90,10 +99,10 @@ proc valid(columns: seq[Column]): seq[Column] =
             result.add(column)
 
 
-proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): seq[Column] =
+proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): seq[ColumnHeader] =
     ## For auto-inferring column headers from an object's fields
     for key, value in obj.fieldPairs:
-        var col = Column(name: $key)
+        var col = ColumnHeader(name: $key)
 
         when value.typeof is object:
             result.add(value.column_headers(affordance))
@@ -144,7 +153,7 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
                         option(value = option):
                             text option
 
-proc cel(contents: string | int | float | enum | bool, id: int, column: Column, table_style: TableStyle): Cel =
+proc cel(contents: string | int | float | enum | bool, id: int, column: ColumnHeader, table_style: TableStyle): Cel =
     ## generates cel based on an object/tuples's value
     let the_id = $id & "_" & $(500.rand)
     result = 
@@ -171,7 +180,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                         result.contents.add(form_input)
 
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Checkbox))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, Checkbox))
                 
                 else:
                     let form = buildHtml(tdiv(text($contents)))
@@ -183,7 +192,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
             case column.cel_kind:
                 
                 of UnspecifiedCelKind:
-                    raise newException(InvalidColumn, missing(column, "cel_kind"))
+                    raise newException(InvalidColumnHeader, missing(column, "cel_kind"))
 
                 of Integer:
                     when contents is int:
@@ -194,7 +203,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                         result.contents.add(form_input)
 
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Integer))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, Integer))
 
                 of Text:
                     when contents is string:
@@ -204,7 +213,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                         result.contents.add(form_input)
 
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Text))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, Text))
 
                 of TextArea:
                     when contents is string:
@@ -214,7 +223,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                         result.contents.add(form_input)
 
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, TextArea))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, TextArea))
 
                 of FloatingPoint:
                     when contents is float:
@@ -224,7 +233,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                         result.contents.add(form_input)
 
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, FloatingPoint))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, FloatingPoint))
 
                 of Dropdown:
                     when contents is enum:
@@ -240,7 +249,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                         result.contents.setAttr("class", column.name)
 
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Dropdown))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, Dropdown))
                 
                 of Checkbox:
                     when contents is bool:
@@ -257,13 +266,13 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                         result.contents.add(form_input)
 
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, Checkbox))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, Checkbox))
 
                 of CustomVDom:
                     when contents is VNode:
                         result.contents = contents
                     else:
-                        raise newException(ColumnCelDataMismatch, mismatch(result.column, contents, CustomVDom))
+                        raise newException(ColumnHeaderCelDataMismatch, mismatch(result.column, contents, CustomVDom))
 
         of HiddenField:
             let vnode = buildHtml(input(type = "hidden"))
@@ -273,7 +282,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
             result.contents = vnode
 
 
-proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle): seq[Cel] =
+proc to_cels(obj: object | tuple, columns: seq[ColumnHeader], table_style: TableStyle): seq[Cel] =
 
     # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
 
@@ -494,16 +503,8 @@ proc add_any_listeners(vnode: VNode, thing: object | seq[object]): VNode =
 
     return result
 
-proc row*(obj: object | tuple, columns: seq[Column], index: int, table_style: TableStyle): VNode =
-    ## Generates a single row from an object/tuple.
-    
-    result = buildHtml(tr(class = table_style.tr_class, id = $index))
-
-    for cel in obj.to_cels(columns, table_style):
-        result.add(cel.contents)
-
     # now add any event listeners
-    return result.add_any_listeners(obj)
+    # return result.add_any_listeners(obj)
 
 proc headers(columns: seq[object], table_style: TableStyle): VNode =
     result = buildHtml(thead(class = table_style.thead_class))
@@ -594,41 +595,51 @@ when defined(js):
 
     proc updated*[T](event: kdom.Event, obj: T): T =
 
-        when obj is Column:
+        when obj is ColumnHeader:
             return obj
         else:
             return event.tr_to_json(obj).to(obj.typedesc)
 
-proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
-    ## renders table based on sequence of objects/tuples and Columns.
+proc render*(row: Row, index: int, table_style: TableStyle): VNode =
+    ## Generates a single row from an object/tuple.
+    
+    result = buildHtml(tr(class = table_style.tr_class, id = $index))
+
+    for cel in row.cels:
+        result.add(cel.contents)
+
+
+proc render*(ktable: KTable): VNode =
+    ## renders table based on sequence of objects/tuples and ColumnHeaders.
 
     result = buildHtml():
-        table(class = table_style.table_class, 
-                cellpadding = $table_style.cell_padding, 
-                cellspacing = $table_style.cell_spacing):
+        table(class = ktable.style.table_class, 
+                cellpadding = $ktable.style.cell_padding, 
+                cellspacing = $ktable.style.cell_spacing):
 
-            columns.headers(table_style)
+            # ktable.columns_headers.render(ktable.table_style)
             
-            tbody(class = table_style.tbody_class):
-                if objs.len > 0:
-                    for number, obj in objs:
-                        obj.row(columns, number, table_style)
-    if objs.len > 0:
-        return result.add_any_listeners(objs)
+            tbody(class = ktable.style.tbody_class):
+                if ktable.rows.len > 0:
+                    for row_number, row in ktable.rows:
+                        row.render(ktable.column_headers, row_number, ktable.style)
+
+    if ktable.rows.len > 0:
+        return result.add_any_listeners(ktable.rows)
     else:
         return result
 
-proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
-    ## render table with default column names and attributes
-    runnableExamples:
-        some_object_array.karax_table
-        some_object_array.karax_table(all_columns = ReadAndWrite)
+# proc render*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
+#     ## render table with default column names and attributes
+#     runnableExamples:
+#         some_object_array.karax_table
+#         some_object_array.karax_table(all_columns = ReadAndWrite)
 
-    render_table(objs, objs[0].column_headers(all_columns), table_style)
+#     render_ktable(objs, objs[0].column_headers(all_columns), table_style)
 
-proc karax_table*(objs: seq[object | tuple], columns: seq[Column], table_style = TableStyle()): VNode =
-    ## render table with custom columns names and attributes
-    runnableExamples:
-        some_object_array.karax_table(columns = @[Column(title: "My Column", name: "my_column")])
+# proc karax_table*(objs: seq[object | tuple], columns: seq[ColumnHeader], table_style = TableStyle()): VNode =
+#     ## render table with custom columns names and attributes
+#     runnableExamples:
+#         some_object_array.karax_table(columns = @[ColumnHeader(title: "My ColumnHeader", name: "my_column")])
 
-    render_table(objs, columns.valid, table_style)
+#     render_ktable(objs, columns.valid, table_style)

@@ -113,7 +113,7 @@ git clone https://github.com/mikebelanger/karax_tables.git
     + [With Objects](./documents/creating/with_objects.md)
     + [With Tuples](./documents/creating/with_tuples.md)
 * ### Customizing
-    + [Columns](./documents/columns.md)
+    + [ColumnHeaders](./documents/columns.md)
         + Text/Textarea
         + Numbers
         + Drop-downs 
