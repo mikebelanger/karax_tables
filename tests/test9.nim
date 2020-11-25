@@ -113,6 +113,7 @@ when defined(js):
     var to_delete: seq[int]
     var search_str: string
     var all_users = users
+    var filtered_users: seq[UserRow]
 
     proc mode(es: seq[UserKind]): enum =
 
@@ -214,23 +215,20 @@ when defined(js):
         
         users = updated_users
 
-    proc search() =
+    proc search_users(usrs: seq[UserRow]) =
         echo "searching..."
         search_str = $(document.querySelector("#search").value)
         
-        if search_str == "":
-            users = all_users
-
-        else:
-            echo all_users.search(search_str)
-            users = all_users.search(search_str)
-
+        filtered_users = users.search(search_str)
 
     proc render(): VNode = 
         result = buildHtml():
             tdiv:
-                # users.karax_table(table_style = custom_style, all_columns = ReadAndWrite)
-                users.karax_table(columns = columns, table_style = custom_style)
+                if search_str == "":
+                    users.karax_table(columns = columns, table_style = custom_style)
+                
+                else:
+                    filtered_users.karax_table(columns = columns, table_style = custom_style)
 
                 # tdiv:
                 #     p: text "Most common kind of user: " & $(users
@@ -249,7 +247,7 @@ when defined(js):
                 button(onclick = () => delete_users()):
                     text "Delete Selected Users"
 
-                input(`type` = "text", id = "search", onkeyup = () => search()):
+                input(`type` = "text", id = "search", onkeyup = () => search_users(users)):
                     text search_str
 
     setRenderer render
