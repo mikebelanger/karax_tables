@@ -1,5 +1,5 @@
 import karax / [karaxdsl, vdom, vstyles]
-import sequtils, strutils, json
+import sequtils, strutils, json, sugar
 import macros
 import random
 
@@ -526,6 +526,32 @@ proc to_string*(vnode: VNode): string =
     else:
         $vnode
 
+proc matches*[T](obj: T, search_str: string): bool =
+    for field, val in obj.fieldPairs:
+        when val is int:
+            if ($val).contains(search_str):
+                return true
+
+        when val is float:
+            if ($val).contains(search_str):
+                return true
+        
+        when val is string:
+            if val.contains(search_str):
+                return true
+
+        when val is enum:
+            if ($val).contains(search_str):
+                return true
+    
+        when val is object:
+            return val.matches(search_str)
+
+    return false
+
+proc search*[T](objs: seq[T], search_str: string): seq[T] =
+    return objs.filter((obj) => obj.matches(search_str))
+
 when defined(js):
     import karax / [kdom]
 
@@ -618,13 +644,17 @@ proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: 
     else:
         return result
 
+
 proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
     ## render table with default column names and attributes
     runnableExamples:
         some_object_array.karax_table
         some_object_array.karax_table(all_columns = ReadAndWrite)
 
-    render_table(objs, objs[0].column_headers(all_columns), table_style)
+    if objs.len > 0:
+        result = render_table(objs, objs[0].column_headers(all_columns), table_style)
+    else:
+        result = buildHtml(tdiv())
 
 proc karax_table*(objs: seq[object | tuple], columns: seq[Column], table_style = TableStyle()): VNode =
     ## render table with custom columns names and attributes

@@ -111,6 +111,8 @@ when defined(js):
 
     var updated_users: seq[UserRow]
     var to_delete: seq[int]
+    var search_str: string
+    var all_users = users
 
     proc mode(es: seq[UserKind]): enum =
 
@@ -212,19 +214,31 @@ when defined(js):
         
         users = updated_users
 
+    proc search() =
+        echo "searching..."
+        search_str = $(document.querySelector("#search").value)
+        
+        if search_str == "":
+            users = all_users
+
+        else:
+            echo all_users.search(search_str)
+            users = all_users.search(search_str)
+
+
     proc render(): VNode = 
         result = buildHtml():
             tdiv:
                 # users.karax_table(table_style = custom_style, all_columns = ReadAndWrite)
-                users.karax_table(table_style = custom_style)
+                users.karax_table(columns = columns, table_style = custom_style)
 
-                tdiv:
-                    p: text "Most common kind of user: " & $(users
-                                                            .map((user_row) => user_row.user.user_kind)
-                                                            .mode)
+                # tdiv:
+                #     p: text "Most common kind of user: " & $(users
+                #                                             .map((user_row) => user_row.user.user_kind)
+                #                                             .mode)
 
-                tdiv:
-                    p: text "Average age: " & $(users.map((user_row) => user_row.user.age).mean)
+                # tdiv:
+                #     p: text "Average age: " & $(users.map((user_row) => user_row.user.age).mean)
 
                 button(onclick = () => echo updated_users):
                     text "what are users now?"
@@ -234,6 +248,9 @@ when defined(js):
                 
                 button(onclick = () => delete_users()):
                     text "Delete Selected Users"
+
+                input(`type` = "text", id = "search", onkeyup = () => search()):
+                    text search_str
 
     setRenderer render
 else:
