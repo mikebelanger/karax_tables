@@ -20,7 +20,7 @@ type
 
     UserRow = object
         user: User
-        to_delete: bool
+        selected: bool
 
 var users: seq[UserRow]
 var columns: seq[Column]
@@ -61,10 +61,10 @@ columns.add(Column(
 )
 
 columns.add(Column(
-        name: "to_delete",
+        name: "selected",
         cel_kind: Checkbox,
         cel_affordance: ReadAndWrite,
-        title: "Delete",
+        title: "Select",
         title_align: Right,
         column_kind: RowAction
     )
@@ -110,7 +110,7 @@ when defined(js):
     import karax/[kdom]
 
     var updated_users: seq[UserRow]
-    var to_delete: seq[int]
+    var selected: seq[int]
     var search_str: string
     var all_users = users
     var filtered_users: seq[UserRow]
@@ -146,21 +146,6 @@ when defined(js):
         )
 
         users.add(UserRow(user: new_user))
-
-
-    # proc ondblclick(table_users: seq[UserRow], e: Event) =
-    #     echo "double click"
-    #     echo table_users
-    #     echo e.currentTarget.querySelector("#username").innerHtml
-        # for index, user in users:
-        #     users[index] = UserRow(
-        #         user: User(
-        #             username: random_name(),
-        #             id: rand(100),
-        #             age: rand(100.00),
-        #             user_kind: rand(UserKind.low..UserKind.high)
-        #         )
-        #     )
 
     proc by_age(first, second: UserRow): int =
         if first.user.age > second.user.age:
@@ -210,7 +195,7 @@ when defined(js):
     proc delete_users() =
         updated_users = @[]
         for index, user_row in users:
-            if not user_row.to_delete:
+            if not user_row.selected:
                 updated_users.add(user_row)
         
         users = updated_users
