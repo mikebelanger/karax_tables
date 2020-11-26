@@ -1362,6 +1362,13 @@ function chckRange(i_2680016, a_2680017, b_2680018) {
   return result_2680019;
 
 }
+function mnewString(len_2655044) {
+        return new Array(len_2655044);
+  
+
+  
+}
+var ConstSet2 = setConstr([65, 90]);
 function reprEnum(e_2740272, typ_2740273) {
   var result_2740274 = [];
 
@@ -1427,7 +1434,7 @@ function nimMax(a_2655821, b_2655822) {
   return result_2655823;
 
 }
-var ConstSet2 = setConstr(6);
+var ConstSet3 = setConstr(6);
 function raiseFieldError(f_2645047) {
     raiseException({message: nimCopy(null, f_2645047, NTI2381013), parent: null, m_type: NTI2387651, name: null, trace: [], up: null}, "FieldDefect");
 
@@ -1506,34 +1513,27 @@ function genericReset(x_2675044, ti_2675045) {
   return result_2675046;
 
 }
-var ConstSet3 = setConstr(5);
-var ConstSet4 = setConstr(6);
-var ConstSet5 = setConstr(4);
+var ConstSet4 = setConstr(5);
+var ConstSet5 = setConstr(6);
 var ConstSet6 = setConstr(4);
-var ConstSet7 = setConstr(2);
+var ConstSet7 = setConstr(4);
 var ConstSet8 = setConstr(2);
-var ConstSet9 = setConstr(3);
+var ConstSet9 = setConstr(2);
 var ConstSet10 = setConstr(3);
-var ConstSet11 = setConstr(1);
+var ConstSet11 = setConstr(3);
 var ConstSet12 = setConstr(1);
-var ConstSet13 = setConstr(6);
+var ConstSet13 = setConstr(1);
 var ConstSet14 = setConstr(6);
-var ConstSet15 = setConstr(5);
+var ConstSet15 = setConstr(6);
 var ConstSet16 = setConstr(5);
 var ConstSet17 = setConstr(5);
 var ConstSet18 = setConstr(5);
 var ConstSet19 = setConstr(5);
-var ConstSet20 = setConstr(4, 0);
-function mnewString(len_2655044) {
-        return new Array(len_2655044);
-  
-
-  
-}
-var ConstSet21 = setConstr([48, 57]);
-var ConstSet22 = setConstr(0, 125);
-var ConstSet23 = setConstr([48, 57]);
-var ConstSet24 = setConstr([65, 90]);
+var ConstSet20 = setConstr(5);
+var ConstSet21 = setConstr(4, 0);
+var ConstSet22 = setConstr([48, 57]);
+var ConstSet23 = setConstr(0, 125);
+var ConstSet24 = setConstr([48, 57]);
 var ConstSet25 = setConstr([97, 122], [65, 90], [48, 57], [128, 255], 95);
 var ConstSet26 = setConstr(4, 0);
 var ConstSet27 = setConstr(4);
@@ -9473,25 +9473,78 @@ function contains_11415277(s_11415279, sub_11415280) {
   return result_11415281;
 
 }
+function nsuToLowerAsciiChar(c_10650023) {
+  var result_10650024 = 0;
+
+  var F={procname:"strutils.toLowerAscii",prev:framePtr,filename:"/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/strutils.nim",line:0};
+  framePtr = F;
+    if ((ConstSet2[c_10650023] != undefined)) {
+    F.line = 211;
+    result_10650024 = chckRange(addInt(c_10650023, 32), 0, 255);
+    }
+    else {
+      F.line = 213;
+      result_10650024 = c_10650023;
+    }
+    
+  framePtr = F.prev;
+
+  return result_10650024;
+
+}
+function nsuToLowerAsciiStr(s_10655048) {
+  var result_10655049 = [];
+
+  var F={procname:"strutils.toLowerAscii",prev:framePtr,filename:"/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/strutils.nim",line:0};
+  framePtr = F;
+    F.line = 216;
+    result_10655049 = nimCopy(null, mnewString(chckRange((s_10655048).length, 0, 2147483647)), NTI2381013);
+    L1: do {
+      F.line = 217;
+      var iHEX60gensym7_10660009 = 0;
+      F.line = 66;
+      var colontmp__15700444 = 0;
+      F.line = 217;
+      colontmp__15700444 = subInt((s_10655048).length, 1);
+      F.line = 77;
+      var res_15700445 = 0;
+      L2: do {
+        F.line = 78;
+          L3: while (true) {
+          if (!(res_15700445 <= colontmp__15700444)) break L3;
+            F.line = 232;
+            iHEX60gensym7_10660009 = res_15700445;
+            F.line = 218;
+            result_10655049[chckIndx(iHEX60gensym7_10660009, 0, (result_10655049).length-1)] = nsuToLowerAsciiChar(s_10655048[chckIndx(iHEX60gensym7_10660009, 0, (s_10655048).length-1)]);
+            F.line = 80;
+            res_15700445 = addInt(res_15700445, 1);
+          }
+      } while(false);
+    } while(false);
+  framePtr = F.prev;
+
+  return result_10655049;
+
+}
 function matches_15432043(obj_15432046, search_str_15432047) {
   var result_15432048 = false;
 
   var F={procname:"matches.matches",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
   BeforeRet: do {
-    if (contains_11415277(obj_15432046.name, search_str_15432047)) {
+    if (contains_11415277(nsuToLowerAsciiStr(obj_15432046.name), nsuToLowerAsciiStr(search_str_15432047))) {
     F.line = 541;
     result_15432048 = true;
     break BeforeRet;
     }
     
-    if (contains_11415277(obj_15432046.scientific_name, search_str_15432047)) {
+    if (contains_11415277(nsuToLowerAsciiStr(obj_15432046.scientific_name), nsuToLowerAsciiStr(search_str_15432047))) {
     F.line = 541;
     result_15432048 = true;
     break BeforeRet;
     }
     
-    if (contains_11415277(reprEnum(obj_15432046.food_group, NTI15431016), search_str_15432047)) {
+    if (contains_11415277(nsuToLowerAsciiStr(reprEnum(obj_15432046.food_group, NTI15431016)), nsuToLowerAsciiStr(search_str_15432047))) {
     F.line = 545;
     result_15432048 = true;
     break BeforeRet;
@@ -9588,23 +9641,23 @@ function setAttr_3340040(s_3340042, a_3340043, value_3340044) {
             F.line = 247;
             var j_3345063 = 0;
             F.line = 6;
-            var colontmp__15700460 = 0;
+            var colontmp__15700467 = 0;
             F.line = 247;
-            colontmp__15700460 = subInt(s_3340042.length, 1);
+            colontmp__15700467 = subInt(s_3340042.length, 1);
             F.line = 28;
-            var res_15700461 = colontmp__15700460;
+            var res_15700468 = colontmp__15700467;
             L4: do {
               F.line = 29;
                 L5: while (true) {
-                if (!(i_3340046 <= res_15700461)) break L5;
+                if (!(i_3340046 <= res_15700468)) break L5;
                   F.line = 247;
-                  j_3345063 = res_15700461;
+                  j_3345063 = res_15700468;
                   F.line = 248;
                   s_3340042[j_3345063] = s_3340042[subInt(j_3345063, 2)];
                   F.line = 249;
                   s_3340042[subInt(j_3345063, 1)] = s_3340042[subInt(j_3345063, 3)];
                   F.line = 31;
-                  res_15700461 = subInt(res_15700461, 2);
+                  res_15700468 = subInt(res_15700468, 2);
                 }
             } while(false);
           } while(false);
@@ -9684,15 +9737,15 @@ function headers_15500005(columns_15500009, table_style_15500010) {
       F.line = 511;
       var col_15505012 = null;
       F.line = 199;
-      var i_15700455 = 0;
+      var i_15700462 = 0;
       F.line = 200;
-      var L_15700456 = (columns_15500009).length;
+      var L_15700463 = (columns_15500009).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
-          if (!(i_15700455 < L_15700456)) break L3;
+          if (!(i_15700462 < L_15700463)) break L3;
             F.line = 511;
-            col_15505012 = columns_15500009[chckIndx(i_15700455, 0, (columns_15500009).length-1)];
+            col_15505012 = columns_15500009[chckIndx(i_15700462, 0, (columns_15500009).length-1)];
             if (!((col_15505012.cel_affordance == 2))) {
             F.line = 513;
             F.line = 515;
@@ -9709,8 +9762,8 @@ function headers_15500005(columns_15500009, table_style_15500010) {
             }
             
             F.line = 203;
-            i_15700455 = addInt(i_15700455, 1);
-            if (!(((columns_15500009).length == L_15700456))) {
+            i_15700462 = addInt(i_15700462, 1);
+            if (!(((columns_15500009).length == L_15700463))) {
             F.line = 204;
             failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -9980,15 +10033,15 @@ function addQuoted_15260401(s_15260404, s_15260404_Idx, x_15260405) {
       F.line = 2843;
       var c_15260602 = 0;
       F.line = 217;
-      var i_15700495 = 0;
+      var i_15700502 = 0;
       F.line = 218;
-      var L_15700496 = (x_15260405).length;
+      var L_15700503 = (x_15260405).length;
       L2: do {
         F.line = 219;
           L3: while (true) {
-          if (!(i_15700495 < L_15700496)) break L3;
+          if (!(i_15700502 < L_15700503)) break L3;
             F.line = 2843;
-            c_15260602 = x_15260405[chckIndx(i_15700495, 0, (x_15260405).length-1)];
+            c_15260602 = x_15260405[chckIndx(i_15700502, 0, (x_15260405).length-1)];
             if ((c_15260602 <= 127)) {
             F.line = 2847;
             addEscapedChar_2765414(s_15260404, s_15260404_Idx, c_15260602);
@@ -9999,8 +10052,8 @@ function addQuoted_15260401(s_15260404, s_15260404_Idx, x_15260405) {
             }
             
             F.line = 221;
-            i_15700495 = addInt(i_15700495, 1);
-            if (!(((x_15260405).length == L_15700496))) {
+            i_15700502 = addInt(i_15700502, 1);
+            if (!(((x_15260405).length == L_15700503))) {
             F.line = 222;
             failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(222, 11) `len(a) == L` the length of the string changed while iterating over it"));
             }
@@ -10369,15 +10422,15 @@ function optionsMenu_15290132(name_15290134, message_15290135, selected_15290136
       var option_15300012 = null;
       var option_15300012_Idx = 0;
       F.line = 199;
-      var i_15700535 = 0;
+      var i_15700542 = 0;
       F.line = 200;
-      var L_15700536 = (options_15290138).length;
+      var L_15700543 = (options_15290138).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
-          if (!(i_15700535 < L_15700536)) break L3;
+          if (!(i_15700542 < L_15700543)) break L3;
             F.line = 139;
-            option_15300012 = options_15290138; option_15300012_Idx = chckIndx(i_15700535, 0, (options_15290138).length-1);
+            option_15300012 = options_15290138; option_15300012_Idx = chckIndx(i_15700542, 0, (options_15290138).length-1);
             if (eqStrings(option_15300012[option_15300012_Idx], selected_15290136)) {
             F.line = 141;
             var tmp_15290183 = tree_11755445(110, []);
@@ -10408,8 +10461,8 @@ function optionsMenu_15290132(name_15290134, message_15290135, selected_15290136
             }
             
             F.line = 203;
-            i_15700535 = addInt(i_15700535, 1);
-            if (!(((options_15290138).length == L_15700536))) {
+            i_15700542 = addInt(i_15700542, 1);
+            if (!(((options_15290138).length == L_15700543))) {
             F.line = 204;
             failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -10502,23 +10555,23 @@ function cel_15590417(contents_15590420, id_15590421, column_15590422, table_sty
             var it_15650006 = 0;
             L3: do {
               F.line = 93;
-              var x_15700518 = 0;
+              var x_15700525 = 0;
               F.line = 77;
-              var res_15700519 = ((HEX3Atmp_15635817.a)|0);
+              var res_15700526 = ((HEX3Atmp_15635817.a)|0);
               L4: do {
                 F.line = 78;
                   L5: while (true) {
-                  if (!(res_15700519 <= ((HEX3Atmp_15635817.b)|0))) break L5;
+                  if (!(res_15700526 <= ((HEX3Atmp_15635817.b)|0))) break L5;
                     F.line = 93;
-                    x_15700518 = chckRange(res_15700519, 0, 22);
+                    x_15700525 = chckRange(res_15700526, 0, 22);
                     F.line = 951;
-                    it_15650006 = x_15700518;
+                    it_15650006 = x_15700525;
                     F.line = 231;
                     resultHEX60gensym25_15645052[chckIndx(iHEX60gensym25_15640003, 0, (resultHEX60gensym25_15645052).length-1)] = nimCopy(null, reprEnum(it_15650006, NTI15431016), NTI2381013);
                     F.line = 953;
                     iHEX60gensym25_15640003 = addInt(iHEX60gensym25_15640003, 1);
                     F.line = 80;
-                    res_15700519 = addInt(res_15700519, 1);
+                    res_15700526 = addInt(res_15700526, 1);
                   }
               } while(false);
             } while(false);
@@ -10575,15 +10628,15 @@ function to_cels_15530005(obj_15530008, columns_15530009, table_style_15530010) 
       F.line = 291;
       var column_15530608 = null;
       F.line = 199;
-      var i_15700475 = 0;
+      var i_15700482 = 0;
       F.line = 200;
-      var L_15700476 = (columns_15530009).length;
+      var L_15700483 = (columns_15530009).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
-          if (!(i_15700475 < L_15700476)) break L3;
+          if (!(i_15700482 < L_15700483)) break L3;
             F.line = 291;
-            column_15530608 = columns_15530009[chckIndx(i_15700475, 0, (columns_15530009).length-1)];
+            column_15530608 = columns_15530009[chckIndx(i_15700482, 0, (columns_15530009).length-1)];
             F.line = 292;
             var idx_15530610 = 0;
             if (eqStrings(column_15530608.name, makeNimstrLit("name"))) {
@@ -10604,8 +10657,8 @@ function to_cels_15530005(obj_15530008, columns_15530009, table_style_15530010) 
             F.line = 304;
             idx_15530610 = addInt(idx_15530610, 1);
             F.line = 203;
-            i_15700475 = addInt(i_15700475, 1);
-            if (!(((columns_15530009).length == L_15700476))) {
+            i_15700482 = addInt(i_15700482, 1);
+            if (!(((columns_15530009).length == L_15700483))) {
             F.line = 204;
             failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -10652,24 +10705,24 @@ function row_15525231(obj_15525234, columns_15525235, index_15525236, table_styl
       F.line = 502;
       var cel_15680214 = null;
       F.line = 197;
-      var colontmp__15700469 = [];
+      var colontmp__15700476 = [];
       F.line = 502;
-      colontmp__15700469 = to_cels_15530005(obj_15525234, columns_15525235, table_style_15525237);
+      colontmp__15700476 = to_cels_15530005(obj_15525234, columns_15525235, table_style_15525237);
       F.line = 199;
-      var i_15700471 = 0;
+      var i_15700478 = 0;
       F.line = 200;
-      var L_15700472 = (colontmp__15700469).length;
+      var L_15700479 = (colontmp__15700476).length;
       L2: do {
         F.line = 201;
           L3: while (true) {
-          if (!(i_15700471 < L_15700472)) break L3;
+          if (!(i_15700478 < L_15700479)) break L3;
             F.line = 502;
-            cel_15680214 = colontmp__15700469[chckIndx(i_15700471, 0, (colontmp__15700469).length-1)];
+            cel_15680214 = colontmp__15700476[chckIndx(i_15700478, 0, (colontmp__15700476).length-1)];
             F.line = 503;
             add_11745072(result_15525238, cel_15680214.contents);
             F.line = 203;
-            i_15700471 = addInt(i_15700471, 1);
-            if (!(((colontmp__15700469).length == L_15700472))) {
+            i_15700478 = addInt(i_15700478, 1);
+            if (!(((colontmp__15700476).length == L_15700479))) {
             F.line = 204;
             failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -10730,22 +10783,22 @@ function render_table_15499229(objs_15499233, columns_15499234, table_style_1549
       F.line = 640;
       var obj_15525230 = ({name: [], scientific_name: [], food_group: 0});
       F.line = 132;
-      var i_15700448 = 0;
+      var i_15700455 = 0;
       F.line = 133;
-      var L_15700449 = (objs_15499233).length;
+      var L_15700456 = (objs_15499233).length;
       L2: do {
         F.line = 134;
           L3: while (true) {
-          if (!(i_15700448 < L_15700449)) break L3;
+          if (!(i_15700455 < L_15700456)) break L3;
             F.line = 640;
-            number_15525229 = i_15700448;
+            number_15525229 = i_15700455;
             F.line = 135;
-            nimCopy(obj_15525230, objs_15499233[chckIndx(i_15700448, 0, (objs_15499233).length-1)], NTI15431020);
+            nimCopy(obj_15525230, objs_15499233[chckIndx(i_15700455, 0, (objs_15499233).length-1)], NTI15431020);
             F.line = 641;
             add_11745072(tmp_15499238, row_15525231(obj_15525230, columns_15499234, number_15525229, table_style_15499235));
             F.line = 136;
-            i_15700448 = addInt(i_15700448, 1);
-            if (!(((objs_15499233).length == L_15700449))) {
+            i_15700455 = addInt(i_15700455, 1);
+            if (!(((objs_15499233).length == L_15700456))) {
             F.line = 137;
             failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(137, 11) `len(a) == L` the length of the seq changed while iterating over it"));
             }
@@ -10887,19 +10940,19 @@ function contWrapper_15430124(httpStatus_15430126, response_15430127) {
       var b_15430151 = null;
       var b_15430151_Idx = 0;
       F.line = 8;
-      var i_15700544 = 0;
+      var i_15700551 = 0;
       L2: do {
         F.line = 9;
           L3: while (true) {
-          if (!(i_15700544 < (headers_15430113).length)) break L3;
+          if (!(i_15700551 < (headers_15430113).length)) break L3;
             F.line = 83;
-            a_15430149 = headers_15430113[chckIndx(i_15700544, 0, (headers_15430113).length-1)]; a_15430149_Idx = "Field0";
+            a_15430149 = headers_15430113[chckIndx(i_15700551, 0, (headers_15430113).length-1)]; a_15430149_Idx = "Field0";
             F.line = 10;
-            b_15430151 = headers_15430113[chckIndx(i_15700544, 0, (headers_15430113).length-1)]; b_15430151_Idx = "Field1";
+            b_15430151 = headers_15430113[chckIndx(i_15700551, 0, (headers_15430113).length-1)]; b_15430151_Idx = "Field1";
             F.line = 84;
             ajax_15430142.setRequestHeader(a_15430149[a_15430149_Idx], b_15430151[b_15430151_Idx]);
             F.line = 11;
-            i_15700544 = addInt(i_15700544, 1);
+            i_15700551 = addInt(i_15700551, 1);
           }
       } while(false);
     } while(false);
@@ -11031,7 +11084,7 @@ function add_13425020(father_13425022, child_13425023) {
     
     F.line = 285;
     var Tmp1 = father_13425022;
-    if (ConstSet2[Tmp1.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+    if (ConstSet3[Tmp1.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
     Tmp1.elems.push(child_13425023);;
   framePtr = F.prev;
 
@@ -11523,7 +11576,7 @@ function HEX5BHEX5DHEX3D_13516214(obj_13516216, key_13516217, val_13516218) {
     
     F.line = 359;
     var Tmp1 = obj_13516216;
-    if (ConstSet3[Tmp1.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+    if (ConstSet4[Tmp1.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
     HEX5BHEX5DHEX3D_13445311(Tmp1.fields, key_13516217, val_13516218);
   framePtr = F.prev;
 
@@ -11603,21 +11656,21 @@ function convertObject_13870214(x_13870216) {
         F.line = 910;
         var i_13870225 = 0;
         F.line = 104;
-        var colontmp__15700562 = 0;
+        var colontmp__15700569 = 0;
         F.line = 910;
-        colontmp__15700562 = len_13840214(x_13870216);
+        colontmp__15700569 = len_13840214(x_13870216);
         F.line = 106;
-        var i_15700563 = 0;
+        var i_15700570 = 0;
         L2: do {
           F.line = 107;
             L3: while (true) {
-            if (!(i_15700563 < colontmp__15700562)) break L3;
+            if (!(i_15700570 < colontmp__15700569)) break L3;
               F.line = 910;
-              i_13870225 = i_15700563;
+              i_13870225 = i_15700570;
               F.line = 911;
               add_13425020(result_13870217, convertObject_13870214(HEX5BHEX5D_13860214(x_13870216, i_13870225)));
               F.line = 109;
-              i_15700563 = addInt(i_15700563, 1);
+              i_15700570 = addInt(i_15700570, 1);
             }
         } while(false);
       } while(false);
@@ -11707,17 +11760,17 @@ function HEX3DHEX3D_13530020(x_13530024, y_13530026) {
       F.line = 312;
       var i_13531024 = 0;
       F.line = 66;
-      var colontmp__15700597 = 0;
+      var colontmp__15700604 = 0;
       F.line = 312;
-      colontmp__15700597 = subInt((x_13530024).length, 1);
+      colontmp__15700604 = subInt((x_13530024).length, 1);
       F.line = 77;
-      var res_15700598 = 0;
+      var res_15700605 = 0;
       L2: do {
         F.line = 78;
           L3: while (true) {
-          if (!(res_15700598 <= colontmp__15700597)) break L3;
+          if (!(res_15700605 <= colontmp__15700604)) break L3;
             F.line = 312;
-            i_13531024 = res_15700598;
+            i_13531024 = res_15700605;
             if (!(HEX3DHEX3D_13525491(x_13530024[chckIndx(i_13531024, 0, (x_13530024).length-1)], y_13530026[chckIndx(i_13531024, 0, (y_13530026).length-1)]))) {
             F.line = 314;
             result_13530027 = false;
@@ -11725,7 +11778,7 @@ function HEX3DHEX3D_13530020(x_13530024, y_13530026) {
             }
             
             F.line = 80;
-            res_15700598 = addInt(res_15700598, 1);
+            res_15700605 = addInt(res_15700605, 1);
           }
       } while(false);
     } while(false);
@@ -11880,33 +11933,33 @@ function HEX3DHEX3D_13525491(a_13525493, b_13525494) {
       case 4:
         F.line = 419;
         var Tmp2 = a_13525493;
-        if (ConstSet5[Tmp2.kind]===undefined) { raiseFieldError(makeNimstrLit("\'str\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet6[Tmp2.kind]===undefined) { raiseFieldError(makeNimstrLit("\'str\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         var Tmp3 = b_13525494;
-        if (ConstSet6[Tmp3.kind]===undefined) { raiseFieldError(makeNimstrLit("\'str\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet7[Tmp3.kind]===undefined) { raiseFieldError(makeNimstrLit("\'str\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         result_13525495 = eqStrings(Tmp2.str, Tmp3.str);
         break;
       case 2:
         F.line = 421;
         var Tmp4 = a_13525493;
-        if (ConstSet7[Tmp4.kind]===undefined) { raiseFieldError(makeNimstrLit("\'num\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet8[Tmp4.kind]===undefined) { raiseFieldError(makeNimstrLit("\'num\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         var Tmp5 = b_13525494;
-        if (ConstSet8[Tmp5.kind]===undefined) { raiseFieldError(makeNimstrLit("\'num\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet9[Tmp5.kind]===undefined) { raiseFieldError(makeNimstrLit("\'num\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         result_13525495 = (Tmp4.num == Tmp5.num);
         break;
       case 3:
         F.line = 423;
         var Tmp6 = a_13525493;
-        if (ConstSet9[Tmp6.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fnum\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet10[Tmp6.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fnum\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         var Tmp7 = b_13525494;
-        if (ConstSet10[Tmp7.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fnum\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet11[Tmp7.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fnum\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         result_13525495 = (Tmp6.fnum == Tmp7.fnum);
         break;
       case 1:
         F.line = 425;
         var Tmp8 = a_13525493;
-        if (ConstSet11[Tmp8.kind]===undefined) { raiseFieldError(makeNimstrLit("\'bval\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet12[Tmp8.kind]===undefined) { raiseFieldError(makeNimstrLit("\'bval\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         var Tmp9 = b_13525494;
-        if (ConstSet12[Tmp9.kind]===undefined) { raiseFieldError(makeNimstrLit("\'bval\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet13[Tmp9.kind]===undefined) { raiseFieldError(makeNimstrLit("\'bval\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         result_13525495 = (Tmp8.bval == Tmp9.bval);
         break;
       case 0:
@@ -11916,16 +11969,16 @@ function HEX3DHEX3D_13525491(a_13525493, b_13525494) {
       case 6:
         F.line = 429;
         var Tmp10 = a_13525493;
-        if (ConstSet13[Tmp10.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet14[Tmp10.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         var Tmp11 = b_13525494;
-        if (ConstSet14[Tmp11.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+        if (ConstSet15[Tmp11.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         result_13525495 = HEX3DHEX3D_13530020(Tmp10.elems, Tmp11.elems);
         break;
       case 5:
           var Tmp12 = a_13525493;
-          if (ConstSet15[Tmp12.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+          if (ConstSet16[Tmp12.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
           var Tmp13 = b_13525494;
-          if (ConstSet16[Tmp13.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+          if (ConstSet17[Tmp13.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
         if (!((len_13535128(Tmp12.fields) == len_13535128(Tmp13.fields)))) {
         F.line = 433;
         result_13525495 = false;
@@ -11938,29 +11991,29 @@ function HEX3DHEX3D_13525491(a_13525493, b_13525494) {
           F.line = 434;
           var val_13545230 = null;
           F.line = 1636;
-          var colontmp__15700590 = ({data: [], counter: 0, first: 0, last: 0});
+          var colontmp__15700597 = ({data: [], counter: 0, first: 0, last: 0});
           F.line = 434;
           var Tmp15 = a_13525493;
-          if (ConstSet17[Tmp15.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
-          nimCopy(colontmp__15700590, Tmp15.fields, NTI13386080);
+          if (ConstSet18[Tmp15.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+          nimCopy(colontmp__15700597, Tmp15.fields, NTI13386080);
           F.line = 1662;
-          var L_15700592 = len_13535128(colontmp__15700590);
-          if ((0 < colontmp__15700590.counter)) {
+          var L_15700599 = len_13535128(colontmp__15700597);
+          if ((0 < colontmp__15700597.counter)) {
           F.line = 1246;
-          var h_15700593 = colontmp__15700590.first;
+          var h_15700600 = colontmp__15700597.first;
           L16: do {
             F.line = 1247;
               L17: while (true) {
-              if (!(0 <= h_15700593)) break L17;
+              if (!(0 <= h_15700600)) break L17;
                 F.line = 1248;
-                var nxt_15700595 = colontmp__15700590.data[chckIndx(h_15700593, 0, (colontmp__15700590.data).length-1)].Field1;
-                if (isFilled_11901218(colontmp__15700590.data[chckIndx(h_15700593, 0, (colontmp__15700590.data).length-1)].Field0)) {
+                var nxt_15700602 = colontmp__15700597.data[chckIndx(h_15700600, 0, (colontmp__15700597.data).length-1)].Field1;
+                if (isFilled_11901218(colontmp__15700597.data[chckIndx(h_15700600, 0, (colontmp__15700597.data).length-1)].Field0)) {
                 F.line = 434;
-                key_13545229 = colontmp__15700590.data[chckIndx(h_15700593, 0, (colontmp__15700590.data).length-1)].Field2;
+                key_13545229 = colontmp__15700597.data[chckIndx(h_15700600, 0, (colontmp__15700597.data).length-1)].Field2;
                 F.line = 1664;
-                val_13545230 = colontmp__15700590.data[chckIndx(h_15700593, 0, (colontmp__15700590.data).length-1)].Field3;
+                val_13545230 = colontmp__15700597.data[chckIndx(h_15700600, 0, (colontmp__15700597.data).length-1)].Field3;
                   var Tmp18 = b_13525494;
-                  if (ConstSet18[Tmp18.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+                  if (ConstSet19[Tmp18.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
                 if (!(hasKey_13545341(Tmp18.fields, key_13545229))) {
                 F.line = 435;
                 result_13525495 = false;
@@ -11968,14 +12021,14 @@ function HEX3DHEX3D_13525491(a_13525493, b_13525494) {
                 }
                 
                   var Tmp19 = b_13525494;
-                  if (ConstSet19[Tmp19.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+                  if (ConstSet20[Tmp19.kind]===undefined) { raiseFieldError(makeNimstrLit("\'fields\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
                 if (!(HEX3DHEX3D_13525491((Tmp20 = HEX5BHEX5D_13550146(Tmp19.fields, key_13545229), Tmp20)[0][Tmp20[1]], val_13545230))) {
                 F.line = 436;
                 result_13525495 = false;
                 break BeforeRet;
                 }
                 
-                if (!((len_13535128(colontmp__15700590) == L_15700592))) {
+                if (!((len_13535128(colontmp__15700597) == L_15700599))) {
                 F.line = 1665;
                 failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/collections/tables.nim(1665, 11) `len(t) == L` the length of the table changed while iterating over it"));
                 }
@@ -11983,7 +12036,7 @@ function HEX3DHEX3D_13525491(a_13525493, b_13525494) {
                 }
                 
                 F.line = 1251;
-                h_15700593 = nxt_15700595;
+                h_15700600 = nxt_15700602;
               }
           } while(false);
           }
@@ -12009,25 +12062,6 @@ function invalidFormatString_11555046() {
   framePtr = F.prev;
 
   
-}
-function nsuToLowerAsciiChar(c_10650023) {
-  var result_10650024 = 0;
-
-  var F={procname:"strutils.toLowerAscii",prev:framePtr,filename:"/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/strutils.nim",line:0};
-  framePtr = F;
-    if ((ConstSet24[c_10650023] != undefined)) {
-    F.line = 211;
-    result_10650024 = chckRange(addInt(c_10650023, 32), 0, 255);
-    }
-    else {
-      F.line = 213;
-      result_10650024 = c_10650023;
-    }
-    
-  framePtr = F.prev;
-
-  return result_10650024;
-
 }
 function nsuCmpIgnoreStyle(a_10730022, b_10730023) {
           var Tmp7;
@@ -12233,7 +12267,7 @@ function nsuAddf(s_11560018, s_11560018_Idx, formatstr_11560019, a_11560021) {
             L3: do {
               F.line = 2783;
                 L4: while (true) {
-                  if (!(i_11560025 < (formatstr_11560019).length)) Tmp5 = false; else {                    Tmp5 = (ConstSet21[formatstr_11560019[chckIndx(i_11560025, 0, (formatstr_11560019).length-1)]] != undefined);                  }                if (!Tmp5) break L4;
+                  if (!(i_11560025 < (formatstr_11560019).length)) Tmp5 = false; else {                    Tmp5 = (ConstSet22[formatstr_11560019[chckIndx(i_11560025, 0, (formatstr_11560019).length-1)]] != undefined);                  }                if (!Tmp5) break L4;
                   F.line = 2784;
                   j_11565025 = subInt(addInt(mulInt(j_11565025, 10), formatstr_11560019[chckIndx(i_11560025, 0, (formatstr_11560019).length-1)]), 48);
                   F.line = 2785;
@@ -12274,8 +12308,8 @@ function nsuAddf(s_11560018, s_11560018_Idx, formatstr_11560019, a_11560021) {
             L8: do {
               F.line = 2795;
                 L9: while (true) {
-                if (!((j_11575006 < (formatstr_11560019).length) && !((ConstSet22[formatstr_11560019[chckIndx(j_11575006, 0, (formatstr_11560019).length-1)]] != undefined)))) break L9;
-                  if ((ConstSet23[formatstr_11560019[chckIndx(j_11575006, 0, (formatstr_11560019).length-1)]] != undefined)) {
+                if (!((j_11575006 < (formatstr_11560019).length) && !((ConstSet23[formatstr_11560019[chckIndx(j_11575006, 0, (formatstr_11560019).length-1)]] != undefined)))) break L9;
+                  if ((ConstSet24[formatstr_11560019[chckIndx(j_11575006, 0, (formatstr_11560019).length-1)]] != undefined)) {
                   F.line = 2797;
                   k_11575008 = subInt(addInt(mulInt(k_11575008, 10), formatstr_11560019[chckIndx(j_11575006, 0, (formatstr_11560019).length-1)]), 48);
                   if ((isNumber_11575017 == 0)) {
@@ -12588,14 +12622,14 @@ function collectionToString_13885015(x_13885018, prefix_13885019, separator_1388
       F.line = 120;
       var value_13885069 = 0;
       F.line = 52;
-      var i_15700620 = 0;
+      var i_15700627 = 0;
       L2: do {
         F.line = 53;
           L3: while (true) {
-          if (!(i_15700620 <= 6)) break L3;
-            if ((x_13885018[i_15700620] != undefined)) {
+          if (!(i_15700627 <= 6)) break L3;
+            if ((x_13885018[i_15700627] != undefined)) {
             F.line = 120;
-            value_13885069 = i_15700620;
+            value_13885069 = i_15700627;
             if (firstElement_13885023) {
             F.line = 122;
             firstElement_13885023 = false;
@@ -12610,7 +12644,7 @@ function collectionToString_13885015(x_13885018, prefix_13885019, separator_1388
             }
             
             F.line = 55;
-            i_15700620 += 1;
+            i_15700627 += 1;
           }
       } while(false);
     } while(false);
@@ -12643,7 +12677,7 @@ function initFromJson_13870865(dst_13870868, dst_13870868_Idx, jsonNode_13870869
     raiseException({message: (makeNimstrLit("key not found: ") || []).concat(jsonPath_13870871[jsonPath_13870871_Idx] || []), parent: null, m_type: NTI2387645, name: null, trace: [], up: null}, "KeyError");
     }
     else {
-    if (!((ConstSet20[jsonNode_13870869.kind] != undefined))) {
+    if (!((ConstSet21[jsonNode_13870869.kind] != undefined))) {
     F.line = 960;
     var msgHEX60gensym97_13885465 = nsuFormatOpenArray(makeNimstrLit("Incorrect JSON kind. Wanted \'$1\' in \'$2\' but got \'$3\'."), [HEX24_13885009(ConstSet26), nimCopy(null, jsonPath_13870871[jsonPath_13870871_Idx], NTI2381013), reprEnum(jsonNode_13870869.kind, NTI13386054)]);
     F.line = 965;
@@ -12952,41 +12986,41 @@ function load_food_15435185() {
           F.line = 20;
           var json_food_15435205 = null;
           F.line = 754;
-          var colontmp__15700548 = null;
+          var colontmp__15700555 = null;
           F.line = 20;
-          colontmp__15700548 = parseJson_13870257(cstrToNimstr(result_15435204));
-          if (!((colontmp__15700548.kind == 6))) {
+          colontmp__15700555 = parseJson_13870257(cstrToNimstr(result_15435204));
+          if (!((colontmp__15700555.kind == 6))) {
           F.line = 756;
-          failedAssertImpl_2500480((makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/json.nim(756, 10) `node.kind == JArray` : items() can not iterate a JsonNode of kind ") || []).concat(reprEnum(colontmp__15700548.kind, NTI13386054) || []));
+          failedAssertImpl_2500480((makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/pure/json.nim(756, 10) `node.kind == JArray` : items() can not iterate a JsonNode of kind ") || []).concat(reprEnum(colontmp__15700555.kind, NTI13386054) || []));
           }
           
           L2: do {
             F.line = 757;
-            var i_15700556 = null;
-            var i_15700556_Idx = 0;
+            var i_15700563 = null;
+            var i_15700563_Idx = 0;
             F.line = 197;
-            var colontmp__15700557 = [];
+            var colontmp__15700564 = [];
             F.line = 757;
-            var Tmp3 = colontmp__15700548;
-            if (ConstSet4[Tmp3.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
-            colontmp__15700557 = Tmp3.elems;
+            var Tmp3 = colontmp__15700555;
+            if (ConstSet5[Tmp3.kind]===undefined) { raiseFieldError(makeNimstrLit("\'elems\' is not accessible using discriminant \'kind\' of type \'JsonNodeObj\'")); }
+            colontmp__15700564 = Tmp3.elems;
             F.line = 199;
-            var i_15700558 = 0;
+            var i_15700565 = 0;
             F.line = 200;
-            var L_15700559 = (colontmp__15700557).length;
+            var L_15700566 = (colontmp__15700564).length;
             L4: do {
               F.line = 201;
                 L5: while (true) {
-                if (!(i_15700558 < L_15700559)) break L5;
+                if (!(i_15700565 < L_15700566)) break L5;
                   F.line = 757;
-                  i_15700556 = colontmp__15700557; i_15700556_Idx = chckIndx(i_15700558, 0, (colontmp__15700557).length-1);
+                  i_15700563 = colontmp__15700564; i_15700563_Idx = chckIndx(i_15700565, 0, (colontmp__15700564).length-1);
                   F.line = 20;
-                  json_food_15435205 = i_15700556[i_15700556_Idx];
+                  json_food_15435205 = i_15700563[i_15700563_Idx];
                   F.line = 21;
                   foods_15432015[0].push(to_15435208(json_food_15435205));;
                   F.line = 203;
-                  i_15700558 = addInt(i_15700558, 1);
-                  if (!(((colontmp__15700557).length == L_15700559))) {
+                  i_15700565 = addInt(i_15700565, 1);
+                  if (!(((colontmp__15700564).length == L_15700566))) {
                   F.line = 204;
                   failedAssertImpl_2500480(makeNimstrLit("/Users/mikebelanger/.choosenim/toolchains/nim-1.4.0/lib/system/iterators.nim(204, 11) `len(a) == L` the length of the seq changed while iterating over it"));
                   }
@@ -13043,6 +13077,8 @@ function render_15485309() {
     tmp_15485313.id = "search";
     F.line = 30;
     addEventHandler_12655154(tmp_15485313, 3, HEX3Aanonymous_15495001, kxi_12092284[0]);
+    F.line = 30;
+    setAttr_11695105(tmp_15485313, "placeholder", "search table");
     F.line = 30;
     add_11745072(tmp_15485312, tmp_15485313);
     if (eqStrings(search_filter_15432018[0], [])) {

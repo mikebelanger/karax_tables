@@ -27,7 +27,7 @@ when defined(js):
         result = 
             buildHtml():
                 tdiv:
-                    input(`type` = "text", id = "search", onkeyup = () => search_foods())
+                    input(`type` = "text", id = "search", onkeyup = () => search_foods(), placeholder = "search table")
 
                     # if search box is empty - show all rows
                     if search_filter == "":

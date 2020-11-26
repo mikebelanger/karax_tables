@@ -529,7 +529,7 @@ proc to_string*(vnode: VNode): string =
 proc matches*[T](obj: T, search_str: string): bool =
     for field, val in obj.fieldPairs:
         when val is int:
-            if ($val).contains(search_str):
+            if ($val).contains(search_str.toLowerAscii):
                 return true
 
         when val is float:
@@ -537,11 +537,11 @@ proc matches*[T](obj: T, search_str: string): bool =
                 return true
         
         when val is string:
-            if val.contains(search_str):
+            if ($val.toLowerAscii).contains(search_str.toLowerAscii):
                 return true
 
         when val is enum:
-            if ($val).contains(search_str):
+            if (($val).toLowerAscii).contains(search_str.toLowerAscii):
                 return true
     
         when val is object:
