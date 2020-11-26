@@ -215,13 +215,12 @@ when defined(js):
                 else:
                     filtered_users.karax_table(columns = columns, table_style = custom_style)
 
-                # tdiv:
-                #     p: text "Most common kind of user: " & $(users
-                #                                             .map((user_row) => user_row.user.user_kind)
-                #                                             .mode)
+                p: text "Most common kind of user: " & $(users
+                                                        .map((user_row) => user_row.user.user_kind)
+                                                        .mode)
 
-                # tdiv:
-                #     p: text "Average age: " & $(users.map((user_row) => user_row.user.age).mean)
+                tdiv:
+                    p: text "Average age: " & $(users.map((user_row) => user_row.user.age).mean)
 
                 button(onclick = () => echo updated_users):
                     text "what are users now?"
