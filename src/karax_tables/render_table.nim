@@ -122,7 +122,7 @@ proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): 
             col.cel_affordance = affordance
             result.add(col)
 
-proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): VNode =
+proc optionsMenu(name, message, id: cstring, selected = "", options: seq[string]): VNode =
     ## generate a drop-down menu.
     ## name plugs into label wrapper around drop-down menu, and select id
     ## message is what you first see selected on the dropdown.
@@ -130,7 +130,7 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
     ## options are just the other options
 
     result = buildHtml():
-        label(`for` = $name, id = $name & "_container" & $(100.rand)):
+        label(`for` = $name, id = $id):
             select(id = $name):
                 if message.len > 0:
                     option(value = ""):
@@ -233,6 +233,7 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
                                 buildHtml(
                                     td(optionsMenu(name = $column.name, 
                                         message = "", 
+                                        id = the_id,
                                         selected = $contents, 
                                         options = options))
                                 )
