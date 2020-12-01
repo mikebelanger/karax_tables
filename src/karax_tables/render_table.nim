@@ -146,7 +146,7 @@ proc optionsMenu(name, message, id: cstring, selected = "", options: seq[string]
                             
 proc cel(contents: string | int | float | enum | bool, id: int, column: Column, table_style: TableStyle): Cel =
     ## generates cel based on an object/tuples's value
-    let the_id = $id & "_" & $(500.rand)
+    let the_id = $id & "_" & $(10.rand)
     result = 
         Cel(
             column: column,
