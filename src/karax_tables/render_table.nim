@@ -130,20 +130,20 @@ proc optionsMenu(name, message: cstring, selected = "", options: seq[string]): V
     ## options are just the other options
 
     result = buildHtml():
-        label(`for` = $name, id = $name & "_container"):
+        label(`for` = $name, id = $name & "_container" & $(100.rand)):
             select(id = $name):
                 if message.len > 0:
                     option(value = ""):
                         text $message
                 
-                for option in options:
+                for index, option in options:
                     if option == selected:
-                        option(value = selected, selected = "selected", id = $name):
+                        option(value = selected, selected = "selected"):
                             text selected
                     else:
                         option(value = option):
                             text option
-
+                            
 proc cel(contents: string | int | float | enum | bool, id: int, column: Column, table_style: TableStyle): Cel =
     ## generates cel based on an object/tuples's value
     let the_id = $id & "_" & $(500.rand)
@@ -553,6 +553,7 @@ proc search*[T](objs: seq[T], search_str: string): seq[T] =
     return objs.filter((obj) => obj.matches(search_str))
 
 when defined(js):
+    include karax/prelude
     import karax / [kdom]
 
     proc get_tr_values_for*(node: kdom.Node, key: string): string =
