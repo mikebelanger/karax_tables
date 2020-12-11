@@ -99,6 +99,9 @@ proc column_headers[T](obj: T, affordance: CelAffordance = ReadOnly): seq[Column
 
             when value.typeof is object:
                 result.add(value.column_headers(affordance))
+
+            when value.typeof is ref:
+                result.add(value.column_headers(affordance))
             
             else:
 
@@ -129,6 +132,9 @@ proc column_headers[T](obj: T, affordance: CelAffordance = ReadOnly): seq[Column
             var col = Column(name: $key)
 
             when value.typeof is object:
+                result.add(value.column_headers(affordance))
+
+            when value.typeof is ref:
                 result.add(value.column_headers(affordance))
             
             else:
