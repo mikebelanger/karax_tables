@@ -274,17 +274,29 @@ proc cel(contents: string | int | float | enum | bool, id: int, column: Column, 
             result.contents = vnode
 
 
-proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle): seq[Cel] =
+proc to_cels[T](obj: T, columns: seq[Column], table_style: TableStyle): seq[Cel] =
 
     # iterating with fieldPairs is sketchy, so I iterate over them with a custom data structure super fast.
 
+    # this case for when the object is immutable
+    # related to this:
+    # https://github.com/nim-lang/Nim/issues/8456
+
+
     # if a column is just based on the object fields themselves.
-    for key, val in obj.fieldPairs:
-        
-        when val is object:
+    when compiles(obj.fieldPairs):
+        for key, val in obj.fieldPairs:
+            
+            when val is object:
 
-            result.add(val.to_cels(columns, table_style))
+                result.add(val.to_cels(columns, table_style))
 
+    when compiles(obj[].fieldPairs):
+        for key, val in obj[].fieldPairs:
+            
+            when val is object:
+
+                result.add(val.to_cels(columns, table_style))
 
     # we have to iterate twice over the object fieldPairs so we iterate
     # through columns in the outermost loop
@@ -292,19 +304,34 @@ proc to_cels(obj: object | tuple, columns: seq[Column], table_style: TableStyle)
     for column in columns:
         var idx = 0
 
-        for key, val in obj.fieldPairs:
+        when compiles(obj.fieldPairs):
+            for key, val in obj.fieldPairs:
 
-            when (val is int) or (val is float) or (val is enum) or (val is string) or (val is bool):
+                when (val is int) or (val is float) or (val is enum) or (val is string) or (val is bool):
 
-                if column.name == key:
+                    if column.name == key:
 
-                    result.add(
-                        val.cel(idx, column, table_style)
-                    )
+                        result.add(
+                            val.cel(idx, column, table_style)
+                        )
 
-        idx.inc
+            idx.inc
 
-proc add_any_listeners(vnode: VNode, thing: object | seq[object]): VNode =
+        when compiles(obj[].fieldPairs):
+            for key, val in obj[].fieldPairs:
+
+                when (val is int) or (val is float) or (val is enum) or (val is string) or (val is bool):
+
+                    if column.name == key:
+
+                        result.add(
+                            val.cel(idx, column, table_style)
+                        )
+
+            idx.inc
+
+
+proc add_any_listeners[T](vnode: VNode, thing: T | seq[T]): VNode =
     ## any procs named after js event listeners whose first argument type is
     ## the object being converted into a row get detected here.
 
@@ -495,7 +522,7 @@ proc add_any_listeners(vnode: VNode, thing: object | seq[object]): VNode =
 
     return result
 
-proc row*(obj: object | tuple, columns: seq[Column], index: int, table_style: TableStyle): VNode =
+proc row*[T](obj: T, columns: seq[Column], index: int, table_style: TableStyle): VNode =
     ## Generates a single row from an object/tuple.
     
     result = buildHtml(tr(class = table_style.tr_class, id = $index))
@@ -528,27 +555,52 @@ proc to_string*(vnode: VNode): string =
         $vnode
 
 proc matches*[T](obj: T, search_str: string): bool =
-    for field, val in obj.fieldPairs:
-        when val is int:
-            if ($val).contains(search_str.toLowerAscii):
-                return true
+    when compiles(obj.fieldPairs):
+        for field, val in obj.fieldPairs:
+            when val is int:
+                if ($val).contains(search_str.toLowerAscii):
+                    return true
 
-        when val is float:
-            if ($val).contains(search_str):
-                return true
+            when val is float:
+                if ($val).contains(search_str):
+                    return true
+            
+            when val is string:
+                if ($val.toLowerAscii).contains(search_str.toLowerAscii):
+                    return true
+
+            when val is enum:
+                if (($val).toLowerAscii).contains(search_str.toLowerAscii):
+                    return true
         
-        when val is string:
-            if ($val.toLowerAscii).contains(search_str.toLowerAscii):
-                return true
+            when val is object:
+                return val.matches(search_str)
 
-        when val is enum:
-            if (($val).toLowerAscii).contains(search_str.toLowerAscii):
-                return true
-    
-        when val is object:
-            return val.matches(search_str)
+        return false
 
-    return false
+    when compiles(obj[].fieldPairs):
+        for field, val in obj[].fieldPairs:
+            when val is int:
+                if ($val).contains(search_str.toLowerAscii):
+                    return true
+
+            when val is float:
+                if ($val).contains(search_str):
+                    return true
+            
+            when val is string:
+                if ($val.toLowerAscii).contains(search_str.toLowerAscii):
+                    return true
+
+            when val is enum:
+                if (($val).toLowerAscii).contains(search_str.toLowerAscii):
+                    return true
+        
+            when val is object:
+                return val.matches(search_str)
+
+        return false
+
 
 proc search*[T](objs: seq[T], search_str: string): seq[T] =
     return objs.filter((obj) => obj.matches(search_str))
@@ -627,7 +679,7 @@ when defined(js):
         else:
             return event.tr_to_json(obj).to(obj.typedesc)
 
-proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: TableStyle): VNode =
+proc render_table[T](objs: seq[T], columns: seq[Column], table_style: TableStyle): VNode =
     ## renders table based on sequence of objects/tuples and Columns.
 
     result = buildHtml():
@@ -647,7 +699,7 @@ proc render_table(objs: seq[object | tuple], columns: seq[Column], table_style: 
         return result
 
 
-proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style = TableStyle()): VNode =
+proc karax_table*[T](objs: seq[T], all_columns = ReadOnly, table_style = TableStyle()): VNode =
     ## render table with default column names and attributes
     runnableExamples:
         some_object_array.karax_table
@@ -658,7 +710,7 @@ proc karax_table*(objs: seq[object | tuple], all_columns = ReadOnly, table_style
     else:
         result = buildHtml(tdiv())
 
-proc karax_table*(objs: seq[object | tuple], columns: seq[Column], table_style = TableStyle()): VNode =
+proc karax_table*[T](objs: seq[T], columns: seq[Column], table_style = TableStyle()): VNode =
     ## render table with custom columns names and attributes
     runnableExamples:
         some_object_array.karax_table(columns = @[Column(title: "My Column", name: "my_column")])
