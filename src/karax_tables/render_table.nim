@@ -97,12 +97,12 @@ proc column_headers[T](obj: T, affordance: CelAffordance = ReadOnly): seq[Column
         for key, value in obj.fieldPairs:
             var col = Column(name: $key)
 
-            when value.typeof is object:
-                result.add(value.column_headers(affordance))
-
             when value.typeof is ref:
                 result.add(value.column_headers(affordance))
             
+            elif value.typeof is object:
+                result.add(value.column_headers(affordance))
+
             else:
 
                 when value.typeof is string:
@@ -131,10 +131,10 @@ proc column_headers[T](obj: T, affordance: CelAffordance = ReadOnly): seq[Column
         for key, value in obj[].fieldPairs:
             var col = Column(name: $key)
 
-            when value.typeof is object:
-                result.add(value.column_headers(affordance))
-
             when value.typeof is ref:
+                result.add(value.column_headers(affordance))
+            
+            elif value.typeof is object:
                 result.add(value.column_headers(affordance))
             
             else:
@@ -335,7 +335,7 @@ proc to_cels[T](obj: T, columns: seq[Column], table_style: TableStyle): seq[Cel]
 
                 result.add(val.to_cels(columns, table_style))
 
-    when obj is ref:
+    elif obj is ref:
         for key, val in obj[].fieldPairs:
             
             when val is object:
