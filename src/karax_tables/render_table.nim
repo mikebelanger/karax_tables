@@ -90,37 +90,71 @@ proc valid(columns: seq[Column]): seq[Column] =
             result.add(column)
 
 
-proc column_headers(obj: object | tuple, affordance: CelAffordance = ReadOnly): seq[Column] =
+proc column_headers[T](obj: T, affordance: CelAffordance = ReadOnly): seq[Column] =
     ## For auto-inferring column headers from an object's fields
-    for key, value in obj.fieldPairs:
-        var col = Column(name: $key)
+    
+    when compiles(obj.fieldPairs):
+        for key, value in obj.fieldPairs:
+            var col = Column(name: $key)
 
-        when value.typeof is object:
-            result.add(value.column_headers(affordance))
-        
-        else:
-
-            when value.typeof is string:
-                col.cel_kind = Text
-
-            when value.typeof is int:
-                col.cel_kind = Integer
-
-            when value.typeof is float:
-                col.cel_kind = FloatingPoint
+            when value.typeof is object:
+                result.add(value.column_headers(affordance))
             
-            when value.typeof is enum:
-                col.cel_kind = Dropdown
+            else:
 
-            when value.typeof is bool:
-                col.cel_kind = Checkbox
+                when value.typeof is string:
+                    col.cel_kind = Text
+
+                when value.typeof is int:
+                    col.cel_kind = Integer
+
+                when value.typeof is float:
+                    col.cel_kind = FloatingPoint
+                
+                when value.typeof is enum:
+                    col.cel_kind = Dropdown
+
+                when value.typeof is bool:
+                    col.cel_kind = Checkbox
+                
+                when value.typeof is VNode:
+                    col.cel_kind = CustomVDom
+                
+                col.title = key
+                col.cel_affordance = affordance
+                result.add(col)
+
+    when compiles(obj[].fieldPairs):
+        for key, value in obj[].fieldPairs:
+            var col = Column(name: $key)
+
+            when value.typeof is object:
+                result.add(value.column_headers(affordance))
             
-            when value.typeof is VNode:
-                col.cel_kind = CustomVDom
-            
-            col.title = key
-            col.cel_affordance = affordance
-            result.add(col)
+            else:
+
+                when value.typeof is string:
+                    col.cel_kind = Text
+
+                when value.typeof is int:
+                    col.cel_kind = Integer
+
+                when value.typeof is float:
+                    col.cel_kind = FloatingPoint
+                
+                when value.typeof is enum:
+                    col.cel_kind = Dropdown
+
+                when value.typeof is bool:
+                    col.cel_kind = Checkbox
+                
+                when value.typeof is VNode:
+                    col.cel_kind = CustomVDom
+                
+                col.title = key
+                col.cel_affordance = affordance
+                result.add(col)
+
 
 proc optionsMenu(name, message, id: cstring, selected = "", options: seq[string]): VNode =
     ## generate a drop-down menu.

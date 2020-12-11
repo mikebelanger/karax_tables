@@ -10761,26 +10761,26 @@ function render_table_15499229(objs_15499233, columns_15499234, table_style_1549
   var F={procname:"render_table.render_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
   BeforeRet: do {
-    F.line = 631;
     F.line = 632;
-    var tmp_15499237 = tree_11755445(91, []);
-    F.line = 632;
-    tmp_15499237.class = toJSStr(table_style_15499235.table_class);
     F.line = 633;
-    setAttr_11695105(tmp_15499237, "cellpadding", toJSStr(cstrToNimstr((table_style_15499235.cell_padding)+"")));
+    var tmp_15499237 = tree_11755445(91, []);
+    F.line = 633;
+    tmp_15499237.class = toJSStr(table_style_15499235.table_class);
     F.line = 634;
+    setAttr_11695105(tmp_15499237, "cellpadding", toJSStr(cstrToNimstr((table_style_15499235.cell_padding)+"")));
+    F.line = 635;
     setAttr_11695105(tmp_15499237, "cellspacing", toJSStr(cstrToNimstr((table_style_15499235.cell_spacing)+"")));
-    F.line = 636;
+    F.line = 637;
     add_11745072(tmp_15499237, headers_15500005(columns_15499234, table_style_15499235));
-    F.line = 638;
+    F.line = 639;
     var tmp_15499238 = tree_11755445(95, []);
-    F.line = 638;
+    F.line = 639;
     tmp_15499238.class = toJSStr(table_style_15499235.tbody_class);
     if ((0 < (objs_15499233).length)) {
     L1: do {
-      F.line = 640;
+      F.line = 641;
       var number_15525229 = 0;
-      F.line = 640;
+      F.line = 641;
       var obj_15525230 = ({name: [], scientific_name: [], food_group: 0});
       F.line = 132;
       var i_15700455 = 0;
@@ -10790,11 +10790,11 @@ function render_table_15499229(objs_15499233, columns_15499234, table_style_1549
         F.line = 134;
           L3: while (true) {
           if (!(i_15700455 < L_15700456)) break L3;
-            F.line = 640;
+            F.line = 641;
             number_15525229 = i_15700455;
             F.line = 135;
             nimCopy(obj_15525230, objs_15499233[chckIndx(i_15700455, 0, (objs_15499233).length-1)], NTI15431020);
-            F.line = 641;
+            F.line = 642;
             add_11745072(tmp_15499238, row_15525231(obj_15525230, columns_15499234, number_15525229, table_style_15499235));
             F.line = 136;
             i_15700455 = addInt(i_15700455, 1);
@@ -10808,16 +10808,16 @@ function render_table_15499229(objs_15499233, columns_15499234, table_style_1549
     } while(false);
     }
     
-    F.line = 641;
+    F.line = 642;
     add_11745072(tmp_15499237, tmp_15499238);
     result_15499236 = tmp_15499237;
     if ((0 < (objs_15499233).length)) {
-    F.line = 643;
+    F.line = 644;
     result_15499236 = add_any_listeners_15687462(result_15499236, objs_15499233);
     break BeforeRet;
     }
     else {
-      F.line = 645;
+      F.line = 646;
       break BeforeRet;
     }
     
@@ -10876,12 +10876,12 @@ function karax_table_15495021(objs_15495025, all_columns_15495026, table_style_1
   var F={procname:"karax_table.karax_table",prev:framePtr,filename:"/Users/mikebelanger/Dev/Experiments/karax_tables/src/karax_tables/render_table.nim",line:0};
   framePtr = F;
     if ((0 < (objs_15495025).length)) {
-    F.line = 655;
+    F.line = 656;
     result_15495028 = render_table_15499229(objs_15495025, column_headers_15495038(objs_15495025[chckIndx(0, 0, (objs_15495025).length-1)], all_columns_15495026), table_style_15495027);
     }
     else {
-      F.line = 657;
-      F.line = 657;
+      F.line = 658;
+      F.line = 658;
       var tmp_15694627 = tree_11755445(43, []);
       result_15495028 = tmp_15694627;
     }
