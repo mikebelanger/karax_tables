@@ -124,7 +124,7 @@ proc column_headers[T](obj: T, affordance: CelAffordance = ReadOnly): seq[Column
                 col.cel_affordance = affordance
                 result.add(col)
 
-    when compiles(obj[].fieldPairs):
+    when obj is ref:
         for key, value in obj[].fieldPairs:
             var col = Column(name: $key)
 
@@ -325,7 +325,7 @@ proc to_cels[T](obj: T, columns: seq[Column], table_style: TableStyle): seq[Cel]
 
                 result.add(val.to_cels(columns, table_style))
 
-    when compiles(obj[].fieldPairs):
+    when obj is ref:
         for key, val in obj[].fieldPairs:
             
             when val is object:
@@ -351,7 +351,7 @@ proc to_cels[T](obj: T, columns: seq[Column], table_style: TableStyle): seq[Cel]
 
             idx.inc
 
-        when compiles(obj[].fieldPairs):
+        when obj is ref:
             for key, val in obj[].fieldPairs:
 
                 when (val is int) or (val is float) or (val is enum) or (val is string) or (val is bool):
@@ -612,7 +612,7 @@ proc matches*[T](obj: T, search_str: string): bool =
 
         return false
 
-    when compiles(obj[].fieldPairs):
+    when obj is ref:
         for field, val in obj[].fieldPairs:
             when val is int:
                 if ($val).contains(search_str.toLowerAscii):
