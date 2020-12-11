@@ -327,7 +327,7 @@ proc to_cels[T](obj: T, columns: seq[Column], table_style: TableStyle): seq[Cel]
     when compiles(obj.fieldPairs):
         for key, val in obj.fieldPairs:
             
-            when compiles(val.fieldPairs):
+            when val is object:
 
                 result.add(val.to_cels(columns, table_style))
 
@@ -338,7 +338,7 @@ proc to_cels[T](obj: T, columns: seq[Column], table_style: TableStyle): seq[Cel]
     when obj is ref:
         for key, val in obj[].fieldPairs:
             
-            when compiles(val.fieldPairs):
+            when val is object:
 
                 result.add(val.to_cels(columns, table_style))
 
