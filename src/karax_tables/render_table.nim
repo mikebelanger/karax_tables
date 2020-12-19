@@ -46,7 +46,7 @@ proc matches*[T](obj: T, search_str: string): bool =
         return true
 
     else:
-        when compiles(obj.fieldPairs):
+        when obj is object:
             for field, val in obj.fieldPairs:
                 when val is int:
                     if ($val).contains(search_str.toLowerAscii):
@@ -96,7 +96,7 @@ when defined(js):
     include karax/prelude
     import karax / [kdom]
 
-    proc id_seed(vnode: VNode, seed:int = 20): VNode =
+    proc id_seed(vnode: VNode, seed:int = 50): VNode =
         result = vnode
         result.setAttr("id", $(0..seed).toSeq.sample)
         return result
@@ -115,49 +115,49 @@ when defined(js):
 
     proc row*(seed: int = 200): VNode =
         result = buildHtml(tr()).id_seed
-    
-    proc row*(id: int): VNode =
-        result = buildHtml(tr(id = $id))
+
+    proc row*(seed: int = 200, id: string): VNode =
+        result = buildHtml(tr(id = id))
 
     proc row*(seed: int = 200, event: EventKind, cb: EventHandler): VNode =
         result = buildHtml(tr())
         result.events.add((event, cb, nil))
 
-    iterator show*[T](all: seq[T], matching = ""): T =
+    iterator show*[T](all: seq[T], matching = ""): tuple[index: int, val: T] =
         var 
-            i = 0
+            index = 0
             length = len(all)
         
-        while i < length:
-            if all[i].matches(matching):
-                yield(all[i])
+        while index < length:
+            if all[index].matches(matching):
+                yield (index, all[index])
             
-            inc(i)
+            inc(index)
 
     ### Read and Write
     proc readandwrite*(elem: bool): VNode =
-        result = buildHtml(td(input(`type` = "checkbox", value = $elem)))
+        result = buildHtml(input(`type` = "checkbox")).id_seed
         
         if elem:
             result.setAttr("checked", "true")
 
     proc readandwrite*(elem: bool, id: string | int): VNode =
-        result = buildHtml(td(input(`type` = "checkbox", id = id, value = $elem)))
+        result = buildHtml(input(`type` = "checkbox", id = id)).id_seed
         
         if elem:
             result.setAttr("checked", "true")
 
     proc readandwrite*(elem: string, textarea = false): VNode =
         if textarea:
-            buildHtml(td(textarea(type = "text", value = elem))).id_seed
+            buildHtml(textarea(type = "text", value = elem)).id_seed
         else:
-            buildHtml(td(input(type = "text", value = elem))).id_seed
+            buildHtml(input(type = "text", value = elem)).id_seed
 
     proc readandwrite*(elem: string, id: string | int): VNode =
-        buildHtml(td(input(type = "text", value = elem, id = $id))).id_seed
+        buildHtml(input(type = "text", value = elem, id = $id))
 
     proc readandwrite*(elem: int): VNode =
-        buildHtml(td(input(type = "number", value = $elem))).id_seed
+        buildHtml(input(type = "number", value = $elem)).id_seed
 
     proc readandwrite*(elem: enum): VNode =
         let 
