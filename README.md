@@ -57,7 +57,7 @@ Also notice the `show` iterator.  Pass in a global variable with a search string
 
 To get an event listener on a row, just write a normal event handler that karax would accept in a row:
 
-```nimrod
+```nimrodw
 # previous table data
 
 tbody:

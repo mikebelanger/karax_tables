@@ -108,6 +108,12 @@ when defined(js):
                 )
             )
 
+    proc row*(id: int): VNode =
+        result = buildHtml(tr(id = $id))
+
+    proc row*(id: string): VNode =
+        result = buildHtml(tr(id = id))
+
     iterator show*[T](all: seq[T], matching = ""): tuple[index: int, val: T] =
         var 
             index = 0
