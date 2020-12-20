@@ -1,93 +1,79 @@
 (***WARNING - Very WIP - Subject to breaking changes, missing docs***)
 
 # karax_tables
-Nim objects/tuples -> HTML (VDom) Tables
-
-Turn a sequence of [Nim](https://nim-lang.org/) objects/tuples into a dynamically-rendered HTML table - with minimal hassle.  Uses [Karax](https://github.com/pragmagic/karax).
+Some functions to help make/maintain dynamically rendered tables, with the help of [Nim](https://nim-lang.org/) and [Karax](https://github.com/pragmagic/karax).
 
 ### Why?
 
-* Your project is written in Nim, and that uses Karax.  Probably a CRUD, enterprise-like web app (perhaps using [Ormin](https://github.com/Araq/ormin) or [Norm](https://github.com/moigagoo/norm)), or CSV parsing stuff (like [csvtools](https://github.com/unicredit/csvtools)).
-
-* Your project has its data already defined as objects/tuples, and it needs them rendered out to HTML tables.
-
-* Your objects' schema gets changed frequently, and propagating those changes to the HTML tables is burning you out.
+* Your project is using Nim and Karax.  You have lots of tables to write out.  While this isn't hard with normal karaxhtml, its tedious.
 
 * Your project could use automatic:
-    + Object instance -> table row.
-    + Object field -> table column.
-    + Object's data-types -> table's td `<input type>`s:
+    + Auto data-type -> table's td `<input type>`s:
         * String -> text/textarea
         * Int/float -> input number
         * Boolean -> checkboxes
         * Enumerations -> option menus
         * Any data type -> hidden fields
 
+    + Auto data-type -> table td's for unchangeable data.
+
 ### Why Not?
 
-* Your project only has a few tables, and they don't change that frequently.
-
-* Your project data structures aren't objects or tuples. Maybe the data is represtend by something homogenous, like [arraymancer](https://github.com/mratsim/Arraymancer) tensors.  Or the data is heterogeneous, but contained in a dataframe, such as [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library isn't designed with these paradigms in mind.
+* Your project data structures aren't objects or tuples. Maybe the data is represented by something homogenous, like [arraymancer](https://github.com/mratsim/Arraymancer) tensors.  Or the data is heterogeneous, but contained in a dataframe, such as [NimData](https://github.com/bluenote10/NimData).  Nothing wrong with these approaches, but this library isn't designed with these paradigms in mind.
 
 * Your looking for full-out spreadsheet functionality, like [JExcel](https://bossanova.uk/jexcel/v3/)
 
 ### Simple Example
 
 Let's say your project has an object defined, called `User`:
-```nimrod
+
+```
 type
-    UserKind = enum
-        Unconfirmed
-        Admin
-        Worker
-        Supervisor
-
-    User = object
-        username: string
-        id: int
-        user_kind: UserKind
-
-var users: seq[User]
-users.add(User(username: "mike", id: 0))
-users.add(User(username: "david", id: 2, user_kind: Supervisor))
-users.add(User(username: "rob", id: 4, user_kind: Admin))
+    User* = object
+        first_name*, last_name*: string
+        email_address*: Email
 ```
-Taking the above code, we could render out an HTML like so:
+
+To render this into a table, add this to your frontend file (somewhere in the karax render function).
 
 ```nimrod
-let user_table = users.karax_table(all_columns = ReadAndWrite)
-writeFile("./tests/user_table.html", user_table.to_string)
+table:
+    heading("First name", "Last name", "Email", "Select")
+
+    tbody:
+        for index, u in users.show(matching = search_filter):
+            tr(id = $u.id):
+                readandwrite(u.first_name, id = $u.id)
+                readandwrite(u.last_name)
+                readandwrite(u.email_address.address)
+                readonly(false)
 ```
 
-Which would render something looking like this:
+Notice `readandwrite` and `readonly` will automatically produce an `<input>` tag with the right type (text, number, etc.).  No need to remember the exact tag name!  It just makes sense.
 
-![Simple HTML Table](tests/html_table.png)
+Also notice the `show` iterator.  Pass in a global variable with a search string, and show will filter out the objects matching the search string.  Note this goes through the entire object, not just what you present.
 
-Note that while the above renders using the c backend, most of karax_tables' functionality is targeted for client-side (js) rendering.
+### Event listeners
 
-
-### Event Listeners
-
-karax_tables supports listening to row and table updates.
-
-To get updated row data, just define a function whose':
-* name is based on the event [List of supported events here.](./documents/event_listeners.md)
-* first parameter is the object that gets converted to a row
-* second parameter is an Event object.  
-
-For example, to get an updated user everytime we changed that same users row, we'd do:
+To get an event listener on a row, just write a normal event handler that karax would accept in a row:
 
 ```nimrod
-proc onchange(u: User, e: Event) =
-    echo u # should print updated user to console
-    echo e.currentTarget.querySelector("extra") # prints dom stuff of row
+# previous table data
 
-    # you have access to the global scope here, so you can modify
-    # the original users array, make new ones, etc. 
+tbody:
+    for index, u in users.show(matching = search_filter):
+        tr(id = $u.id):
+            readandwrite(u.first_name, id = $u.id)
+            readandwrite(u.last_name)
+            readandwrite(u.email_address.address)
+            readonly(false)
+
+        proc onchange(e: Event, n: VNode) =
+            let this_id = e.currentTarget.id
+
+            # etc
 ```
-
-To get the entire table, do the same as above, but make the first argument a `seq[User]` instead.
-
+Those kinds of event handlers have access to the global scope of your app, making applicaiton state easy to sync up.
 
 ### Requirements
 
@@ -105,54 +91,3 @@ To get the entire table, do the same as above, but make the first argument a `se
 ```
 git clone https://github.com/mikebelanger/karax_tables.git
 ```
-
-## Usage Guide
-
-* ### Installing
-* ### Creating tables
-    + [With Objects](./documents/creating/with_objects.md)
-    + [With Tuples](./documents/creating/with_tuples.md)
-* ### Customizing
-    + [Columns](./documents/columns.md)
-        + Text/Textarea
-        + Numbers
-        + Drop-downs 
-        + Check-boxes 
-        + Hidden fields
-    + [Styling](./documents/styling.md)
-        + Headers
-        + Rows
-
-    + [Event Callbacks](./documents/event_handlers.md)
-        + Row-updates
-        + Table updates
-
-    + [Pagination](./documents/pagination.md)
-
-* ### Developing
-
-#### Client-Side
-
-import karax_tables into whatever file you compile into JS.  Get your objects into a sequence, and call the `karax_table` function in the main render loop:
-```nimrod
-include karax/prelude
-import karax / [karaxdsl, vdom]
-import karax_tables
-
-var users: seq[User]
-
-## do stuff to populate users
-
-proc render(): VNode = 
-    result = buildHtml():
-        users.karax_table
-
-setRenderer render
-```
-
-## Other Features
-
-* Styling
-
-## Guides
-[Client Side Usage Guide](./documents/client.md)
