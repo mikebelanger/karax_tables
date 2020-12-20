@@ -108,16 +108,6 @@ when defined(js):
                 )
             )
 
-    proc row*(seed: int = 200): VNode =
-        result = buildHtml(tr())
-
-    proc row*(seed: int = 200, id: string): VNode =
-        result = buildHtml(tr(id = id))
-
-    proc row*(seed: int = 200, event: EventKind, cb: EventHandler): VNode =
-        result = buildHtml(tr())
-        result.events.add((event, cb, nil))
-
     iterator show*[T](all: seq[T], matching = ""): tuple[index: int, val: T] =
         var 
             index = 0
@@ -131,34 +121,34 @@ when defined(js):
 
     ### Read and Write
     proc readandwrite*(elem: bool): VNode =
-        result = buildHtml(input(`type` = "checkbox"))
+        result = buildHtml(td(input(`type` = "checkbox")))
         
         if elem:
             result.setAttr("checked", "true")
 
     proc readandwrite*(elem: bool, id: string | int): VNode =
-        result = buildHtml(input(`type` = "checkbox", id = id))
+        result = buildHtml(td(input(`type` = "checkbox", id = id)))
         
         if elem:
             result.setAttr("checked", "true")
 
     proc readandwrite*(elem: string, textarea = false): VNode =
         if textarea:
-            buildHtml(textarea(type = "text", value = elem))
+            buildHtml(td(textarea(type = "text", value = elem)))
         else:
-            buildHtml(input(type = "text", value = elem))
+            buildHtml(td(input(type = "text", value = elem)))
 
     proc readandwrite*(elem: string, textarea = false, id: string | int): VNode =
         if textarea:
-            buildHtml(textarea(type = "text", value = elem, id = $id))
+            buildHtml(td(textarea(type = "text", value = elem, id = $id)))
         else:
-            buildHtml(input(type = "text", value = elem, id = $id))
+            buildHtml(td(input(type = "text", value = elem, id = $id)))
 
     proc readandwrite*(elem: int): VNode =
-        buildHtml(input(type = "number", value = $elem))
+        buildHtml(td(input(type = "number", value = $elem)))
 
     proc readandwrite*(elem: int, id: string): VNode =
-        buildHtml(input(type = "number", value = $elem, id = $id))
+        buildHtml(td(input(type = "number", value = $elem, id = $id)))
 
     proc readandwrite*(elem: enum): VNode =
         let 
@@ -176,8 +166,10 @@ when defined(js):
 
     ### Read only
     proc readonly*(elem: bool): VNode =
-        result = readandwrite(elem)
-        result.setAttr("disabled", "disabled")
+        result = buildHtml(td(input(`type` = "checkbox", disabled="disabled")))
+        
+        if elem:
+            result.setAttr("checked", "true")
 
     proc readonly*(elem: bool, id: string | int): VNode =
         result = readandwrite(elem, id)
@@ -189,7 +181,7 @@ when defined(js):
     proc readonly*(elem: string | int | float): VNode =
         buildHtml(td(text(elem)))
 
-    proc readonly*(elem: VNode, id: int | string): VNode =
+    proc readonly*(elem: VNode, id: string | string): VNode =
         buildHtml(td(elem, id = $id))
 
     proc readonly*[T](elem: string | int | float, id: string | int): VNode =
@@ -217,18 +209,18 @@ when defined(js):
                             disabled = true))
         )
 
-    proc readonly_row*[T](elems: varargs[T, readonly], id: int): VNode =
+    proc readonly_row*[T](elems: varargs[T, readonly], id: string): VNode =
         result = buildHtml(tr(id = $id))
         for elem in elems:
             result.add(elem)
 
-    proc readandwrite_row*[T](elems: varargs[T, readandwrite], id: int): VNode =
+    proc readandwrite_row*[T](elems: varargs[T, readandwrite], id: string): VNode =
         result = buildHtml(tr(id = $id))
         for elem in elems:
             result.add(elem)
 
     ### Hidden
-    proc hidden*(hidden: int | string, id: int): VNode =
+    proc hidden*(hidden: int | string, id: string): VNode =
         result =
             buildHtml(
                 input(`type` = "hidden", value = $hidden)
