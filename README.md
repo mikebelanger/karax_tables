@@ -1,21 +1,22 @@
-(***WARNING - Very WIP - Subject to breaking changes, missing docs***)
+```
+Making HTML tables are fun and intellectually satisfying!
+```
+
+--*Nobody, ever.*
 
 # karax_tables
-Some functions to help make/maintain dynamically rendered tables, with the help of [Nim](https://nim-lang.org/) and [Karax](https://github.com/pragmagic/karax).
+
+(***WARNING - Very WIP - Subject to breaking changes, missing docs***)
+
+Some functions and an iterator to help make/maintain dynamically rendered tables, with the help of [Nim](https://nim-lang.org/) and [Karax](https://github.com/pragmagic/karax).
 
 ### Why?
 
-* Your project is using Nim and Karax.  You have lots of tables to write out.  While this isn't hard with normal karaxhtml, its tedious.
+* Your project is using Nim and Karax.  You have lots of tables to make.  While this isn't hard with normal karaxhtml, its tedious.
 
-* Your project could use automatic:
-    + Auto data-type -> table's td `<input type>`s:
-        * String -> text/textarea
-        * Int/float -> input number
-        * Boolean -> checkboxes
-        * Enumerations -> option menus
-        * Any data type -> hidden fields
+* Your data is already defined as objects/tuples, and you'd like something relatively simple to convert those objects/tuples to rows.
 
-    + Auto data-type -> table td's for unchangeable data.
+* You'd like a searchable table that isn't tedious to write.
 
 ### Why Not?
 
@@ -42,16 +43,32 @@ table:
 
     tbody:
         for index, u in users.show(matching = search_filter):
-            tr(id = $u.id):
+            index.row:
                 readandwrite(u.first_name, id = $u.id)
                 readandwrite(u.last_name)
                 readandwrite(u.email_address.address)
                 readonly(false)
 ```
+Adding cel data is done with any of three functions:
+
+    * readonly
+    * readandwrite
+    * hidden
 
 Notice `readandwrite` and `readonly` will automatically produce an `<input>` tag with the right type (text, number, etc.).  No need to remember the exact tag name!  It just makes sense.
 
 Also notice the `show` iterator.  Pass in a global variable with a search string, and show will filter out the objects matching the search string.  Note this goes through the entire object, not just what you present.
+
+If all your data is all readonly, all readandwrite then you could do this instead:
+
+```nimrod
+for index, u in users.show(matching = search_filter):
+    readandwrite_row(u.first_name, u.last_name, u.email_address.address, id = $u.id)
+```
+
+### IMPORTANT: Always insert unique IDs
+
+its important to pass in a unique identifier to the `id` argument of the functions.  If you just pass in something constant, karax itself might get confused and update the table weirdly. 
 
 ### Event listeners
 
