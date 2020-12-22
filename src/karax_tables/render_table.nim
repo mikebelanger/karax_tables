@@ -96,8 +96,13 @@ when defined(js):
     include karax/prelude
     import karax / [kdom]
 
+    proc id_seed(vnode: VNode, seed:int = 20): VNode =
+        result = vnode
+        result.setAttr("id", $(0..seed).toSeq.sample)
+        return result
+
     proc heading*(headings: varargs[string]): VNode =
-        result = buildHtml(tr())
+        result = buildHtml(thead()).id_seed
 
         for heading in headings:
             result.add(
@@ -105,31 +110,30 @@ when defined(js):
                     th(
                         text heading
                     )
-                )
+                ).id_seed
             )
 
-        return buildHtml(thead(result))
+    proc row*(seed: int = 200): VNode =
+        result = buildHtml(tr()).id_seed
 
-    proc row*(id: int): VNode =
-        result = buildHtml(tr(id = $id))
+    proc row*(seed: int = 200, event: EventKind, cb: EventHandler): VNode =
+        result = buildHtml(tr())
+        result.events.add((event, cb, nil))
 
-    proc row*(id: string): VNode =
-        result = buildHtml(tr(id = id))
-
-    iterator show*[T](all: seq[T], matching = ""): tuple[index: int, val: T] =
+    iterator show*[T](all: seq[T], matching = ""): T =
         var 
-            index = 0
+            i = 0
             length = len(all)
         
-        while index < length:
-            if all[index].matches(matching):
-                yield (index, all[index])
+        while i < length:
+            if all[i].matches(matching):
+                yield(all[i])
             
-            inc(index)
+            inc(i)
 
     ### Read and Write
     proc readandwrite*(elem: bool): VNode =
-        result = buildHtml(td(input(`type` = "checkbox")))
+        result = buildHtml(input(`type` = "checkbox")).id_seed
         
         if elem:
             result.setAttr("checked", "true")
