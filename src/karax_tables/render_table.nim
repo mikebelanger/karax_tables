@@ -97,7 +97,7 @@ when defined(js):
     import karax / [kdom]
 
     proc heading*(headings: varargs[string]): VNode =
-        result = buildHtml(thead())
+        result = buildHtml(tr())
 
         for heading in headings:
             result.add(
@@ -107,6 +107,8 @@ when defined(js):
                     )
                 )
             )
+
+        return buildHtml(thead(result))
 
     proc row*(id: int): VNode =
         result = buildHtml(tr(id = $id))
